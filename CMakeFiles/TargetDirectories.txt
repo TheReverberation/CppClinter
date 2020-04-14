@@ -1,0 +1,3 @@
+/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles/rebuild_cache.dir
+/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles/edit_cache.dir
+/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles/CppClinter.dir
