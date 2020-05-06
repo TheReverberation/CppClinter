@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.15.4/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /usr/local/Cellar/cmake/3.15.4/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/daniilnedaiborsch/Code/CppClinter
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.15.4/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/local/Cellar/cmake/3.15.4/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -123,167 +123,653 @@ CppClinter/fast:
 	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/build
 .PHONY : CppClinter/fast
 
-src/CAlphabet.o: src/CAlphabet.cpp.o
+src/Evaluator/Evaluator.o: src/Evaluator/Evaluator.cpp.o
 
-.PHONY : src/CAlphabet.o
-
-# target to build an object file
-src/CAlphabet.cpp.o:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.o
-.PHONY : src/CAlphabet.cpp.o
-
-src/CAlphabet.i: src/CAlphabet.cpp.i
-
-.PHONY : src/CAlphabet.i
-
-# target to preprocess a source file
-src/CAlphabet.cpp.i:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.i
-.PHONY : src/CAlphabet.cpp.i
-
-src/CAlphabet.s: src/CAlphabet.cpp.s
-
-.PHONY : src/CAlphabet.s
-
-# target to generate assembly for a file
-src/CAlphabet.cpp.s:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.s
-.PHONY : src/CAlphabet.cpp.s
-
-src/Lexeme.o: src/Lexeme.cpp.o
-
-.PHONY : src/Lexeme.o
+.PHONY : src/Evaluator/Evaluator.o
 
 # target to build an object file
-src/Lexeme.cpp.o:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexeme.cpp.o
-.PHONY : src/Lexeme.cpp.o
+src/Evaluator/Evaluator.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.o
+.PHONY : src/Evaluator/Evaluator.cpp.o
 
-src/Lexeme.i: src/Lexeme.cpp.i
+src/Evaluator/Evaluator.i: src/Evaluator/Evaluator.cpp.i
 
-.PHONY : src/Lexeme.i
+.PHONY : src/Evaluator/Evaluator.i
 
 # target to preprocess a source file
-src/Lexeme.cpp.i:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexeme.cpp.i
-.PHONY : src/Lexeme.cpp.i
+src/Evaluator/Evaluator.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.i
+.PHONY : src/Evaluator/Evaluator.cpp.i
 
-src/Lexeme.s: src/Lexeme.cpp.s
+src/Evaluator/Evaluator.s: src/Evaluator/Evaluator.cpp.s
 
-.PHONY : src/Lexeme.s
+.PHONY : src/Evaluator/Evaluator.s
 
 # target to generate assembly for a file
-src/Lexeme.cpp.s:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexeme.cpp.s
-.PHONY : src/Lexeme.cpp.s
+src/Evaluator/Evaluator.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.s
+.PHONY : src/Evaluator/Evaluator.cpp.s
 
-src/LexemeType.o: src/LexemeType.cpp.o
+src/Evaluator/Token.o: src/Evaluator/Token.cpp.o
 
-.PHONY : src/LexemeType.o
+.PHONY : src/Evaluator/Token.o
 
 # target to build an object file
-src/LexemeType.cpp.o:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/LexemeType.cpp.o
-.PHONY : src/LexemeType.cpp.o
+src/Evaluator/Token.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.o
+.PHONY : src/Evaluator/Token.cpp.o
 
-src/LexemeType.i: src/LexemeType.cpp.i
+src/Evaluator/Token.i: src/Evaluator/Token.cpp.i
 
-.PHONY : src/LexemeType.i
+.PHONY : src/Evaluator/Token.i
 
 # target to preprocess a source file
-src/LexemeType.cpp.i:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/LexemeType.cpp.i
-.PHONY : src/LexemeType.cpp.i
+src/Evaluator/Token.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.i
+.PHONY : src/Evaluator/Token.cpp.i
 
-src/LexemeType.s: src/LexemeType.cpp.s
+src/Evaluator/Token.s: src/Evaluator/Token.cpp.s
 
-.PHONY : src/LexemeType.s
+.PHONY : src/Evaluator/Token.s
 
 # target to generate assembly for a file
-src/LexemeType.cpp.s:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/LexemeType.cpp.s
-.PHONY : src/LexemeType.cpp.s
+src/Evaluator/Token.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.s
+.PHONY : src/Evaluator/Token.cpp.s
 
-src/Lexer.o: src/Lexer.cpp.o
+src/Evaluator/TokenType.o: src/Evaluator/TokenType.cpp.o
 
-.PHONY : src/Lexer.o
+.PHONY : src/Evaluator/TokenType.o
 
 # target to build an object file
-src/Lexer.cpp.o:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer.cpp.o
-.PHONY : src/Lexer.cpp.o
+src/Evaluator/TokenType.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.o
+.PHONY : src/Evaluator/TokenType.cpp.o
 
-src/Lexer.i: src/Lexer.cpp.i
+src/Evaluator/TokenType.i: src/Evaluator/TokenType.cpp.i
 
-.PHONY : src/Lexer.i
+.PHONY : src/Evaluator/TokenType.i
 
 # target to preprocess a source file
-src/Lexer.cpp.i:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer.cpp.i
-.PHONY : src/Lexer.cpp.i
+src/Evaluator/TokenType.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.i
+.PHONY : src/Evaluator/TokenType.cpp.i
 
-src/Lexer.s: src/Lexer.cpp.s
+src/Evaluator/TokenType.s: src/Evaluator/TokenType.cpp.s
 
-.PHONY : src/Lexer.s
+.PHONY : src/Evaluator/TokenType.s
 
 # target to generate assembly for a file
-src/Lexer.cpp.s:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer.cpp.s
-.PHONY : src/Lexer.cpp.s
+src/Evaluator/TokenType.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.s
+.PHONY : src/Evaluator/TokenType.cpp.s
 
-src/SString.o: src/SString.cpp.o
+src/Evaluator/finders.o: src/Evaluator/finders.cpp.o
 
-.PHONY : src/SString.o
+.PHONY : src/Evaluator/finders.o
 
 # target to build an object file
-src/SString.cpp.o:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/SString.cpp.o
-.PHONY : src/SString.cpp.o
+src/Evaluator/finders.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.o
+.PHONY : src/Evaluator/finders.cpp.o
 
-src/SString.i: src/SString.cpp.i
+src/Evaluator/finders.i: src/Evaluator/finders.cpp.i
 
-.PHONY : src/SString.i
+.PHONY : src/Evaluator/finders.i
 
 # target to preprocess a source file
-src/SString.cpp.i:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/SString.cpp.i
-.PHONY : src/SString.cpp.i
+src/Evaluator/finders.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.i
+.PHONY : src/Evaluator/finders.cpp.i
 
-src/SString.s: src/SString.cpp.s
+src/Evaluator/finders.s: src/Evaluator/finders.cpp.s
 
-.PHONY : src/SString.s
+.PHONY : src/Evaluator/finders.s
 
 # target to generate assembly for a file
-src/SString.cpp.s:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/SString.cpp.s
-.PHONY : src/SString.cpp.s
+src/Evaluator/finders.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.s
+.PHONY : src/Evaluator/finders.cpp.s
 
-src/finders.o: src/finders.cpp.o
+src/Lexer/Lexeme.o: src/Lexer/Lexeme.cpp.o
 
-.PHONY : src/finders.o
+.PHONY : src/Lexer/Lexeme.o
 
 # target to build an object file
-src/finders.cpp.o:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/finders.cpp.o
-.PHONY : src/finders.cpp.o
+src/Lexer/Lexeme.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.o
+.PHONY : src/Lexer/Lexeme.cpp.o
 
-src/finders.i: src/finders.cpp.i
+src/Lexer/Lexeme.i: src/Lexer/Lexeme.cpp.i
 
-.PHONY : src/finders.i
+.PHONY : src/Lexer/Lexeme.i
 
 # target to preprocess a source file
-src/finders.cpp.i:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/finders.cpp.i
-.PHONY : src/finders.cpp.i
+src/Lexer/Lexeme.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.i
+.PHONY : src/Lexer/Lexeme.cpp.i
 
-src/finders.s: src/finders.cpp.s
+src/Lexer/Lexeme.s: src/Lexer/Lexeme.cpp.s
 
-.PHONY : src/finders.s
+.PHONY : src/Lexer/Lexeme.s
 
 # target to generate assembly for a file
-src/finders.cpp.s:
-	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/finders.cpp.s
-.PHONY : src/finders.cpp.s
+src/Lexer/Lexeme.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.s
+.PHONY : src/Lexer/Lexeme.cpp.s
+
+src/Lexer/LexemeType.o: src/Lexer/LexemeType.cpp.o
+
+.PHONY : src/Lexer/LexemeType.o
+
+# target to build an object file
+src/Lexer/LexemeType.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.o
+.PHONY : src/Lexer/LexemeType.cpp.o
+
+src/Lexer/LexemeType.i: src/Lexer/LexemeType.cpp.i
+
+.PHONY : src/Lexer/LexemeType.i
+
+# target to preprocess a source file
+src/Lexer/LexemeType.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.i
+.PHONY : src/Lexer/LexemeType.cpp.i
+
+src/Lexer/LexemeType.s: src/Lexer/LexemeType.cpp.s
+
+.PHONY : src/Lexer/LexemeType.s
+
+# target to generate assembly for a file
+src/Lexer/LexemeType.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.s
+.PHONY : src/Lexer/LexemeType.cpp.s
+
+src/Lexer/Lexer.o: src/Lexer/Lexer.cpp.o
+
+.PHONY : src/Lexer/Lexer.o
+
+# target to build an object file
+src/Lexer/Lexer.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.o
+.PHONY : src/Lexer/Lexer.cpp.o
+
+src/Lexer/Lexer.i: src/Lexer/Lexer.cpp.i
+
+.PHONY : src/Lexer/Lexer.i
+
+# target to preprocess a source file
+src/Lexer/Lexer.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.i
+.PHONY : src/Lexer/Lexer.cpp.i
+
+src/Lexer/Lexer.s: src/Lexer/Lexer.cpp.s
+
+.PHONY : src/Lexer/Lexer.s
+
+# target to generate assembly for a file
+src/Lexer/Lexer.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.s
+.PHONY : src/Lexer/Lexer.cpp.s
+
+src/Lexer/finders.o: src/Lexer/finders.cpp.o
+
+.PHONY : src/Lexer/finders.o
+
+# target to build an object file
+src/Lexer/finders.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.o
+.PHONY : src/Lexer/finders.cpp.o
+
+src/Lexer/finders.i: src/Lexer/finders.cpp.i
+
+.PHONY : src/Lexer/finders.i
+
+# target to preprocess a source file
+src/Lexer/finders.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.i
+.PHONY : src/Lexer/finders.cpp.i
+
+src/Lexer/finders.s: src/Lexer/finders.cpp.s
+
+.PHONY : src/Lexer/finders.s
+
+# target to generate assembly for a file
+src/Lexer/finders.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.s
+.PHONY : src/Lexer/finders.cpp.s
+
+src/Linter/Linter.o: src/Linter/Linter.cpp.o
+
+.PHONY : src/Linter/Linter.o
+
+# target to build an object file
+src/Linter/Linter.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.o
+.PHONY : src/Linter/Linter.cpp.o
+
+src/Linter/Linter.i: src/Linter/Linter.cpp.i
+
+.PHONY : src/Linter/Linter.i
+
+# target to preprocess a source file
+src/Linter/Linter.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.i
+.PHONY : src/Linter/Linter.cpp.i
+
+src/Linter/Linter.s: src/Linter/Linter.cpp.s
+
+.PHONY : src/Linter/Linter.s
+
+# target to generate assembly for a file
+src/Linter/Linter.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.s
+.PHONY : src/Linter/Linter.cpp.s
+
+src/Parser/Parser.o: src/Parser/Parser.cpp.o
+
+.PHONY : src/Parser/Parser.o
+
+# target to build an object file
+src/Parser/Parser.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.o
+.PHONY : src/Parser/Parser.cpp.o
+
+src/Parser/Parser.i: src/Parser/Parser.cpp.i
+
+.PHONY : src/Parser/Parser.i
+
+# target to preprocess a source file
+src/Parser/Parser.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.i
+.PHONY : src/Parser/Parser.cpp.i
+
+src/Parser/Parser.s: src/Parser/Parser.cpp.s
+
+.PHONY : src/Parser/Parser.s
+
+# target to generate assembly for a file
+src/Parser/Parser.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.s
+.PHONY : src/Parser/Parser.cpp.s
+
+src/Statements/Arithmetic/findCompleteExpression.o: src/Statements/Arithmetic/findCompleteExpression.cpp.o
+
+.PHONY : src/Statements/Arithmetic/findCompleteExpression.o
+
+# target to build an object file
+src/Statements/Arithmetic/findCompleteExpression.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.o
+.PHONY : src/Statements/Arithmetic/findCompleteExpression.cpp.o
+
+src/Statements/Arithmetic/findCompleteExpression.i: src/Statements/Arithmetic/findCompleteExpression.cpp.i
+
+.PHONY : src/Statements/Arithmetic/findCompleteExpression.i
+
+# target to preprocess a source file
+src/Statements/Arithmetic/findCompleteExpression.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.i
+.PHONY : src/Statements/Arithmetic/findCompleteExpression.cpp.i
+
+src/Statements/Arithmetic/findCompleteExpression.s: src/Statements/Arithmetic/findCompleteExpression.cpp.s
+
+.PHONY : src/Statements/Arithmetic/findCompleteExpression.s
+
+# target to generate assembly for a file
+src/Statements/Arithmetic/findCompleteExpression.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.s
+.PHONY : src/Statements/Arithmetic/findCompleteExpression.cpp.s
+
+src/Statements/Arithmetic/linters.o: src/Statements/Arithmetic/linters.cpp.o
+
+.PHONY : src/Statements/Arithmetic/linters.o
+
+# target to build an object file
+src/Statements/Arithmetic/linters.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.o
+.PHONY : src/Statements/Arithmetic/linters.cpp.o
+
+src/Statements/Arithmetic/linters.i: src/Statements/Arithmetic/linters.cpp.i
+
+.PHONY : src/Statements/Arithmetic/linters.i
+
+# target to preprocess a source file
+src/Statements/Arithmetic/linters.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.i
+.PHONY : src/Statements/Arithmetic/linters.cpp.i
+
+src/Statements/Arithmetic/linters.s: src/Statements/Arithmetic/linters.cpp.s
+
+.PHONY : src/Statements/Arithmetic/linters.s
+
+# target to generate assembly for a file
+src/Statements/Arithmetic/linters.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.s
+.PHONY : src/Statements/Arithmetic/linters.cpp.s
+
+src/Statements/Block.o: src/Statements/Block.cpp.o
+
+.PHONY : src/Statements/Block.o
+
+# target to build an object file
+src/Statements/Block.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.o
+.PHONY : src/Statements/Block.cpp.o
+
+src/Statements/Block.i: src/Statements/Block.cpp.i
+
+.PHONY : src/Statements/Block.i
+
+# target to preprocess a source file
+src/Statements/Block.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.i
+.PHONY : src/Statements/Block.cpp.i
+
+src/Statements/Block.s: src/Statements/Block.cpp.s
+
+.PHONY : src/Statements/Block.s
+
+# target to generate assembly for a file
+src/Statements/Block.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.s
+.PHONY : src/Statements/Block.cpp.s
+
+src/Statements/ElseStatement.o: src/Statements/ElseStatement.cpp.o
+
+.PHONY : src/Statements/ElseStatement.o
+
+# target to build an object file
+src/Statements/ElseStatement.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.o
+.PHONY : src/Statements/ElseStatement.cpp.o
+
+src/Statements/ElseStatement.i: src/Statements/ElseStatement.cpp.i
+
+.PHONY : src/Statements/ElseStatement.i
+
+# target to preprocess a source file
+src/Statements/ElseStatement.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.i
+.PHONY : src/Statements/ElseStatement.cpp.i
+
+src/Statements/ElseStatement.s: src/Statements/ElseStatement.cpp.s
+
+.PHONY : src/Statements/ElseStatement.s
+
+# target to generate assembly for a file
+src/Statements/ElseStatement.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.s
+.PHONY : src/Statements/ElseStatement.cpp.s
+
+src/Statements/Expression.o: src/Statements/Expression.cpp.o
+
+.PHONY : src/Statements/Expression.o
+
+# target to build an object file
+src/Statements/Expression.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.o
+.PHONY : src/Statements/Expression.cpp.o
+
+src/Statements/Expression.i: src/Statements/Expression.cpp.i
+
+.PHONY : src/Statements/Expression.i
+
+# target to preprocess a source file
+src/Statements/Expression.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.i
+.PHONY : src/Statements/Expression.cpp.i
+
+src/Statements/Expression.s: src/Statements/Expression.cpp.s
+
+.PHONY : src/Statements/Expression.s
+
+# target to generate assembly for a file
+src/Statements/Expression.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.s
+.PHONY : src/Statements/Expression.cpp.s
+
+src/Statements/IfElseStatement.o: src/Statements/IfElseStatement.cpp.o
+
+.PHONY : src/Statements/IfElseStatement.o
+
+# target to build an object file
+src/Statements/IfElseStatement.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.o
+.PHONY : src/Statements/IfElseStatement.cpp.o
+
+src/Statements/IfElseStatement.i: src/Statements/IfElseStatement.cpp.i
+
+.PHONY : src/Statements/IfElseStatement.i
+
+# target to preprocess a source file
+src/Statements/IfElseStatement.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.i
+.PHONY : src/Statements/IfElseStatement.cpp.i
+
+src/Statements/IfElseStatement.s: src/Statements/IfElseStatement.cpp.s
+
+.PHONY : src/Statements/IfElseStatement.s
+
+# target to generate assembly for a file
+src/Statements/IfElseStatement.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.s
+.PHONY : src/Statements/IfElseStatement.cpp.s
+
+src/Statements/IfStatement.o: src/Statements/IfStatement.cpp.o
+
+.PHONY : src/Statements/IfStatement.o
+
+# target to build an object file
+src/Statements/IfStatement.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.o
+.PHONY : src/Statements/IfStatement.cpp.o
+
+src/Statements/IfStatement.i: src/Statements/IfStatement.cpp.i
+
+.PHONY : src/Statements/IfStatement.i
+
+# target to preprocess a source file
+src/Statements/IfStatement.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.i
+.PHONY : src/Statements/IfStatement.cpp.i
+
+src/Statements/IfStatement.s: src/Statements/IfStatement.cpp.s
+
+.PHONY : src/Statements/IfStatement.s
+
+# target to generate assembly for a file
+src/Statements/IfStatement.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.s
+.PHONY : src/Statements/IfStatement.cpp.s
+
+src/Statements/Instruction.o: src/Statements/Instruction.cpp.o
+
+.PHONY : src/Statements/Instruction.o
+
+# target to build an object file
+src/Statements/Instruction.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.o
+.PHONY : src/Statements/Instruction.cpp.o
+
+src/Statements/Instruction.i: src/Statements/Instruction.cpp.i
+
+.PHONY : src/Statements/Instruction.i
+
+# target to preprocess a source file
+src/Statements/Instruction.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.i
+.PHONY : src/Statements/Instruction.cpp.i
+
+src/Statements/Instruction.s: src/Statements/Instruction.cpp.s
+
+.PHONY : src/Statements/Instruction.s
+
+# target to generate assembly for a file
+src/Statements/Instruction.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.s
+.PHONY : src/Statements/Instruction.cpp.s
+
+src/Statements/Statement.o: src/Statements/Statement.cpp.o
+
+.PHONY : src/Statements/Statement.o
+
+# target to build an object file
+src/Statements/Statement.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.o
+.PHONY : src/Statements/Statement.cpp.o
+
+src/Statements/Statement.i: src/Statements/Statement.cpp.i
+
+.PHONY : src/Statements/Statement.i
+
+# target to preprocess a source file
+src/Statements/Statement.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.i
+.PHONY : src/Statements/Statement.cpp.i
+
+src/Statements/Statement.s: src/Statements/Statement.cpp.s
+
+.PHONY : src/Statements/Statement.s
+
+# target to generate assembly for a file
+src/Statements/Statement.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.s
+.PHONY : src/Statements/Statement.cpp.s
+
+src/Statements/StatementType.o: src/Statements/StatementType.cpp.o
+
+.PHONY : src/Statements/StatementType.o
+
+# target to build an object file
+src/Statements/StatementType.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.o
+.PHONY : src/Statements/StatementType.cpp.o
+
+src/Statements/StatementType.i: src/Statements/StatementType.cpp.i
+
+.PHONY : src/Statements/StatementType.i
+
+# target to preprocess a source file
+src/Statements/StatementType.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.i
+.PHONY : src/Statements/StatementType.cpp.i
+
+src/Statements/StatementType.s: src/Statements/StatementType.cpp.s
+
+.PHONY : src/Statements/StatementType.s
+
+# target to generate assembly for a file
+src/Statements/StatementType.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.s
+.PHONY : src/Statements/StatementType.cpp.s
+
+src/Statements/Struct.o: src/Statements/Struct.cpp.o
+
+.PHONY : src/Statements/Struct.o
+
+# target to build an object file
+src/Statements/Struct.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.o
+.PHONY : src/Statements/Struct.cpp.o
+
+src/Statements/Struct.i: src/Statements/Struct.cpp.i
+
+.PHONY : src/Statements/Struct.i
+
+# target to preprocess a source file
+src/Statements/Struct.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.i
+.PHONY : src/Statements/Struct.cpp.i
+
+src/Statements/Struct.s: src/Statements/Struct.cpp.s
+
+.PHONY : src/Statements/Struct.s
+
+# target to generate assembly for a file
+src/Statements/Struct.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.s
+.PHONY : src/Statements/Struct.cpp.s
+
+src/Statements/UndefinedLinterException.o: src/Statements/UndefinedLinterException.cpp.o
+
+.PHONY : src/Statements/UndefinedLinterException.o
+
+# target to build an object file
+src/Statements/UndefinedLinterException.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.o
+.PHONY : src/Statements/UndefinedLinterException.cpp.o
+
+src/Statements/UndefinedLinterException.i: src/Statements/UndefinedLinterException.cpp.i
+
+.PHONY : src/Statements/UndefinedLinterException.i
+
+# target to preprocess a source file
+src/Statements/UndefinedLinterException.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.i
+.PHONY : src/Statements/UndefinedLinterException.cpp.i
+
+src/Statements/UndefinedLinterException.s: src/Statements/UndefinedLinterException.cpp.s
+
+.PHONY : src/Statements/UndefinedLinterException.s
+
+# target to generate assembly for a file
+src/Statements/UndefinedLinterException.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.s
+.PHONY : src/Statements/UndefinedLinterException.cpp.s
+
+src/Statements/all.o: src/Statements/all.cpp.o
+
+.PHONY : src/Statements/all.o
+
+# target to build an object file
+src/Statements/all.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/all.cpp.o
+.PHONY : src/Statements/all.cpp.o
+
+src/Statements/all.i: src/Statements/all.cpp.i
+
+.PHONY : src/Statements/all.i
+
+# target to preprocess a source file
+src/Statements/all.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/all.cpp.i
+.PHONY : src/Statements/all.cpp.i
+
+src/Statements/all.s: src/Statements/all.cpp.s
+
+.PHONY : src/Statements/all.s
+
+# target to generate assembly for a file
+src/Statements/all.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/Statements/all.cpp.s
+.PHONY : src/Statements/all.cpp.s
+
+src/calphabet.o: src/calphabet.cpp.o
+
+.PHONY : src/calphabet.o
+
+# target to build an object file
+src/calphabet.cpp.o:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/calphabet.cpp.o
+.PHONY : src/calphabet.cpp.o
+
+src/calphabet.i: src/calphabet.cpp.i
+
+.PHONY : src/calphabet.i
+
+# target to preprocess a source file
+src/calphabet.cpp.i:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/calphabet.cpp.i
+.PHONY : src/calphabet.cpp.i
+
+src/calphabet.s: src/calphabet.cpp.s
+
+.PHONY : src/calphabet.s
+
+# target to generate assembly for a file
+src/calphabet.cpp.s:
+	$(MAKE) -f CMakeFiles/CppClinter.dir/build.make CMakeFiles/CppClinter.dir/src/calphabet.cpp.s
+.PHONY : src/calphabet.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -321,24 +807,78 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... CppClinter"
-	@echo "... src/CAlphabet.o"
-	@echo "... src/CAlphabet.i"
-	@echo "... src/CAlphabet.s"
-	@echo "... src/Lexeme.o"
-	@echo "... src/Lexeme.i"
-	@echo "... src/Lexeme.s"
-	@echo "... src/LexemeType.o"
-	@echo "... src/LexemeType.i"
-	@echo "... src/LexemeType.s"
-	@echo "... src/Lexer.o"
-	@echo "... src/Lexer.i"
-	@echo "... src/Lexer.s"
-	@echo "... src/SString.o"
-	@echo "... src/SString.i"
-	@echo "... src/SString.s"
-	@echo "... src/finders.o"
-	@echo "... src/finders.i"
-	@echo "... src/finders.s"
+	@echo "... src/Evaluator/Evaluator.o"
+	@echo "... src/Evaluator/Evaluator.i"
+	@echo "... src/Evaluator/Evaluator.s"
+	@echo "... src/Evaluator/Token.o"
+	@echo "... src/Evaluator/Token.i"
+	@echo "... src/Evaluator/Token.s"
+	@echo "... src/Evaluator/TokenType.o"
+	@echo "... src/Evaluator/TokenType.i"
+	@echo "... src/Evaluator/TokenType.s"
+	@echo "... src/Evaluator/finders.o"
+	@echo "... src/Evaluator/finders.i"
+	@echo "... src/Evaluator/finders.s"
+	@echo "... src/Lexer/Lexeme.o"
+	@echo "... src/Lexer/Lexeme.i"
+	@echo "... src/Lexer/Lexeme.s"
+	@echo "... src/Lexer/LexemeType.o"
+	@echo "... src/Lexer/LexemeType.i"
+	@echo "... src/Lexer/LexemeType.s"
+	@echo "... src/Lexer/Lexer.o"
+	@echo "... src/Lexer/Lexer.i"
+	@echo "... src/Lexer/Lexer.s"
+	@echo "... src/Lexer/finders.o"
+	@echo "... src/Lexer/finders.i"
+	@echo "... src/Lexer/finders.s"
+	@echo "... src/Linter/Linter.o"
+	@echo "... src/Linter/Linter.i"
+	@echo "... src/Linter/Linter.s"
+	@echo "... src/Parser/Parser.o"
+	@echo "... src/Parser/Parser.i"
+	@echo "... src/Parser/Parser.s"
+	@echo "... src/Statements/Arithmetic/findCompleteExpression.o"
+	@echo "... src/Statements/Arithmetic/findCompleteExpression.i"
+	@echo "... src/Statements/Arithmetic/findCompleteExpression.s"
+	@echo "... src/Statements/Arithmetic/linters.o"
+	@echo "... src/Statements/Arithmetic/linters.i"
+	@echo "... src/Statements/Arithmetic/linters.s"
+	@echo "... src/Statements/Block.o"
+	@echo "... src/Statements/Block.i"
+	@echo "... src/Statements/Block.s"
+	@echo "... src/Statements/ElseStatement.o"
+	@echo "... src/Statements/ElseStatement.i"
+	@echo "... src/Statements/ElseStatement.s"
+	@echo "... src/Statements/Expression.o"
+	@echo "... src/Statements/Expression.i"
+	@echo "... src/Statements/Expression.s"
+	@echo "... src/Statements/IfElseStatement.o"
+	@echo "... src/Statements/IfElseStatement.i"
+	@echo "... src/Statements/IfElseStatement.s"
+	@echo "... src/Statements/IfStatement.o"
+	@echo "... src/Statements/IfStatement.i"
+	@echo "... src/Statements/IfStatement.s"
+	@echo "... src/Statements/Instruction.o"
+	@echo "... src/Statements/Instruction.i"
+	@echo "... src/Statements/Instruction.s"
+	@echo "... src/Statements/Statement.o"
+	@echo "... src/Statements/Statement.i"
+	@echo "... src/Statements/Statement.s"
+	@echo "... src/Statements/StatementType.o"
+	@echo "... src/Statements/StatementType.i"
+	@echo "... src/Statements/StatementType.s"
+	@echo "... src/Statements/Struct.o"
+	@echo "... src/Statements/Struct.i"
+	@echo "... src/Statements/Struct.s"
+	@echo "... src/Statements/UndefinedLinterException.o"
+	@echo "... src/Statements/UndefinedLinterException.i"
+	@echo "... src/Statements/UndefinedLinterException.s"
+	@echo "... src/Statements/all.o"
+	@echo "... src/Statements/all.i"
+	@echo "... src/Statements/all.s"
+	@echo "... src/calphabet.o"
+	@echo "... src/calphabet.i"
+	@echo "... src/calphabet.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

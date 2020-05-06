@@ -5,7 +5,7 @@
 		<Option title="CppClinter"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\Boost-1.71.0\;CMake Files\..\..\..\..\usr\local\lib\cmake\boost_headers-1.71.0\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\Boost-1.71.0\;CMake Files\..\..\..\..\usr\local\lib\cmake\boost_headers-1.71.0\;CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/daniilnedaiborsch/Code/CppClinter"/>
@@ -44,6 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/daniilnedaiborsch/Code/CppClinter"/>
 					<Add directory="/usr/local/include"/>
 				</Compiler>
 				<MakeCommands>
@@ -60,6 +61,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/daniilnedaiborsch/Code/CppClinter"/>
 					<Add directory="/usr/local/include"/>
 				</Compiler>
 				<MakeCommands>
@@ -70,40 +72,142 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/CAlphabet.cpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Evaluator.cpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/CAlphabet.hpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Evaluator.hpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexeme.cpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Token.cpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexeme.hpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Token.hpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/LexemeType.cpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/TokenType.cpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/LexemeType.hpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/TokenType.hpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer.cpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/all.hpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer.hpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/finders.cpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/SString.cpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/finders.hpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/SString.hpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexeme.cpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/finders.cpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexeme.hpp">
 			<Option target="CppClinter"/>
 		</Unit>
-		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/finders.hpp">
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/LexemeType.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/LexemeType.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexer.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexer.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/all.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/finders.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/finders.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Linter/Linter.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Linter/Linter.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Linter/joinStatements.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Parser/Parser.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Parser/Parser.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Slice.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/findCompleteExpression.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/findCompleteExpression.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/linters.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/linters.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Block.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Block.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Expression.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Expression.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Instruction.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Instruction.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Statement.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Statement.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/StatementType.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/StatementType.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Struct.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Struct.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/UndefinedLinterException.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/UndefinedLinterException.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/all.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/Statements/all.hpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/calphabet.cpp">
+			<Option target="CppClinter"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/calphabet.hpp">
 			<Option target="CppClinter"/>
 		</Unit>
 		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/src/main.cpp">
@@ -111,6 +215,9 @@
 		</Unit>
 		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/BoostDetectToolset-1.71.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\"/>
 		</Unit>
 		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/Boost-1.71.0/BoostConfig.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\Boost-1.71.0\"/>
@@ -123,6 +230,24 @@
 		</Unit>
 		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/boost_headers-1.71.0/boost_headers-config.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_headers-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/boost_system-1.71.0/boost_system-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/boost_system-1.71.0/boost_system-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-mt-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-mt-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
+		</Unit>
+		<Unit filename="/Users/daniilnedaiborsch/Code/CppClinter/../../../../usr/local/lib/cmake/boost_system-1.71.0/libboost_system-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.71.0\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

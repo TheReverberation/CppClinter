@@ -34,10 +34,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.15.4/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /usr/local/Cellar/cmake/3.15.4/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -70,107 +70,377 @@ CMakeFiles/CppClinter.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/main.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/main.cpp -o CMakeFiles/CppClinter.dir/src/main.cpp.s
 
-CMakeFiles/CppClinter.dir/src/SString.cpp.o: CMakeFiles/CppClinter.dir/flags.make
-CMakeFiles/CppClinter.dir/src/SString.cpp.o: src/SString.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CppClinter.dir/src/SString.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/SString.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/SString.cpp
+CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.o: src/Lexer/finders.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/finders.cpp
 
-CMakeFiles/CppClinter.dir/src/SString.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/SString.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/SString.cpp > CMakeFiles/CppClinter.dir/src/SString.cpp.i
+CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/finders.cpp > CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.i
 
-CMakeFiles/CppClinter.dir/src/SString.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/SString.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/SString.cpp -o CMakeFiles/CppClinter.dir/src/SString.cpp.s
+CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/finders.cpp -o CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.s
 
-CMakeFiles/CppClinter.dir/src/Lexeme.cpp.o: CMakeFiles/CppClinter.dir/flags.make
-CMakeFiles/CppClinter.dir/src/Lexeme.cpp.o: src/Lexeme.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CppClinter.dir/src/Lexeme.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Lexeme.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Lexeme.cpp
+CMakeFiles/CppClinter.dir/src/calphabet.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/calphabet.cpp.o: src/calphabet.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CppClinter.dir/src/calphabet.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/calphabet.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/calphabet.cpp
 
-CMakeFiles/CppClinter.dir/src/Lexeme.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Lexeme.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Lexeme.cpp > CMakeFiles/CppClinter.dir/src/Lexeme.cpp.i
+CMakeFiles/CppClinter.dir/src/calphabet.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/calphabet.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/calphabet.cpp > CMakeFiles/CppClinter.dir/src/calphabet.cpp.i
 
-CMakeFiles/CppClinter.dir/src/Lexeme.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Lexeme.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Lexeme.cpp -o CMakeFiles/CppClinter.dir/src/Lexeme.cpp.s
+CMakeFiles/CppClinter.dir/src/calphabet.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/calphabet.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/calphabet.cpp -o CMakeFiles/CppClinter.dir/src/calphabet.cpp.s
 
-CMakeFiles/CppClinter.dir/src/finders.cpp.o: CMakeFiles/CppClinter.dir/flags.make
-CMakeFiles/CppClinter.dir/src/finders.cpp.o: src/finders.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CppClinter.dir/src/finders.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/finders.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/finders.cpp
+CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.o: src/Lexer/Lexer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexer.cpp
 
-CMakeFiles/CppClinter.dir/src/finders.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/finders.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/finders.cpp > CMakeFiles/CppClinter.dir/src/finders.cpp.i
+CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexer.cpp > CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.i
 
-CMakeFiles/CppClinter.dir/src/finders.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/finders.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/finders.cpp -o CMakeFiles/CppClinter.dir/src/finders.cpp.s
+CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexer.cpp -o CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.s
 
-CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.o: CMakeFiles/CppClinter.dir/flags.make
-CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.o: src/CAlphabet.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/CAlphabet.cpp
+CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.o: src/Lexer/LexemeType.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/LexemeType.cpp
 
-CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/CAlphabet.cpp > CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.i
+CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/LexemeType.cpp > CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.i
 
-CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/CAlphabet.cpp -o CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.s
+CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/LexemeType.cpp -o CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.s
 
-CMakeFiles/CppClinter.dir/src/Lexer.cpp.o: CMakeFiles/CppClinter.dir/flags.make
-CMakeFiles/CppClinter.dir/src/Lexer.cpp.o: src/Lexer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CppClinter.dir/src/Lexer.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Lexer.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer.cpp
+CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.o: src/Parser/Parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Parser/Parser.cpp
 
-CMakeFiles/CppClinter.dir/src/Lexer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Lexer.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer.cpp > CMakeFiles/CppClinter.dir/src/Lexer.cpp.i
+CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Parser/Parser.cpp > CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.i
 
-CMakeFiles/CppClinter.dir/src/Lexer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Lexer.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer.cpp -o CMakeFiles/CppClinter.dir/src/Lexer.cpp.s
+CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Parser/Parser.cpp -o CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.s
 
-CMakeFiles/CppClinter.dir/src/LexemeType.cpp.o: CMakeFiles/CppClinter.dir/flags.make
-CMakeFiles/CppClinter.dir/src/LexemeType.cpp.o: src/LexemeType.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CppClinter.dir/src/LexemeType.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/LexemeType.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/LexemeType.cpp
+CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.o: src/Statements/Statement.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Statement.cpp
 
-CMakeFiles/CppClinter.dir/src/LexemeType.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/LexemeType.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/LexemeType.cpp > CMakeFiles/CppClinter.dir/src/LexemeType.cpp.i
+CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Statement.cpp > CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.i
 
-CMakeFiles/CppClinter.dir/src/LexemeType.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/LexemeType.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/LexemeType.cpp -o CMakeFiles/CppClinter.dir/src/LexemeType.cpp.s
+CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Statement.cpp -o CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.o: src/Statements/Struct.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Struct.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Struct.cpp > CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Struct.cpp -o CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.o: src/Statements/Block.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Block.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Block.cpp > CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Block.cpp -o CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.o: src/Statements/StatementType.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/StatementType.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/StatementType.cpp > CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/StatementType.cpp -o CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.o: src/Evaluator/Evaluator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Evaluator.cpp
+
+CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Evaluator.cpp > CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Evaluator.cpp -o CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.o: src/Evaluator/Token.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Token.cpp
+
+CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Token.cpp > CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/Token.cpp -o CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.o: src/Evaluator/TokenType.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/TokenType.cpp
+
+CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/TokenType.cpp > CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/TokenType.cpp -o CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.o: src/Evaluator/finders.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/finders.cpp
+
+CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/finders.cpp > CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Evaluator/finders.cpp -o CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.o: src/Statements/Instruction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Instruction.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Instruction.cpp > CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Instruction.cpp -o CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.o: src/Statements/Arithmetic/linters.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/linters.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/linters.cpp > CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/linters.cpp -o CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.o: src/Statements/Arithmetic/findCompleteExpression.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/findCompleteExpression.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/findCompleteExpression.cpp > CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Arithmetic/findCompleteExpression.cpp -o CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.o: src/Statements/Expression.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Expression.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Expression.cpp > CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/Expression.cpp -o CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.o: src/Linter/Linter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Linter/Linter.cpp
+
+CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Linter/Linter.cpp > CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Linter/Linter.cpp -o CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/all.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/all.cpp.o: src/Statements/all.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/all.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/all.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/all.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/all.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/all.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/all.cpp > CMakeFiles/CppClinter.dir/src/Statements/all.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/all.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/all.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/all.cpp -o CMakeFiles/CppClinter.dir/src/Statements/all.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.o: src/Lexer/Lexeme.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexeme.cpp
+
+CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexeme.cpp > CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Lexer/Lexeme.cpp -o CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.o: src/Statements/UndefinedLinterException.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/UndefinedLinterException.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/UndefinedLinterException.cpp > CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/UndefinedLinterException.cpp -o CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.o: src/Statements/IfStatement.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/IfStatement.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/IfStatement.cpp > CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/IfStatement.cpp -o CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.o: src/Statements/ElseStatement.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/ElseStatement.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/ElseStatement.cpp > CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/ElseStatement.cpp -o CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.s
+
+CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.o: CMakeFiles/CppClinter.dir/flags.make
+CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.o: src/Statements/IfElseStatement.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.o -c /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/IfElseStatement.cpp
+
+CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/IfElseStatement.cpp > CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.i
+
+CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniilnedaiborsch/Code/CppClinter/src/Statements/IfElseStatement.cpp -o CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.s
 
 # Object files for target CppClinter
 CppClinter_OBJECTS = \
 "CMakeFiles/CppClinter.dir/src/main.cpp.o" \
-"CMakeFiles/CppClinter.dir/src/SString.cpp.o" \
-"CMakeFiles/CppClinter.dir/src/Lexeme.cpp.o" \
-"CMakeFiles/CppClinter.dir/src/finders.cpp.o" \
-"CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.o" \
-"CMakeFiles/CppClinter.dir/src/Lexer.cpp.o" \
-"CMakeFiles/CppClinter.dir/src/LexemeType.cpp.o"
+"CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/calphabet.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/all.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.o" \
+"CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.o"
 
 # External object files for target CppClinter
 CppClinter_EXTERNAL_OBJECTS =
 
 CppClinter: CMakeFiles/CppClinter.dir/src/main.cpp.o
-CppClinter: CMakeFiles/CppClinter.dir/src/SString.cpp.o
-CppClinter: CMakeFiles/CppClinter.dir/src/Lexeme.cpp.o
-CppClinter: CMakeFiles/CppClinter.dir/src/finders.cpp.o
-CppClinter: CMakeFiles/CppClinter.dir/src/CAlphabet.cpp.o
-CppClinter: CMakeFiles/CppClinter.dir/src/Lexer.cpp.o
-CppClinter: CMakeFiles/CppClinter.dir/src/LexemeType.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Lexer/finders.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/calphabet.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Lexer/Lexer.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Lexer/LexemeType.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Parser/Parser.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/Statement.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/Struct.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/Block.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/StatementType.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Evaluator/Evaluator.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Evaluator/Token.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Evaluator/TokenType.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Evaluator/finders.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/Instruction.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/linters.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/Arithmetic/findCompleteExpression.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/Expression.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Linter/Linter.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/all.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Lexer/Lexeme.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/UndefinedLinterException.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/IfStatement.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/ElseStatement.cpp.o
+CppClinter: CMakeFiles/CppClinter.dir/src/Statements/IfElseStatement.cpp.o
 CppClinter: CMakeFiles/CppClinter.dir/build.make
 CppClinter: CMakeFiles/CppClinter.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable CppClinter"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/daniilnedaiborsch/Code/CppClinter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX executable CppClinter"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CppClinter.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
