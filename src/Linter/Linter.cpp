@@ -33,7 +33,9 @@ namespace {
                            s->type == StatementType::INSTRUCTION ||
                            s->type == StatementType::STRUCT;
                 });
+
                 assert(groupEnd != statements.end());
+
                 if (groupEnd != statements.end()) {
                     ++groupEnd;
                 }
