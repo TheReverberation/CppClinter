@@ -1,47 +1,43 @@
-//
-// Created by Daniil Nedaiborsch on 13.04.2020.
-//
-
 #include "calphabet.hpp"
 
 #include <iterator>
 #include <vector>
 #include <string>
+#include <memory>
 
 using std::string;
 using std::vector;
 using std::copy;
 using std::back_inserter;
+using std::make_shared;
 
 namespace clnt::alphabet {
 
-    vector<Slice<string>> UNARY_OPERATORS, OPERATORS;
-    vector<Slice<string>> BINARY_OPERATORS, ACCESS_OPERATORS, RESERVED;
+    vector<Slice<string>> _UNARY_OPERATORS, _OPERATORS;
+    vector<Slice<string>> _BINARY_OPERATORS, _ACCESS_OPERATORS, _RESERVED;
 
     void init() {
         vector<string> binary = {
                 "+", "-", "*", "/", "^", "&", "|", "=", "~", "<", ">", "%", "+=", "-=", \
-                    "*=", "/=", "^=", "&=", "|=", "==", "!=", "~=", "%=", ">=", "<=", "<<", ">>", \
-                    "&&", "||"
+                "*=", "/=", "^=", "&=", "|=", "==", "!=", "~=", "%=", ">=", "<=", "<<", ">>", \
+                "&&", "||"
         };
         for (auto& op : binary) {
-            BINARY_OPERATORS.emplace_back(std::make_shared<string>(op));
+            _BINARY_OPERATORS.emplace_back(make_shared<string>(op));
         }
-
         vector<string> unary = {
                "++", "--", "*", "&", "!", "-"
         };
-
         for (auto& op : unary) {
-           UNARY_OPERATORS.emplace_back(std::make_shared<string>(op));
+           _UNARY_OPERATORS.emplace_back(make_shared<string>(op));
         }
 
         vector<string> reserved = {
-                "break", "for", "while", "struct", "class", "if", "else"
+                "break", "for", "while", "struct", "class", "if", "else", "case", "switch"
         };
 
         for (auto& op : reserved) {
-            RESERVED.emplace_back(std::make_shared<string>(op));
+            _RESERVED.emplace_back(make_shared<string>(op));
         }
 
         vector<string> access = {
@@ -49,11 +45,39 @@ namespace clnt::alphabet {
         };
 
         for (auto& op : access) {
-            ACCESS_OPERATORS.emplace_back(std::make_shared<string>(op));
+            _ACCESS_OPERATORS.emplace_back(make_shared<string>(op));
         }
 
-        copy(BINARY_OPERATORS.begin(), BINARY_OPERATORS.end(), back_inserter(OPERATORS));
-        copy(UNARY_OPERATORS.begin(), UNARY_OPERATORS.end(), back_inserter(OPERATORS));
-        copy(ACCESS_OPERATORS.begin(), ACCESS_OPERATORS.end(), back_inserter(OPERATORS));
+        copy(_BINARY_OPERATORS.begin(), _BINARY_OPERATORS.end(), back_inserter(_OPERATORS));
+        copy(_UNARY_OPERATORS.begin(), _UNARY_OPERATORS.end(), back_inserter(_OPERATORS));
+        copy(_ACCESS_OPERATORS.begin(), _ACCESS_OPERATORS.end(), back_inserter(_OPERATORS));
+    }
+
+    std::vector<Slice<std::string>> const& accessOperators() {
+        return _ACCESS_OPERATORS;
+    }
+
+    std::vector<Slice<std::string>> const& callOperators() {
+        return {};
+    }
+
+    std::vector<Slice<std::string>> const& unaryOperators() {
+        return _UNARY_OPERATORS;
+    }
+
+    std::vector<Slice<std::string>> const& operators() {
+        return _OPERATORS;
+    }
+
+    std::vector<Slice<std::string>> const& commaOperator() {
+        return {};
+    }
+
+    std::vector<Slice<std::string>> const& binaryOperators() {
+        return _BINARY_OPERATORS;
+    }
+
+    std::vector<Slice<std::string>> const& reserved() {
+        return _RESERVED;
     }
 }

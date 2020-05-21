@@ -15,6 +15,7 @@ namespace clnt::lex {
 
     vector<shared_ptr<Lexeme>> Lexer::lexing(Slice<string> const& s) {
         vector<shared_ptr<Lexeme>> lexemes;
+
         auto lastLexeme = [&lexemes] () -> shared_ptr<Lexeme> {
             return !lexemes.empty() ? lexemes.back() : nullptr;
         };
@@ -35,8 +36,8 @@ namespace clnt::lex {
                 lexemes.push_back(lexeme);
             } else {
                 lexemes.emplace_back(new Lexeme(LexemeType::UNDEFINED, s.slice(i)));
+                lexemeEnd = s.size() - i;
             }
-            //std::cout << *tokens.back() << std::endl;
             i += lexemeEnd;
         }
 

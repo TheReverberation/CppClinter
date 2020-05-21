@@ -12,7 +12,7 @@
 namespace clnt::eval {
     enum class TokenType: uint8_t {
         IDENTIFIER, RESERVED, BLOCK, BINARY_OPERATOR, UNARY_OPERATOR, ACCESS_OPERATOR, CALL_OPERATOR, UNDEFINED,
-        SEMICOLON, LINE_BREAK, COMMA
+        SEMICOLON, LINE_BREAK, COMMA, SHARP, BACKSLASH
     };
 
     extern std::string TYPE_NAMES[255];

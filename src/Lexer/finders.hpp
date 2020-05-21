@@ -15,10 +15,10 @@
 namespace clnt::lex::finders {
     bool isident(char c);
 
-    size_t findNonSpace(Slice<std::string> const&, vector<char> const&);
+    size_t findNonSpace(Slice<std::string> const&, std::vector<char> const&);
     std::pair<size_t, size_t> findBrackets(Slice<std::string> const&, char[2]);
 
-    // every finder returns nullptr if lexeme don't exist
+    // every finder returns {nullptr, 0} if lexeme don't exist
     typedef std::pair<std::shared_ptr<Lexeme>, size_t> (*LexemeFinder) (Slice<std::string> const&);
 
     std::pair<std::shared_ptr<Lexeme>, size_t> findName(Slice<std::string> const&);
@@ -33,10 +33,10 @@ namespace clnt::lex::finders {
     std::pair<std::shared_ptr<Lexeme>, size_t> findQuestion(Slice<std::string> const&);
     std::pair<std::shared_ptr<Lexeme>, size_t> findOpenBracket(Slice<std::string> const&);
     std::pair<std::shared_ptr<Lexeme>, size_t> findCloseBracket(Slice<std::string> const&);
+    std::pair<std::shared_ptr<Lexeme>, size_t> findSharp(Slice<std::string> const&);
 
-
-    extern vector<LexemeFinder> FINDERS;
-    vector<std::pair<char, char>> const bracketsSets = {
+    extern std::vector<LexemeFinder> FINDERS;
+    std::vector<std::pair<char, char>> const bracketsSets = {
             {'(', ')'}, {'[', ']'}, {'{', '}'}
     };
     void init();

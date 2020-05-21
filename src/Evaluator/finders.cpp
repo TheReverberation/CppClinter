@@ -77,26 +77,26 @@ namespace clnt::eval::finders {
         };
 
         if (lexemes[0]->source.size() == 2) {
-            if (checkin(BINARY_OPERATORS)) {
+            if (checkin(binaryOperators())) {
                 return {make_shared<Token>(TokenType::BINARY_OPERATOR, lexemes.slice(0, 1)), 1};
-            } else if (checkin(UNARY_OPERATORS)) {
+            } else if (checkin(unaryOperators())) {
                 return {make_shared<Token>(TokenType::UNARY_OPERATOR, lexemes.slice(0, 1)), 1};
-            } else if (checkin(ACCESS_OPERATORS)) {
+            } else if (checkin(accessOperators())) {
                 return {make_shared<Token>(TokenType::UNARY_OPERATOR, lexemes.slice(0, 1)), 1};
             }
         } else if (lexemes[0]->source.size() == 1) {
-            if (checkin(BINARY_OPERATORS) && checkin(UNARY_OPERATORS)) {
+            if (checkin(binaryOperators()) && checkin(unaryOperators())) {
                 if (lastToken != nullptr &&
                     (lastToken->type == TokenType::IDENTIFIER || lastToken->type == TokenType::CALL_OPERATOR)) {
                     return {make_shared<Token>(TokenType::BINARY_OPERATOR, lexemes.slice(0, 1)), 1};
                 } else {
                     return {make_shared<Token>(TokenType::UNARY_OPERATOR, lexemes.slice(0, 1)), 1};
                 }
-            } else if (checkin(BINARY_OPERATORS)) {
+            } else if (checkin(binaryOperators())) {
                 return {make_shared<Token>(TokenType::BINARY_OPERATOR, lexemes.slice(0, 1)), 1};
-            } else if (checkin(UNARY_OPERATORS)) {
+            } else if (checkin(binaryOperators())) {
                 return {make_shared<Token>(TokenType::UNARY_OPERATOR, lexemes.slice(0, 1)), 1};
-            } else if (checkin(ACCESS_OPERATORS)) {
+            } else if (checkin(accessOperators())) {
                 return {make_shared<Token>(TokenType::ACCESS_OPERATOR, lexemes.slice(0, 1)), 1};
             }
         }
@@ -121,7 +121,7 @@ namespace clnt::eval::finders {
         using namespace clnt::alphabet;
 
         if (lexemes[0]->type == LexemeType::NAME) {
-            if (std::find(RESERVED.begin(), RESERVED.end(), lexemes[0]->source) != RESERVED.end()) {
+            if (std::find(reserved().begin(), reserved().end(), lexemes[0]->source) != reserved().end()) {
                 return {make_shared<Token>(TokenType::RESERVED, lexemes.slice(0, 1)), 1};
             } else {
                 return {make_shared<Token>(TokenType::IDENTIFIER, lexemes.slice(0, 1)), 1};
@@ -144,11 +144,26 @@ namespace clnt::eval::finders {
         return NOTFOUND;
     }
 
+    pair<shared_ptr<Token>, size_t> findSharp(Slice<vector<shared_ptr<Lexeme>>> const& lexemes, shared_ptr<Token> lastToken) {
+        if (lexemes[0]->type == LexemeType::SHARP) {
+            return {make_shared<Token>(TokenType::SHARP, lexemes.slice(0, 1)), 1};
+        }
+        return NOTFOUND;
+    }
+
+    pair<shared_ptr<Token>, size_t> findBackslash(Slice<vector<shared_ptr<Lexeme>>> const& lexemes, shared_ptr<Token> lastToken) {
+        if (lexemes[0]->type == LexemeType::BACKSLASH) {
+            return {make_shared<Token>(TokenType::BACKSLASH, lexemes.slice(0, 1)), 1};
+        }
+        return NOTFOUND;
+    }
+
     vector<TokenFinder> FINDERS;
 
     void init() {
         FINDERS = {
-                findWord, findBlock, findOperator, findCallOperator, findSemicolon, findLineBreak, findComma
+                findWord, findBlock, findOperator, findCallOperator, findSemicolon, findLineBreak, findComma,
+                findBackslash, findSharp,
         };
     }
 }

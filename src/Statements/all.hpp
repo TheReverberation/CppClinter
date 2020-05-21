@@ -1,6 +1,4 @@
-//
-// Created by Daniil Nedaiborsch on 27.04.2020.
-//
+#pragma once
 
 #include "Statement.hpp"
 #include "StatementType.hpp"
@@ -11,6 +9,7 @@
 #include "IfStatement.hpp"
 #include "ElseStatement.hpp"
 #include "IfElseStatement.hpp"
+#include "Preprocessor.hpp"
 
 #include "Arithmetic/linters.hpp"
 

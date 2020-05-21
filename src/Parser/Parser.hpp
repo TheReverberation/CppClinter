@@ -17,7 +17,7 @@ using clnt::states::StatementType;
 namespace clnt::parse {
     class Parser {
     public:
-        Parser(vector<Finder> const&);
+        Parser(vector<Finder> );
         Slice<vector<shared_ptr<Statement>>> parse(Slice<vector<shared_ptr<Token>>> const&);
         pair<shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&);
     private:

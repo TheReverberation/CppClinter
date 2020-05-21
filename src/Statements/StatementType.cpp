@@ -22,7 +22,7 @@ namespace clnt::states {
         TYPE_NAMES[(int)StatementType::IF] = "If";
         TYPE_NAMES[(int)StatementType::ELSE] = "Else";
         TYPE_NAMES[(int)StatementType::IFELSE] = "IfElse";
-
+        TYPE_NAMES[(int)StatementType::PREPROCESSOR] = "Preprocessor";
 
     }
 

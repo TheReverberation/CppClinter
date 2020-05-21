@@ -1,6 +1,7 @@
-//
-// Created by Daniil Nedaiborsch on 30.04.2020.
-//
+/*
+ * This package split C code on lexemes
+ * all.hpp contain all needed forwards
+ */
 
 #pragma once
 

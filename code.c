@@ -1,3 +1,4 @@
+#define asdas
  struct point_t
 {
 double x,y,z;

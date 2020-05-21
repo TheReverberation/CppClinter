@@ -40,6 +40,8 @@ namespace clnt::states::arithm {
         LINTERS[(int)TokenType::RESERVED] = lintReservedWord;
         LINTERS[(int)TokenType::COMMA] = lintComma;
         LINTERS[(int)TokenType::LINE_BREAK] = lintLineBreak;
+        LINTERS[(int)TokenType::BACKSLASH] = lintBackslash;
+        LINTERS[(int)TokenType::SHARP] = lintSharp;
     }
 
 
@@ -158,6 +160,14 @@ namespace clnt::states::arithm {
 
     string lintComma(shared_ptr<Token> token, shared_ptr<Token>) {
         return ", ";
+    }
+
+    string lintSharp(shared_ptr<Token> token, shared_ptr<Token>) {
+        return "#";
+    }
+
+    string lintBackslash(shared_ptr<Token> token, shared_ptr<Token>) {
+        return "\\";
     }
 
     string lintUndefined(shared_ptr<Token> token, shared_ptr<Token>) {

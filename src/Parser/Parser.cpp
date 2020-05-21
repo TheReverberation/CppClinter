@@ -1,11 +1,9 @@
-//
-// Created by Daniil Nedaiborsch on 15.04.2020.
-//
-
 #include "Parser.hpp"
 
+#include <utility>
+
 namespace clnt::parse {
-    Parser::Parser(vector<Finder> const& finders): finders_(finders) {}
+    Parser::Parser(vector<Finder> finders): finders_(std::move(finders)) {}
 
     pair<shared_ptr<Statement>, size_t> Parser::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
         pair<shared_ptr<Statement>, size_t> found = {nullptr, 0};
@@ -14,6 +12,7 @@ namespace clnt::parse {
             if (found.first) {
                 return found;
             }
+
         }
         return {nullptr, 0};
     }

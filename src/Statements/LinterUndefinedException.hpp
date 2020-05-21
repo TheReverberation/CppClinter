@@ -7,9 +7,9 @@
 #include <exception>
 
 namespace clnt::states {
-    class UndefinedLinterException : public std::exception {
+    class LinterUndefinedException : public std::exception {
     public:
-        UndefinedLinterException();
+        LinterUndefinedException();
         const char* what() const noexcept override;
     };
 }

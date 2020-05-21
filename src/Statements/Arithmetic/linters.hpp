@@ -37,6 +37,6 @@ namespace clnt::states::arithm {
     string lintReservedWord(shared_ptr<Token> token, shared_ptr<Token> last);
     string lintComma(shared_ptr<Token> token, shared_ptr<Token> last);
     string lintLineBreak(shared_ptr<Token> token, shared_ptr<Token> last);
-
-
+    string lintSharp(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintBackslash(shared_ptr<Token> token, shared_ptr<Token> last);
 }

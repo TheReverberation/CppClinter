@@ -83,6 +83,8 @@ int main() {
         std::cout << *now << '\n';
     }
     std::cout << "\n";
+    auto prep = std::dynamic_pointer_cast<states::Preprocessor>(states::Preprocessor::find(tokens).first);
+    std::cout << *prep << '\n';
 /*    auto ifelsest = std::dynamic_pointer_cast<states::IfElseStatement>(states::IfElseStatement::find(tokens).first);
     std::cout << "IFFFFFFFFF\n";
     std::cout << *ifelsest->ifStatement << '\n';

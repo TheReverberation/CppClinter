@@ -30,6 +30,7 @@ namespace clnt::lex {
         typeName[(int)LexemeType::UNDEFINED] = "Undefined";
         typeName[(int)LexemeType::COLON] = "Colon";
         typeName[(int)LexemeType::SEMICOLON] = "Semicolon";
+        typeName[(int)LexemeType::SHARP] = "Sharp";
     }
 
     std::ostream& operator<<(std::ostream& out, LexemeType type) {

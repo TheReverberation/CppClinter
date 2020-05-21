@@ -20,7 +20,8 @@ namespace {
                 statements[i]->type == StatementType::STRUCT ||
                 statements[i]->type == StatementType::IF || 
                 statements[i]->type == StatementType::ELSE || 
-                statements[i]->type == StatementType::IFELSE) {
+                statements[i]->type == StatementType::IFELSE ||
+                statements[i]->type == StatementType::PREPROCESSOR) {
                 groups.push_back({statements[i]->type, statements[i]->linted()});
                 ++i;
             } else if (statements[i]->type == StatementType::EXPRESSION && statements[i]->linted() == "\n") {

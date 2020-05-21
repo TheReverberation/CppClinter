@@ -29,6 +29,8 @@ namespace clnt::eval::finders {
     std::pair<shared_ptr<Token>, size_t> findSemicolon(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
     std::pair<shared_ptr<Token>, size_t> findLineBreak(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
     std::pair<shared_ptr<Token>, size_t> findComma(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findSharp(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findBackslash(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
 
     extern vector<TokenFinder> FINDERS;
     void init();

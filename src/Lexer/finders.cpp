@@ -38,7 +38,6 @@ namespace clnt::lex::finders {
         if (!isident(s[0])) {
             return NOTFOUND;
         }
-
         size_t i = 0;
         for (; i < s.size() && isident(s[i]); ++i);
         return {make_shared<Lexeme>(LexemeType::NAME, s.slice(0, i)), i};
@@ -50,10 +49,10 @@ namespace clnt::lex::finders {
 
 
     pair<shared_ptr<Lexeme>, size_t> findOperator(Slice<string> const& s) {
-        if (find(alphabet::OPERATORS.begin(), alphabet::OPERATORS.end(), s.slice(0, 2)) != alphabet::OPERATORS.end()) {
+        if (find(alphabet::operators().begin(), alphabet::operators().end(), s.slice(0, 2)) != alphabet::operators().end()) {
             return {make_shared<Lexeme>(LexemeType::OPERATOR, s.slice(0, 2)), 2};
         }
-        if (find(alphabet::OPERATORS.begin(), alphabet::OPERATORS.end(), s.slice(0, 1)) != alphabet::OPERATORS.end()) {
+        if (find(alphabet::operators().begin(), alphabet::operators().end(), s.slice(0, 1)) != alphabet::operators().end()) {
             return {make_shared<Lexeme>(LexemeType::OPERATOR, s.slice(0, 1)), 1};
         }
         return NOTFOUND;
@@ -125,13 +124,17 @@ namespace clnt::lex::finders {
                pair<shared_ptr<Lexeme>, size_t>(make_shared<Lexeme>(LexemeType::CLOSE_BRACKET, s.slice(0, 1)), 1) : NOTFOUND;
     }
 
+    std::pair<std::shared_ptr<Lexeme>, size_t> findSharp(Slice<std::string> const& s) {
+        return s[0] == '#' ? pair<shared_ptr<Lexeme>, size_t>(SHARP, 1) : NOTFOUND;
+    }
+
     vector<LexemeFinder> FINDERS;
 
     void init() {
         FINDERS = {
             findName, findBackslash, findOperator, findConstant,
             findColon, findSemicolon, findQuestion, findLinebreak, findComma,
-            findOpenBracket, findCloseBracket
+            findOpenBracket, findCloseBracket, findSharp,
         };
     }
 

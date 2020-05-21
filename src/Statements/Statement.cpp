@@ -9,7 +9,7 @@ namespace clnt::states {
     Statement::Statement(StatementType type, Slice<vector<shared_ptr<Token>>> tokens): type(type), tokens(std::move(tokens)) {}
 
     void Statement::lint() const {
-        throw UndefinedLinterException();
+        throw LinterUndefinedException();
     }
 
     string const& Statement::linted() const {
