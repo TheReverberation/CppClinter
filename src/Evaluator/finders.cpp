@@ -126,6 +126,8 @@ namespace clnt::eval::finders {
             } else {
                 return {make_shared<Token>(TokenType::IDENTIFIER, lexemes.slice(0, 1)), 1};
             }
+        } else if (lexemes[0]->type == LexemeType::CONSTANT) {
+            return {make_shared<Token>(TokenType::IDENTIFIER, lexemes.slice(0, 1)), 1};
         }
         return NOTFOUND;
     }
@@ -158,12 +160,36 @@ namespace clnt::eval::finders {
         return NOTFOUND;
     }
 
+    pair<shared_ptr<Token>, size_t> findColon(Slice<vector<shared_ptr<Lexeme>>> const& lexemes, shared_ptr<Token> lastToken) {
+        if (lexemes[0]->type == LexemeType::COLON) {
+            return {make_shared<Token>(TokenType::COLON, lexemes.slice(0, 1)), 1};
+        }
+        return NOTFOUND;
+    }
+
+    pair<shared_ptr<Token>, size_t> findQuestion(Slice<vector<shared_ptr<Lexeme>>> const& lexemes, shared_ptr<Token> lastToken) {
+        if (lexemes[0]->type == LexemeType::QUESTION) {
+            return {make_shared<Token>(TokenType::QUESTION, lexemes.slice(0, 1)), 1};
+        }
+        return NOTFOUND;
+    }
+
+    std::pair<shared_ptr<Token>, size_t> findInit(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken) {
+        if (lastToken && lastToken->type == TokenType::BINARY_OPERATOR) {
+            auto block = findBlock(lexemes, nullptr);
+            if (block.first) {
+                return {make_shared<Token>(TokenType::INITIALIZER, lexemes.slice(0, block.second)), block.second};
+            }
+        }
+        return {nullptr, 0};
+    }
+
     vector<TokenFinder> FINDERS;
 
     void init() {
         FINDERS = {
-                findWord, findBlock, findOperator, findCallOperator, findSemicolon, findLineBreak, findComma,
-                findBackslash, findSharp,
+                findWord, findInit, findBlock, findOperator, findCallOperator, findSemicolon, findLineBreak, findComma,
+                findBackslash, findSharp, findColon, findQuestion,
         };
     }
 }

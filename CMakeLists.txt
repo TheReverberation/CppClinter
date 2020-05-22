@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.1)
 project(CppClinter LANGUAGES CXX)
+
 set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_COMPILER /usr/bin/clang)
 set(CMAKE_CXX_COMPILER /usr/bin/clang++)
+set(CMAKE_CXX_FLAGS -Wall)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 add_executable(CppClinter src/main.cpp src/Lexer/LexemeType.hpp
         src/Lexer/finders.hpp src/Lexer/finders.cpp src/calphabet.hpp src/calphabet.cpp
         src/Lexer/Lexer.cpp src/Lexer/LexemeType.cpp src/Parser/Parser.cpp src/Parser/Parser.hpp
@@ -22,6 +24,7 @@ add_executable(CppClinter src/main.cpp src/Lexer/LexemeType.hpp
         src/Statements/LinterUndefinedException.cpp src/Statements/LinterUndefinedException.hpp
         src/Statements/IfStatement.hpp src/Statements/IfStatement.cpp
         src/Statements/ElseStatement.hpp src/Statements/ElseStatement.cpp
-        src/Statements/IfElseStatement.hpp src/Statements/IfElseStatement.cpp src/Statements/Preprocessor.cpp src/Statements/Preprocessor.hpp)
+        src/Statements/IfElseStatement.hpp src/Statements/IfElseStatement.cpp src/Statements/Preprocessor.cpp
+        src/Statements/Preprocessor.hpp src/Statements/Typedef.cpp src/Statements/Typedef.hpp)
 #find_package(Boost REQUIRED COMPONENTS system)
 #target_include_directories(CppClinter PUBLIC ${Boost_INCLUDE_DIRS})

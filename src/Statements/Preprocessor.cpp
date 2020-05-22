@@ -4,11 +4,16 @@
 #include <src/Evaluator/TokenType.hpp>
 #include <src/accumulate.hpp>
 
+#include <algorithm>
+
 using std::move;
+using std::copy;
 using std::vector;
 using std::shared_ptr;
 using std::make_shared;
 using std::make_pair;
+using std::back_inserter;
+
 using clnt::eval::TokenType;
 
 
@@ -41,6 +46,19 @@ namespace clnt::states {
     }
 
     void Preprocessor::lint() const {
-        _linted = arithm::lintArithmetic(tokens);
+        size_t strBegin = tokens[0]->lexemes[0]->source.i();
+        size_t strEnd = strBegin;
+        shared_ptr<string const> code = tokens[0]->lexemes[0]->source.container();
+
+        for (auto& token : tokens) {
+            for (auto& lexeme : token->lexemes) {
+                strEnd = lexeme->source.j();
+                if (lexeme->source.container() != code) {
+                    assert(false);
+                }
+            }
+        }
+        std::cout << "strEnd: " << strEnd << '\n';
+        copy(code->begin() + strBegin, code->begin() + strEnd, back_inserter<string>(_linted));
     }
 }

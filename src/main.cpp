@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-
 #include <memory>
 
 #include "calphabet.hpp"
@@ -50,7 +49,18 @@ int main() {
 
     ::init();
 
-    ifstream fin("code.c");
+
+    string inputFileName;
+    cout << "Input file: ";
+    cin >> inputFileName;
+    ifstream fin(inputFileName);
+
+    while (!fin.is_open()) {
+        cout << "File not found!\nInput file: ";
+        cin >> inputFileName;
+        fin.open(inputFileName);
+    }
+
     ofstream fout("out.c");
 
     lex::Lexer lexer(lex::finders::FINDERS);
@@ -72,26 +82,15 @@ int main() {
     eval::Evaluator evaluator(eval::finders::FINDERS);
     vector<shared_ptr<eval::Token>> tokens = evaluator.evaluate(lexemes);
 
-    //auto str = states::Struct::find(tokens).first;
-    //cout << "MAINSTRUCT: " << *str << '\n';
-    //str->lint();
-    //cout << str->linted() << '\n';
-
-
     std::cout << "~MainTokens~\n";
     for (auto now : tokens) {
         std::cout << *now << '\n';
     }
     std::cout << "\n";
-    auto prep = std::dynamic_pointer_cast<states::Preprocessor>(states::Preprocessor::find(tokens).first);
-    std::cout << *prep << '\n';
-/*    auto ifelsest = std::dynamic_pointer_cast<states::IfElseStatement>(states::IfElseStatement::find(tokens).first);
-    std::cout << "IFFFFFFFFF\n";
-    std::cout << *ifelsest->ifStatement << '\n';
-    std::cout << *ifelsest->elseStatement << '\n';
-    std::cout << '\n';*/
+
     parse::Parser parser(states::STATEMENT_FINDERS);
     Slice<vector<shared_ptr<Statement>>> states = parser.parse(tokens);
+
     std::cout << "~MainStates~\n";
     for (auto& now : states) {
         std::cout << *now << '\n';

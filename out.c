@@ -1,30 +1,19 @@
-#define asdas
+#include <stdio.h>
 
 
-struct point_t {	
-	double x, y, z;
-} a, b, c;
-
-
-int foo(int n) {	
-	baz(n);
-	return p.x * p.x;
-} 
+typedef struct point_t {	
+	int x, y;
+} point_t; 
 
 
 int main() {	
-	int n;
-	foo(n);
-	
-	if (t1) {	
-		cout << 1;
-	} else if (t2) {	
-		cout << 2;
-	} else {	
-		cout << 3;
-	}
-	return 0;
-	
+	point_t a = {1, 2};
+	{	
+		int x = 0;
+	} 
 } 
+
+
+
 
 

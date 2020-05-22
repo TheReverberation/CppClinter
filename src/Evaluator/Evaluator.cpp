@@ -26,7 +26,6 @@ namespace clnt::eval {
             if (token) {
                 tokens.push_back(token);
             } else {
-                assert(false);
                 tokens.push_back(make_shared<Token>(TokenType::UNDEFINED, lexemes.slice(i)));
                 tokenEnd = lexemes.size() - i;
             }

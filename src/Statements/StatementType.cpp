@@ -23,7 +23,7 @@ namespace clnt::states {
         TYPE_NAMES[(int)StatementType::ELSE] = "Else";
         TYPE_NAMES[(int)StatementType::IFELSE] = "IfElse";
         TYPE_NAMES[(int)StatementType::PREPROCESSOR] = "Preprocessor";
-
+        TYPE_NAMES[(int)StatementType::TYPEDEF] = "Typedef";
     }
 
     std::ostream& operator<<(std::ostream& out, StatementType type) {

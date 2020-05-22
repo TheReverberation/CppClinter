@@ -72,6 +72,18 @@ namespace clnt {
             return std::equal(container_->begin() + i_, container_->begin() + j_, right.container_->begin() + right.i_);
         }
 
+        size_t i() const {
+            return i_;
+        }
+
+        size_t j() const {
+            return j_;
+        }
+
+        shared_ptr<C const> container() const {
+            return container_;
+        }
+
     private:
         shared_ptr<C> container_;
         size_t const i_, j_;

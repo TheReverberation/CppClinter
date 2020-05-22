@@ -19,9 +19,6 @@ namespace clnt::lex {
     };
 
     std::ostream& operator<<(std::ostream& out, Lexeme const& l);
-
-    extern std::shared_ptr<Lexeme> const LINE_BREAK, QUESTION, BACKSLASH, COMMA, COLON, SEMICOLON, SHARP;
-
 }
 
 

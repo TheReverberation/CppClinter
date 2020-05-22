@@ -10,6 +10,7 @@
 #include "ElseStatement.hpp"
 #include "IfElseStatement.hpp"
 #include "Preprocessor.hpp"
+#include "Typedef.hpp"
 
 #include "Arithmetic/linters.hpp"
 

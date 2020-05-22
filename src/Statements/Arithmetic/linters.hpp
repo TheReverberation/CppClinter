@@ -39,4 +39,6 @@ namespace clnt::states::arithm {
     string lintLineBreak(shared_ptr<Token> token, shared_ptr<Token> last);
     string lintSharp(shared_ptr<Token> token, shared_ptr<Token> last);
     string lintBackslash(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintColon(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintInit(shared_ptr<Token> token, shared_ptr<Token> last);
 }

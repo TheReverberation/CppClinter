@@ -44,7 +44,7 @@ namespace clnt::lex::finders {
     }
 
     pair<shared_ptr<Lexeme>, size_t> findBackslash(Slice<string> const& s) {
-        return s[0] == '\\' ? pair<shared_ptr<Lexeme>, size_t>{BACKSLASH, 1} : NOTFOUND;
+        return s[0] == '\\' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::BACKSLASH, s.slice(0, 1)), 1} : NOTFOUND;
     }
 
 
@@ -91,26 +91,26 @@ namespace clnt::lex::finders {
     }
 
     pair<shared_ptr<Lexeme>, size_t> findColon(Slice<string> const& s) {
-        return s[0] == ':' ? pair<shared_ptr<Lexeme>, size_t>(COLON, 1) : NOTFOUND;
+        return s[0] == ':' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::COLON, s.slice(0, 1)), 1} : NOTFOUND;
     }
 
     pair<shared_ptr<Lexeme>, size_t> findSemicolon(Slice<string> const& s) {
-        return s[0] == ';' ? pair<shared_ptr<Lexeme>, size_t>(SEMICOLON, 1) : NOTFOUND;
+        return s[0] == ';' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::SEMICOLON, s.slice(0, 1)), 1} : NOTFOUND;
     }
 
 
     pair<shared_ptr<Lexeme>, size_t> findComma(Slice<string> const& s) {
-        return s[0] == ',' ? pair<shared_ptr<Lexeme>, size_t>(COMMA, 1) : NOTFOUND;
+        return s[0] == ',' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::COMMA, s.slice(0, 1)), 1} : NOTFOUND;
     }
 
 
     pair<shared_ptr<Lexeme>, size_t> findLinebreak(Slice<string> const& s) {
-        return s[0] == '\n' ? pair<shared_ptr<Lexeme>, size_t>(LINE_BREAK, 1) : NOTFOUND;
+        return s[0] == '\n' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::LINE_BREAK, s.slice(0, 1)), 1}: NOTFOUND;
     }
 
 
     pair<shared_ptr<Lexeme>, size_t> findQuestion(Slice<string> const& s) {
-        return s[0] == '?' ? pair<shared_ptr<Lexeme>, size_t>(QUESTION, 1) : NOTFOUND;
+        return s[0] == '?' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::QUESTION, s.slice(0, 1)), 1} : NOTFOUND;
     }
 
 
@@ -125,7 +125,7 @@ namespace clnt::lex::finders {
     }
 
     std::pair<std::shared_ptr<Lexeme>, size_t> findSharp(Slice<std::string> const& s) {
-        return s[0] == '#' ? pair<shared_ptr<Lexeme>, size_t>(SHARP, 1) : NOTFOUND;
+        return s[0] == '#' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::SHARP, s.slice(0, 1)), 1} : NOTFOUND;
     }
 
     vector<LexemeFinder> FINDERS;

@@ -22,7 +22,10 @@ namespace clnt::eval {
         TYPE_NAMES[(int)TokenType::LINE_BREAK] = "Linebreak";
         TYPE_NAMES[(int)TokenType::SHARP] = "Sharp";
         TYPE_NAMES[(int)TokenType::BACKSLASH] = "Backslash";
+        TYPE_NAMES[(int)TokenType::COLON] = "Colon";
         TYPE_NAMES[(int)TokenType::UNDEFINED] = "Undefined";
+        TYPE_NAMES[(int)TokenType::QUESTION] = "Question";
+        TYPE_NAMES[(int)TokenType::INITIALIZER] = "Init";
     }
 
     std::ostream& operator<<(std::ostream& out, TokenType type) {

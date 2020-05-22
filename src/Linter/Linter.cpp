@@ -35,6 +35,7 @@ namespace {
                            s->type == StatementType::STRUCT;
                 });
 
+                std::cout << *statements[i] << '\n';
                 assert(groupEnd != statements.end());
 
                 if (groupEnd != statements.end()) {

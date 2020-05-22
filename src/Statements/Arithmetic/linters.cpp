@@ -4,6 +4,8 @@
 
 #include <sstream>
 #include <src/Evaluator/Evaluator.hpp>
+#include <src/Lexer/Lexer.hpp>
+#include <src/Parser/Parser.hpp>
 #include "linters.hpp"
 #include "src/Evaluator/TokenType.hpp"
 
@@ -12,16 +14,15 @@ using std::stringstream;
 
 namespace {
     string undefinedLinter(shared_ptr<Token> token, shared_ptr<Token> last) {
-        std::cout << "Undefined linter for: " << token->type << '\n';
+        std::cout << "Undefined linter for: " << token->type << ' ';
+        for (auto& now : token->lexemes) {
+            std::cout << *now << '\n';
+        }
         exit(13);
     }
 }
 
 namespace clnt::states::arithm {
-
-    Slice<vector<shared_ptr<Token>>> findCompleteExpression(Slice<vector<shared_ptr<Token>>> const&);
-
-
     Linter LINTERS[255];
 
 
@@ -42,9 +43,9 @@ namespace clnt::states::arithm {
         LINTERS[(int)TokenType::LINE_BREAK] = lintLineBreak;
         LINTERS[(int)TokenType::BACKSLASH] = lintBackslash;
         LINTERS[(int)TokenType::SHARP] = lintSharp;
+        LINTERS[(int)TokenType::COLON] = lintColon;
+        LINTERS[(int)TokenType::INITIALIZER] = lintInit;
     }
-
-
 
     string lintArithmetic(Slice<vector<shared_ptr<Token>>> tokens) {
         std::stringstream linted;
@@ -76,6 +77,10 @@ namespace clnt::states::arithm {
 
     string lintSemicolon(shared_ptr<Token> token, shared_ptr<Token>) {
         return ";";
+    }
+
+    string lintColon(shared_ptr<Token> token, shared_ptr<Token>) {
+        return ": ";
     }
 
     string lintBinaryOperator(shared_ptr<Token> token, shared_ptr<Token>) {
@@ -173,5 +178,16 @@ namespace clnt::states::arithm {
     string lintUndefined(shared_ptr<Token> token, shared_ptr<Token>) {
         std::stringstream ss;
         return "";
+    }
+
+    string lintInit(shared_ptr<Token> token, shared_ptr<Token> last) {
+        eval::Evaluator evaluator(eval::finders::FINDERS);
+        std::cout << "evabegin\n";
+        auto tokens = evaluator.evaluate(token->lexemes.slice(1, token->lexemes.size() - 1));
+        for (auto& now : tokens) {
+            std::cout << *now << '\n';
+        }
+        std::cout << "evaend\n";
+        return "{" + lintArithmetic(tokens) + "}";
     }
 }

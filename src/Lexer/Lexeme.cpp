@@ -19,13 +19,4 @@ namespace clnt::lex {
         }
         return out << ")";
     }
-
-    shared_ptr<Lexeme> const
-        LINE_BREAK = make_shared<Lexeme>(LexemeType::LINE_BREAK, make_shared<string>("\n")),
-        QUESTION = make_shared<Lexeme>(LexemeType::QUESTION, make_shared<string>("?")),
-        BACKSLASH = make_shared<Lexeme>(LexemeType::BACKSLASH, make_shared<string>("\\")),
-        COMMA = make_shared<Lexeme>(LexemeType::COMMA, make_shared<string>(",")),
-        COLON = make_shared<Lexeme>(LexemeType::COLON, make_shared<string>(":")),
-        SEMICOLON = make_shared<Lexeme>(LexemeType::SEMICOLON, make_shared<string>(";")),
-        SHARP = make_shared<Lexeme>(LexemeType::SHARP, make_shared<string>("#"));
 }
