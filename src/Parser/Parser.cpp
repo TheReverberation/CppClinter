@@ -1,5 +1,6 @@
 #include "Parser.hpp"
 
+#include <cassert>
 #include <utility>
 
 namespace clnt::parse {

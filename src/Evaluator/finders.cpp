@@ -5,6 +5,7 @@
 
 #include "finders.hpp"
 
+#include <cassert>
 #include <utility>
 #include <memory>
 

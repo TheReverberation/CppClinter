@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <iostream>
 #include <memory>
+#include <iterator>
 
 using std::shared_ptr;
 using std::move;
