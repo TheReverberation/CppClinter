@@ -10,6 +10,9 @@
 using std::vector;
 
 namespace clnt::eval {
+    /*
+     *  Token is similar to lexeme, it's also immutable type.
+     */
     class Token {
     public:
         Token(TokenType type, Slice<vector<shared_ptr<lex::Lexeme>>> lexemes);

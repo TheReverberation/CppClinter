@@ -24,6 +24,8 @@ namespace clnt::states {
         TYPE_NAMES[(int)StatementType::IFELSE] = "IfElse";
         TYPE_NAMES[(int)StatementType::PREPROCESSOR] = "Preprocessor";
         TYPE_NAMES[(int)StatementType::TYPEDEF] = "Typedef";
+        TYPE_NAMES[(int)StatementType::CASE] = "Case";
+        TYPE_NAMES[(int)StatementType::COMMENT] = "Comment";
     }
 
     std::ostream& operator<<(std::ostream& out, StatementType type) {

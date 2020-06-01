@@ -1,12 +1,8 @@
-//
-// Created by Daniil Nedaiborsch on 19.04.2020.
-//
-
-
 #include "finders.hpp"
 
 #include <utility>
 #include <memory>
+#include <src/Evaluator/Error/EvaluateException.hpp>
 
 using std::unique_ptr;
 using std::make_unique;
@@ -41,7 +37,9 @@ namespace clnt::eval::finders {
             }
             ++i;
         }
-        assert(brackets == 0);
+        if (brackets != 0) {
+            throw err::EvaluateException("Uncorrected brackets");
+        }
         return make_unique<pair<size_t, size_t>>(0, i);
     }
 
@@ -174,6 +172,13 @@ namespace clnt::eval::finders {
         return NOTFOUND;
     }
 
+    pair<shared_ptr<Token>, size_t> findComment(Slice<vector<shared_ptr<Lexeme>>> const& lexemes, shared_ptr<Token> lastToken) {
+        if (lexemes[0]->type == LexemeType::COMMENT) {
+            return {make_shared<Token>(TokenType::COMMENT, lexemes.slice(0, 1)), 1};
+        }
+        return NOTFOUND;
+    }
+
     std::pair<shared_ptr<Token>, size_t> findInit(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken) {
         if (lastToken && lastToken->type == TokenType::BINARY_OPERATOR) {
             auto block = findBlock(lexemes, nullptr);
@@ -189,7 +194,7 @@ namespace clnt::eval::finders {
     void init() {
         FINDERS = {
                 findWord, findInit, findBlock, findOperator, findCallOperator, findSemicolon, findLineBreak, findComma,
-                findBackslash, findSharp, findColon, findQuestion,
+                findBackslash, findSharp, findColon, findQuestion, findComment,
         };
     }
 }

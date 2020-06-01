@@ -1,6 +1,6 @@
-//
-// Created by Daniil Nedaiborsch on 21.04.2020.
-//
+/*
+ * Package for linting arithmetic expressions for instance 'Expression' or 'Instruction'
+ */
 
 #pragma once
 
@@ -41,4 +41,5 @@ namespace clnt::states::arithm {
     string lintBackslash(shared_ptr<Token> token, shared_ptr<Token> last);
     string lintColon(shared_ptr<Token> token, shared_ptr<Token> last);
     string lintInit(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintComment(shared_ptr<Token> token, shared_ptr<Token> last);
 }

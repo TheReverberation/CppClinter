@@ -3,22 +3,21 @@
 //
 
 #include <sstream>
+
 #include <src/Evaluator/Evaluator.hpp>
 #include <src/Lexer/Lexer.hpp>
 #include <src/Parser/Parser.hpp>
+#include <src/Evaluator/TokenType.hpp>
+
 #include "linters.hpp"
-#include "src/Evaluator/TokenType.hpp"
+#include "UndefinedLinterError.hpp"
 
 using namespace clnt::eval;
 using std::stringstream;
 
 namespace {
     string undefinedLinter(shared_ptr<Token> token, shared_ptr<Token> last) {
-        std::cout << "Undefined linter for: " << token->type << ' ';
-        for (auto& now : token->lexemes) {
-            std::cout << *now << '\n';
-        }
-        exit(13);
+        throw clnt::states::arithm::err::UndefinedLinterError();
     }
 }
 
@@ -45,6 +44,7 @@ namespace clnt::states::arithm {
         LINTERS[(int)TokenType::SHARP] = lintSharp;
         LINTERS[(int)TokenType::COLON] = lintColon;
         LINTERS[(int)TokenType::INITIALIZER] = lintInit;
+        LINTERS[(int)TokenType::COMMENT] = lintComment;
     }
 
     string lintArithmetic(Slice<vector<shared_ptr<Token>>> tokens) {
@@ -63,8 +63,8 @@ namespace clnt::states::arithm {
                     linted << " ";
                 }
                 linted << lint(token, lastToken);
-                std::cout << *token << '\n';
-                std::cout << "linted: " << linted.str() << '\n';
+                //std::cout << *token << '\n';
+                //std::cout << "linted: " << linted.str() << '\n';
                 lastToken = token;
             }
         }
@@ -175,6 +175,12 @@ namespace clnt::states::arithm {
         return "\\";
     }
 
+    string lintComment(shared_ptr<Token> token, shared_ptr<Token>) {
+        stringstream ss;
+        ss << token->lexemes[0]->source;
+        return ss.str();
+    }
+
     string lintUndefined(shared_ptr<Token> token, shared_ptr<Token>) {
         std::stringstream ss;
         return "";
@@ -182,12 +188,12 @@ namespace clnt::states::arithm {
 
     string lintInit(shared_ptr<Token> token, shared_ptr<Token> last) {
         eval::Evaluator evaluator(eval::finders::FINDERS);
-        std::cout << "evabegin\n";
+        //std::cout << "evabegin\n";
         auto tokens = evaluator.evaluate(token->lexemes.slice(1, token->lexemes.size() - 1));
         for (auto& now : tokens) {
-            std::cout << *now << '\n';
+            //std::cout << *now << '\n';
         }
-        std::cout << "evaend\n";
+        //std::cout << "evaend\n";
         return "{" + lintArithmetic(tokens) + "}";
     }
 }

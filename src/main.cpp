@@ -1,6 +1,9 @@
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <memory>
+#include <sstream>
+#include <iterator>
 
 #include "calphabet.hpp"
 #include "Lexer/Lexer.hpp"
@@ -11,11 +14,33 @@
 #include "Evaluator/Token.hpp"
 #include "Evaluator/finders.hpp"
 #include "Evaluator/TokenType.hpp"
+#include "Evaluator/Error/EvaluateException.hpp"
+
 #include "Slice.hpp"
 
 #include "Statements/all.hpp"
 
 #include "Parser/Parser.hpp"
+#include "Parser/ParseFail.hpp"
+
+using std::stringstream;
+using std::string;
+using std::shared_ptr;
+
+
+string outNameFile(string inputFileName) {
+    using std::find;
+    using std::copy;
+    using std::back_inserter;
+
+    Slice<string> s(inputFileName);
+    size_t dot = find(s.begin(), s.end(), '.') - s.begin();
+    string preffix;
+    copy(s.begin(), s.begin() + dot, back_inserter(preffix));
+    string result = preffix + "_linted"; 
+    copy(s.begin() + dot, s.end(), back_inserter(result));
+    return result;
+}
 
 
 void init() {
@@ -38,7 +63,7 @@ void init() {
 }
 
 
-int main() {
+int main(int argc, char** argv) {
     using namespace clnt;
     using namespace std;
 
@@ -51,54 +76,80 @@ int main() {
 
 
     string inputFileName;
-    cout << "Input file: ";
-    cin >> inputFileName;
-    ifstream fin(inputFileName);
 
-    while (!fin.is_open()) {
-        cout << "File not found!\nInput file: ";
-        cin >> inputFileName;
+    ifstream fin;
+
+    if (argc == 1) {
+        std::cout << "Input file name: ";
+        std::cin >> inputFileName;
+        fin.open(inputFileName);
+        while (!fin.is_open()) {
+            std::cout << "File not exist! Input file name: ";
+            std::cin >> inputFileName;
+            fin.open(inputFileName);
+        } 
+    } else {
+        inputFileName = argv[1];
         fin.open(inputFileName);
     }
 
-    ofstream fout("out.c");
+    if (!fin.is_open()) {
+        cout << "File not found!\nInput file: ";
+        exit(1);
+    }
+
+    ofstream fout(::outNameFile(inputFileName));
 
     lex::Lexer lexer(lex::finders::FINDERS);
-    shared_ptr<string> s = make_shared<string>();
 
-    while (fin) {
-        string line;
-        getline(fin, line);
-        *s += line + '\n';
-    }
+    ofstream log("log.txt");
+
+    // read code
+    shared_ptr<string> s = make_shared<string>();
+    std::ifstream file(inputFileName);
+    std::ostringstream oss;
+    oss << file.rdbuf();
+    *s = oss.str();
+
+    log << "\'" << *s << "\'\n";
 
     vector<shared_ptr<lex::Lexeme>> lexemes = lexer.lexing(s);
-    std::cout << "~MainLexemes~\n";
+    log << "~MainLexemes~\n";
     for (auto& now : lexemes) {
-        std::cout << *now << '\n';
+        log << *now << '\n';
     }
-    std::cout << '\n';
+    log << '\n';
 
     eval::Evaluator evaluator(eval::finders::FINDERS);
-    vector<shared_ptr<eval::Token>> tokens = evaluator.evaluate(lexemes);
-
-    std::cout << "~MainTokens~\n";
-    for (auto now : tokens) {
-        std::cout << *now << '\n';
+    vector<shared_ptr<eval::Token>> tokens;
+    try {
+        tokens = evaluator.evaluate(lexemes);
+    } catch (eval::err::EvaluateException const& exc) {
+        std::cout << exc.what() << '\n';
+        exit(0);
     }
-    std::cout << "\n";
+
+    log << "~MainTokens~\n";
+    for (auto now : tokens) {
+        log << *now << '\n';
+    }
+    log << "\n";
 
     parse::Parser parser(states::STATEMENT_FINDERS);
-    Slice<vector<shared_ptr<Statement>>> states = parser.parse(tokens);
+    try {
+        Slice<vector<shared_ptr<Statement>>> states = parser.parse(tokens);
 
-    std::cout << "~MainStates~\n";
-    for (auto& now : states) {
-        std::cout << *now << '\n';
+        log << "~MainStates~\n";
+        for (auto &now : states) {
+            log << *now << '\n';
+        }
+        log << '\n';
+
+        Linter linter;
+        fout << linter.lint(states, lint::Space::GLOBAL) << '\n';
+    } catch (parse::err::ParseFail const& exc) {
+        std::cout << exc.what() << '\n';
+        exit(0);
     }
-    std::cout << '\n';
-
-    Linter linter;
-    fout << linter.lint(states, lint::Space::GLOBAL) << '\n';
-
     return 0;
 }

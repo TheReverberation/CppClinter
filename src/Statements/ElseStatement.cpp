@@ -30,18 +30,18 @@ namespace clnt::states {
             while (checkType(statements.back()->type)) {
                 auto found = parser.find(tokens.slice(i));
                 assert(found.first != nullptr);
-                std::cout << *found.first << ',' << found.second << '\n';
+                //std::cout << *found.first << ',' << found.second << '\n';
                 // if found is not line break
                 if (!(found.first->type == StatementType::EXPRESSION && found.first->tokens[0]->type == TokenType::LINE_BREAK)) {
                    statements.push_back(found.first);
                 }
                 i += found.second;
             }
-            std::cout << "endElseFind: ";
+            //std::cout << "endElseFind: ";
             for (auto& s : statements) {
-                std::cout << *s << '\n';
+                //std::cout << *s << '\n';
             }
-            std::cout << "!!!!!!!!!!\n";
+            //std::cout << "!!!!!!!!!!\n";
             return {make_shared<ElseStatement>(tokens.slice(0, i), statements), i};
         }
         return {nullptr, 0};

@@ -58,7 +58,7 @@ namespace clnt::states {
                 }
             }
         }
-        std::cout << "strEnd: " << strEnd << '\n';
+        //std::cout << "strEnd: " << strEnd << '\n';
         copy(code->begin() + strBegin, code->begin() + strEnd, back_inserter<string>(_linted));
     }
 }

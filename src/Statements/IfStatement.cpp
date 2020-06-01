@@ -25,7 +25,7 @@ namespace clnt::states {
             while (statements.back()->type != StatementType::INSTRUCTION && statements.back()->type != StatementType::BLOCK) {
                 auto found = parser.find(tokens.slice(i));
                 assert(found.first != nullptr);
-                std::cout << *found.first << ',' << found.second << '\n';
+                //std::cout << *found.first << ',' << found.second << '\n';
                 // if found is not line break
                 if (!(found.first->type == StatementType::EXPRESSION && found.first->tokens[0]->type == TokenType::LINE_BREAK)) {
                    statements.push_back(found.first);

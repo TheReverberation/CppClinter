@@ -1,3 +1,7 @@
+/*
+ * C alphabet constants
+ */
+
 #pragma once
 
 #include <vector>

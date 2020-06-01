@@ -1,7 +1,3 @@
-//
-// Created by Daniil Nedaiborsch on 28.04.2020.
-//
-
 #include "Lexeme.hpp"
 
 using std::string;

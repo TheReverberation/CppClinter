@@ -1,11 +1,6 @@
-//
-// Created by Daniil Nedaiborsch on 14.04.2020.
-//
-
 #include <string>
 
 #include "LexemeType.hpp"
-
 
 namespace {
     std::string typeName[255];
@@ -31,6 +26,7 @@ namespace clnt::lex {
         typeName[(int)LexemeType::COLON] = "Colon";
         typeName[(int)LexemeType::SEMICOLON] = "Semicolon";
         typeName[(int)LexemeType::SHARP] = "Sharp";
+        typeName[(int)LexemeType::COMMENT] = "Comment";
     }
 
     std::ostream& operator<<(std::ostream& out, LexemeType type) {

@@ -42,6 +42,14 @@ namespace clnt {
             return container_->begin() + j_;
         }
 
+        value_type const& front() const {
+            return (*container_)[i_];
+        }
+
+        value_type const& back() const {
+            return (*container_)[j_ - 1];
+        }
+
         value_type const& operator[](size_t i) const {
             return (*container_)[i_ + i];
         }
@@ -70,6 +78,10 @@ namespace clnt {
                 return false;
             }
             return std::equal(container_->begin() + i_, container_->begin() + j_, right.container_->begin() + right.i_);
+        }
+
+        bool operator!=(Slice const& right) const {
+            return !(*this == right);
         }
 
         size_t i() const {

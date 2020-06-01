@@ -82,6 +82,41 @@ namespace clnt::lex::finders {
         }
     }
 
+    pair<shared_ptr<Lexeme>, size_t> findSingleLineComment(Slice<string> const& s) {
+        if (s.slice(0, 2) == string("//")) {
+            size_t i = 0;
+            while (i < s.size() && s[i] != '\n') {
+                ++i;
+            }
+            ++i;
+            return {make_shared<Lexeme>(LexemeType::COMMENT, s.slice(0, i)), i};
+        }
+        return {nullptr, 0};
+    }
+
+    pair<shared_ptr<Lexeme>, size_t> findMultiComment(Slice<string> const& s) {
+        if (s.slice(0, 2) == string("/*")) {
+            size_t i = 2;
+            while (i < s.size() && s.slice(i - 2, i) != string("*/")) {
+                ++i;
+            }
+            return {make_shared<Lexeme>(LexemeType::COMMENT, s.slice(0, i)), i};
+        }
+        return {nullptr, 0};
+    }
+
+    pair<shared_ptr<Lexeme>, size_t> findComment(Slice<string> const& s) {
+        auto found = findSingleLineComment(s);
+        if (found.first) {
+            return found;
+        }
+        found = findMultiComment(s);
+        if (found.first) {
+            return found;
+        }
+        return {nullptr, 0};
+    }
+
     pair<shared_ptr<Lexeme>, size_t> findNumber(Slice<string> const& s) {
         return NOTFOUND;
     }
@@ -132,7 +167,7 @@ namespace clnt::lex::finders {
 
     void init() {
         FINDERS = {
-            findName, findBackslash, findOperator, findConstant,
+            findComment, findName, findBackslash, findOperator, findConstant,
             findColon, findSemicolon, findQuestion, findLinebreak, findComma,
             findOpenBracket, findCloseBracket, findSharp,
         };

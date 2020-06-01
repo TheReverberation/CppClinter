@@ -1,6 +1,7 @@
 /*
- * This package split C code on lexemes
- * all.hpp contain all needed forwards
+ * This package split C code on lexemes.
+ * The first point of code processing.
+ * all.hpp contain all needed forward declarations
  */
 
 #pragma once

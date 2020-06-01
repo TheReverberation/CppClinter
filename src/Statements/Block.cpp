@@ -57,21 +57,21 @@ namespace clnt::states {
     }
 
     void Block::lint() const {
-        std::cout << "begin\n";
+        //std::cout << "begin\n";
         Evaluator evaluator(eval::finders::FINDERS);
         vector<shared_ptr<Token>> intoTokens =
                 evaluator.evaluate(tokens[0]->lexemes.slice(1, tokens[0]->lexemes.size() - 1));
 
-        std::cout << "Tokens: \n";
+        //std::cout << "Tokens: \n";
         for (auto& now : intoTokens) {
-            std::cout << *now << '\n';
+            //std::cout << *now << '\n';
         }
 
         Parser parser(states::STATEMENT_FINDERS);
         Slice<vector<shared_ptr<Statement>>> statements = parser.parse(intoTokens);
 
         for (auto& now : statements) {
-            std::cout << *now << '\n';
+            //std::cout << *now << '\n';
         }
 
         Linter linter;

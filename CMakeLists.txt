@@ -4,7 +4,7 @@ project(CppClinter LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_COMPILER /usr/bin/clang++)
 set(CMAKE_CXX_FLAGS -Wall)
-
+set(CMAKE_BUILD_RPATH /build)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_executable(CppClinter src/main.cpp src/Lexer/LexemeType.hpp
@@ -21,10 +21,15 @@ add_executable(CppClinter src/main.cpp src/Lexer/LexemeType.hpp
         src/Statements/Arithmetic/findCompleteExpression.cpp src/Statements/all.hpp src/Statements/Expression.cpp
         src/Statements/Expression.hpp src/Linter/Linter.cpp src/Linter/Linter.hpp src/Statements/all.cpp
         src/Evaluator/all.hpp src/Lexer/Lexeme.cpp src/Lexer/Lexeme.hpp src/Lexer/all.hpp
-        src/Statements/LinterUndefinedException.cpp src/Statements/LinterUndefinedException.hpp
+        src/Statements/UndefinedLinterError.cpp src/Statements/UndefinedLinterError.hpp
         src/Statements/IfStatement.hpp src/Statements/IfStatement.cpp
         src/Statements/ElseStatement.hpp src/Statements/ElseStatement.cpp
         src/Statements/IfElseStatement.hpp src/Statements/IfElseStatement.cpp src/Statements/Preprocessor.cpp
-        src/Statements/Preprocessor.hpp src/Statements/Typedef.cpp src/Statements/Typedef.hpp)
+        src/Statements/Preprocessor.hpp src/Statements/Typedef.cpp src/Statements/Typedef.hpp
+        src/Statements/Case.cpp src/Statements/Case.hpp src/Statements/Comment.cpp src/Statements/Comment.hpp
+        src/Parser/ParseFail.hpp src/Parser/ParseFail.cpp src/Statements/Arithmetic/UndefinedLinterError.hpp
+        src/Statements/Arithmetic/UndefinedLinterError.cpp src/Evaluator/Error/EvaluateException.cpp
+        src/Evaluator/Error/EvaluateException.hpp)
+
 #find_package(Boost REQUIRED COMPONENTS system)
 #target_include_directories(CppClinter PUBLIC ${Boost_INCLUDE_DIRS})

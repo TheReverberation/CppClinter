@@ -1,7 +1,3 @@
-//
-// Created by Daniil Nedaiborsch on 19.04.2020.
-//
-
 #pragma once
 
 #include <vector>
@@ -18,6 +14,11 @@ using std::make_shared;
 
 
 namespace clnt::eval {
+    /*
+     * Evaluator is giving a sense for lexemes, grouping it and identifying its exactly type.
+     * Attributes:
+     *     finders: vector of TokenFinders
+     */
     class Evaluator {
     public:
         Evaluator(vector<finders::TokenFinder> finders);

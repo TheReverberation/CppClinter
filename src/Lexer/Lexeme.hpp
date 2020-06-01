@@ -11,6 +11,9 @@
 namespace clnt::lex {
     class Lexeme {
     public:
+        /*
+         * Immutable class
+         */
         Lexeme(Lexeme const&) = delete;
         Lexeme(Lexeme&&) = delete;
         Lexeme(LexemeType type, Slice<std::string>);

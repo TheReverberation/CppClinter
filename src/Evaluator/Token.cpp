@@ -1,7 +1,3 @@
-//
-// Created by Daniil Nedaiborsch on 19.04.2020.
-//
-
 #include "Token.hpp"
 
 namespace clnt::eval {

@@ -6,10 +6,10 @@
 
 #include <exception>
 
-namespace clnt::states {
-    class LinterUndefinedException : public std::exception {
+namespace clnt::states::err {
+    class UndefinedLinterError: public std::exception {
     public:
-        LinterUndefinedException();
+        UndefinedLinterError();
         const char* what() const noexcept override;
     };
 }

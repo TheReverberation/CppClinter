@@ -29,7 +29,7 @@ namespace clnt::states {
 
             auto elsestate = ElseStatement::find(tokens.slice(i));
             if (elsestate.first) {
-                std::cout << "ElseFound\n" << "";
+                // std::cout << "ElseFound\n" << "";
                 i += elsestate.second;
                 end = i;
                 return pair<shared_ptr<Statement>, size_t>(

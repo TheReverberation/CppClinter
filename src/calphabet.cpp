@@ -69,9 +69,6 @@ namespace clnt::alphabet {
         return _OPERATORS;
     }
 
-    std::vector<Slice<std::string>> const& commaOperator() {
-        return {};
-    }
 
     std::vector<Slice<std::string>> const& binaryOperators() {
         return _BINARY_OPERATORS;
