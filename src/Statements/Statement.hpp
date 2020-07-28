@@ -34,7 +34,6 @@ namespace clnt::states {
         Slice<vector<shared_ptr<Token>>> const tokens;
         string const& linted() const;
         virtual void lint() const;
-        //virtual ~Statement() = 0;
     protected:
         string mutable _linted;
     };

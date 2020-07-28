@@ -2,6 +2,8 @@
 #include <fstream>
 #include <memory>
 
+#include <src/types.hpp>
+
 #include "calphabet.hpp"
 #include "Lexer/Lexer.hpp"
 #include "Lexer/LexemeType.hpp"
@@ -18,6 +20,8 @@
 #include "Parser/Parser.hpp"
 
 
+
+
 void init() {
 
     using namespace clnt;
@@ -31,10 +35,10 @@ void init() {
     alphabet::init();
     lex::finders::init();
     lex::initTypeNames();
-    states::initTypeNames();
+   // states::initTypeNames();
     eval::initTypeNames();
     eval::finders::init();
-    states::arithm::initLinters();
+    //states::arithm::initLinters();
 }
 
 
@@ -72,7 +76,7 @@ int main() {
         *s += line + '\n';
     }
 
-    vector<shared_ptr<lex::Lexeme>> lexemes = lexer.lexing(s);
+   Vector<unique_ptr<lex::Lexeme>> lexemes = lexer.lexing(s);
     std::cout << "~MainLexemes~\n";
     for (auto& now : lexemes) {
         std::cout << *now << '\n';
@@ -80,25 +84,25 @@ int main() {
     std::cout << '\n';
 
     eval::Evaluator evaluator(eval::finders::FINDERS);
-    vector<shared_ptr<eval::Token>> tokens = evaluator.evaluate(lexemes);
+//    Vector<unique_ptr<eval::Token>> tokens = evaluator.evaluate(move(lexemes));
+//
+//    std::cout << "~MainTokens~\n";
+//    for (auto& now : tokens) {
+//        std::cout << *now << '\n';
+//    }
+//    std::cout << "\n";
 
-    std::cout << "~MainTokens~\n";
-    for (auto now : tokens) {
-        std::cout << *now << '\n';
-    }
-    std::cout << "\n";
-
-    parse::Parser parser(states::STATEMENT_FINDERS);
-    Slice<vector<shared_ptr<Statement>>> states = parser.parse(tokens);
-
-    std::cout << "~MainStates~\n";
-    for (auto& now : states) {
-        std::cout << *now << '\n';
-    }
-    std::cout << '\n';
-
-    Linter linter;
-    fout << linter.lint(states, lint::Space::GLOBAL) << '\n';
+//    parse::Parser parser(states::STATEMENT_FINDERS);
+//    Slice<Vector<shared_ptr<Statement>>> states = parser.parse(tokens);
+//
+//    std::cout << "~MainStates~\n";
+//    for (auto& now : states) {
+//        std::cout << *now << '\n';
+//    }
+//    std::cout << '\n';
+//
+//    Linter linter;
+//    fout << linter.lint(states, lint::Space::GLOBAL) << '\n';
 
     return 0;
 }

@@ -4,6 +4,7 @@
 #include <memory>
 
 #include <src/Slice.hpp>
+#include <src/types.hpp>
 
 #include "LexemeType.hpp"
 

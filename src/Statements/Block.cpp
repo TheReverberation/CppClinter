@@ -59,7 +59,7 @@ namespace clnt::states {
     void Block::lint() const {
         std::cout << "begin\n";
         Evaluator evaluator(eval::finders::FINDERS);
-        vector<shared_ptr<Token>> intoTokens =
+        vector<unique_ptr<Token>> intoTokens =
                 evaluator.evaluate(tokens[0]->lexemes.slice(1, tokens[0]->lexemes.size() - 1));
 
         std::cout << "Tokens: \n";

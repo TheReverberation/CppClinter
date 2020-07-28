@@ -14,7 +14,7 @@
 using std::vector;
 using std::shared_ptr;
 using std::make_shared;
-
+using std::unique_ptr;
 
 
 namespace clnt::eval {
@@ -22,6 +22,6 @@ namespace clnt::eval {
     public:
         Evaluator(vector<finders::TokenFinder> finders);
         vector<finders::TokenFinder> const finders;
-        vector<shared_ptr<Token>> evaluate(Slice<vector<shared_ptr<lex::Lexeme>>> lexemes);
+        vector<unique_ptr<Token>> evaluate(Slice<vector<unique_ptr<lex::Lexeme>>> lexemes);
     };
 }
