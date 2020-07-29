@@ -8,12 +8,11 @@
 #include <memory>
 #include <string>
 
-
+#include <src/types.hpp>
 #include "src/Slice.hpp"
 
-#include "src/Statements/Statement.hpp"
+#include <src/Statements/Statement.hpp>
 
-using std::vector;
 using std::shared_ptr;
 using std::string;
 
@@ -23,7 +22,7 @@ namespace clnt::states::arithm {
     extern Linter LINTERS[255];
     void initLinters();
 
-    string lintArithmetic(Slice<vector<unique_ptr<Token>>>);
+    string lintArithmetic(Slice<NonCopyableVector<unique_ptr<Token>>>);
     string lint(unique_ptr<Token> const&, unique_ptr<Token> const&);
 
     string lintSemicolon(unique_ptr<Token> const& token, unique_ptr<Token> const&);

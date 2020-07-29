@@ -20,8 +20,8 @@ using std::make_shared;
 namespace clnt::states {
     class Instruction: public Statement {
     public:
-        Instruction(Slice<vector<shared_ptr<Token>>>);
-        static pair<shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&);
+        Instruction(Slice<NonCopyableVector<unique_ptr<Token>>>);
+        static pair<unique_ptr<Statement>, size_t> find(Slice<NonCopyableVector<unique_ptr<Token>>> const&);
         void lint() const override;
     };
 }

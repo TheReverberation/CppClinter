@@ -3,20 +3,31 @@
 //
 
 #include <iostream>
-#include <src/Vector.hpp>
+#include <src/types.hpp>
 #include <memory>
 
+#include <src/Slice.hpp>
+
 using namespace std;
+
+struct A {
+    A() {
+        cout << "A const\n";
+    }
+    ~A() {
+        cout << "A dest\n";
+    }
+};
 
 int main() {
     //int n;
     //cin >> n;
-    cll::Vector<unique_ptr<int>, false> a;
-    unique_ptr<int> b(new int(5));
-    a.push_back(move(b));
-    cll::Vector<unique_ptr<int>, false> c;
-    c = a;
-    c = move(a);
-    std::cout << **c.begin() << '\n';
+    Vector<unique_ptr<int>> a;
+    for (int i = 0; i < 10; ++i) {
+        a.push_back(make_unique<int>(i));
+    }
+    for (int i = 0; i < a.size(); ++i) {
+        cout << *a[i] << '\n';
+    }
     return 0;
 }
