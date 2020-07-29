@@ -5,7 +5,7 @@
 #include "findCompleteExpression.hpp"
 
 namespace clnt::states::arithm {
-    size_t findCompleteExpression(Slice<vector<shared_ptr<Token>>> const &tokens) {
+    size_t findCompleteExpression(Slice<NonCopyableVector<shared_ptr<Token>>> const &tokens) {
         if (tokens[0]->type == TokenType::LINE_BREAK) {
             return 1;
         }

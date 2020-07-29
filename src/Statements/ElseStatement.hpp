@@ -14,9 +14,9 @@
 namespace clnt::states {
     class ElseStatement: public Statement {
     public:
-        ElseStatement(Slice<std::vector<std::shared_ptr<Token>>>, std::vector<shared_ptr<Statement>>);
-        static std::pair<std::shared_ptr<Statement>, size_t> find(Slice<std::vector<std::shared_ptr<Token>>> const&);
+        ElseStatement(Slice<NonCopyableVector<std::unique_ptr<Token>>>, NonCopyableVector<unique_ptr<Statement>>);
+        static std::pair<std::unique_ptr<Statement>, size_t> find(Slice<NonCopyableVector<std::unique_ptr<Token>>> const&);
         void lint() const override;
-        std::vector<shared_ptr<Statement>> const statements;
+        NonCopyableVector<unique_ptr<Statement>> const statements;
     };
 }

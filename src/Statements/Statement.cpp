@@ -6,7 +6,7 @@
 
 namespace clnt::states {
 
-    Statement::Statement(StatementType type, Slice<vector<shared_ptr<Token>>> tokens): type(type), tokens(std::move(tokens)) {}
+    Statement::Statement(StatementType type, Slice<NonCopyableVector<unique_ptr<Token>>> tokens): type(type), tokens(std::move(tokens)) {}
 
     void Statement::lint() const {
         throw LinterUndefinedException();

@@ -8,7 +8,6 @@
 
 #include "src/Statements/all.hpp"
 
-using std::vector;
 
 using clnt::states::Finder;
 using clnt::states::Statement;
@@ -18,8 +17,8 @@ namespace clnt::parse {
     class Parser {
     public:
         Parser(vector<Finder> );
-        Slice<vector<shared_ptr<Statement>>> parse(Slice<vector<shared_ptr<Token>>> const&);
-        pair<shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&);
+        Slice<NonCopyableVector<unique_ptr<Statement>>> parse(Slice<NonCopyableVector<unique_ptr<Token>>> const&);
+        pair<unique_ptr<Statement>, size_t> find(Slice<NonCopyableVector<unique_ptr<Token>>> const&);
     private:
         vector<Finder> finders_;
     };

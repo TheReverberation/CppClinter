@@ -79,17 +79,17 @@ set(LINTER_SOURCES
 
 add_executable(CppClinter
         #src/main.cpp
-        src/vector_test.cpp
-        #src/test_build.cpp
+        #src/vector_test.cpp
+        src/test_build.cpp
         src/Slice.hpp
         src/calphabet.cpp
-        #src/calphabet.hpp
+        src/calphabet.hpp
         src/accumulate.hpp
 
-        #${LEXER_SOURCES} ${LEXER_HEADERS}
+        ${LEXER_SOURCES} ${LEXER_HEADERS}
+        ${EVAL_SOURCES} ${EVAL_HEADERS}
+        ${STATE_SOURCES} ${STATE_HEADERS}
+        ${PARSE_SOURCES} ${PARSE_HEADERS}
+        ${LINTER_SOURCES}
 
-        #${EVAL_SOURCES} ${EVAL_HEADERS}
-        #${STATE_SOURCES} ${STATE_HEADERS}
-        #${PARSE_SOURCES} ${PARSE_HEADERS}
-        #${LINTER_SOURCES}
         src/Vector.hpp)

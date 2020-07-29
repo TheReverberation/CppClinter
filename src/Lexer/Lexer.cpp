@@ -14,10 +14,10 @@ using std::make_unique;
 
 namespace clnt::lex {
 
-    Lexer::Lexer(Vector<finders::LexemeFinder> finders): finders_(std::move(finders)) {}
+    Lexer::Lexer(NonCopyableVector<finders::LexemeFinder> finders): finders_(std::move(finders)) {}
 
-    Vector<unique_ptr<Lexeme>> Lexer::lexing(Slice<string> const& s) {
-        Vector<unique_ptr<Lexeme>> lexemes;
+    NonCopyableVector<unique_ptr<Lexeme>> Lexer::lexing(Slice<string> const& s) {
+        NonCopyableVector<unique_ptr<Lexeme>> lexemes;
 
 
         for (size_t i = 0; i < s.size();) {

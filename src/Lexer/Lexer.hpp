@@ -10,9 +10,9 @@
 namespace clnt::lex {
     class Lexer {
     private:
-        Vector<finders::LexemeFinder> finders_;
+        NonCopyableVector<finders::LexemeFinder> finders_;
     public:
-        explicit Lexer(Vector<finders::LexemeFinder>);
-        Vector<std::unique_ptr<Lexeme>> lexing(Slice<std::string> const&);
+        explicit Lexer(NonCopyableVector<finders::LexemeFinder>);
+        NonCopyableVector<std::unique_ptr<Lexeme>> lexing(Slice<std::string> const&);
     };
 }

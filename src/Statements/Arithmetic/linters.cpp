@@ -125,7 +125,7 @@ namespace clnt::states::arithm {
 
     string lintCallOperator(unique_ptr<Token> const& token, unique_ptr<Token> const& last) {
         eval::Evaluator evaluator(eval::finders::FINDERS);
-        Slice<vector<unique_ptr<Token>>> evaluated = evaluator.evaluate(token->lexemes.slice(1, token->lexemes.size() - 1));
+        Slice<NonCopyableVector<unique_ptr<Token>>> evaluated = evaluator.evaluate(token->lexemes.slice(1, token->lexemes.size() - 1));
         string linted = lintArithmetic(evaluated);
         stringstream ss;
         if (last && last->type == TokenType::RESERVED) {
@@ -187,6 +187,6 @@ namespace clnt::states::arithm {
             std::cout << *now << '\n';
         }
         std::cout << "evaend\n";
-        return "{" + lintArithmetic(tokens) + "}";
+        return "{" + lintArithmetic(move(tokens)) + "}";
     }
 }
