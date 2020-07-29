@@ -6,7 +6,7 @@
 namespace clnt::parse {
     Parser::Parser(vector<Finder> finders): finders_(std::move(finders)) {}
 
-    pair<unique_ptr<Statement>, size_t> Parser::find(Slice<NonCopyableVector<unique_ptr<Token>>> const& tokens) {
+    pair<shared_ptr<Statement>, size_t> Parser::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
         pair<shared_ptr<Statement>, size_t> found = {nullptr, 0};
         for (Finder finder : finders_) {
             found = finder(tokens);

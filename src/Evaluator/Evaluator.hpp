@@ -11,6 +11,7 @@
 #include "src/Lexer/Lexeme.hpp"
 #include "src/Slice.hpp"
 
+using std::vector;
 using std::shared_ptr;
 using std::make_shared;
 using std::unique_ptr;
@@ -19,8 +20,8 @@ using std::unique_ptr;
 namespace clnt::eval {
     class Evaluator {
     public:
-        Evaluator(Vector<finders::TokenFinder> finders);
-        Vector<finders::TokenFinder> const finders;
-        NonCopyableVector<unique_ptr<Token>> evaluate(Slice<NonCopyableVector<unique_ptr<lex::Lexeme>>> lexemes);
+        Evaluator(vector<finders::TokenFinder> finders);
+        vector<finders::TokenFinder> const finders;
+        vector<unique_ptr<Token>> evaluate(Slice<vector<unique_ptr<lex::Lexeme>>> lexemes);
     };
 }

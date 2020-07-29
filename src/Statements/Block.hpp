@@ -18,8 +18,8 @@
 namespace clnt::states {
     class Block: public Statement {
     public:
-        Block(Slice<NonCopyableVector<std::unique_ptr<Token>>>);
-        static std::pair<unique_ptr<Statement>, size_t> find(Slice<NonCopyableVector<std::unique_ptr<Token>>> const&);
+        Block(Slice<std::vector<std::shared_ptr<Token>>>);
+        static std::pair<shared_ptr<Statement>, size_t> find(Slice<std::vector<std::shared_ptr<Token>>> const&);
         void lint() const override;
     };
 }

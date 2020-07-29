@@ -13,7 +13,7 @@ using clnt::states::Statement;
 
 namespace {
     vector<pair<StatementType, string>>
-    groupExpressions(Slice<NonCopyableVector<shared_ptr<Statement>>> const& statements) {
+    groupExpressions(Slice<vector<shared_ptr<Statement>>> const& statements) {
         vector<pair<StatementType, string>> groups;
         for (size_t i = 0; i < statements.size();) {
             if (statements[i]->type == StatementType::INSTRUCTION ||
@@ -56,7 +56,7 @@ namespace {
         return groups;
     }
 
-    string joinGlobalStatements(Vector<pair<StatementType, string>> const& statements) {
+    string joinGlobalStatements(vector<pair<StatementType, string>> const& statements) {
         vector<string> joinedLines;
         for (size_t i = 0; i < statements.size(); ++i)  {
             if (statements[i].second == "\n") {

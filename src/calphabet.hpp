@@ -1,20 +1,18 @@
 #pragma once
 
-
+#include <vector>
 #include <string>
-
-#include <src/types.hpp>
 
 #include "Slice.hpp"
 
 namespace clnt::alphabet {
-    Vector<Slice<std::string>> const& accessOperators();
-    Vector<Slice<std::string>> const& callOperators();
-    Vector<Slice<std::string>> const& unaryOperators();
-    Vector<Slice<std::string>> const& operators();
-    Vector<Slice<std::string>> const& commaOperator();
-    Vector<Slice<std::string>> const& binaryOperators();
-    Vector<Slice<std::string>> const& reserved();
+    std::vector<Slice<std::string>> const& accessOperators();
+    std::vector<Slice<std::string>> const& callOperators();
+    std::vector<Slice<std::string>> const& unaryOperators();
+    std::vector<Slice<std::string>> const& operators();
+    std::vector<Slice<std::string>> const& commaOperator();
+    std::vector<Slice<std::string>> const& binaryOperators();
+    std::vector<Slice<std::string>> const& reserved();
 
     void init();
 }

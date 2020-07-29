@@ -3,10 +3,10 @@
 using clnt::lex::Lexeme;
 
 namespace clnt::eval {
-    Evaluator::Evaluator(Vector<finders::TokenFinder> finders): finders(std::move(finders)) {}
+    Evaluator::Evaluator(vector<finders::TokenFinder> finders): finders(std::move(finders)) {}
     
-    NonCopyableVector<unique_ptr<Token>> Evaluator::evaluate(Slice<NonCopyableVector<unique_ptr<Lexeme>>> lexemes) {
-        NonCopyableVector<unique_ptr<Token>> tokens;
+    vector<unique_ptr<Token>> Evaluator::evaluate(Slice<vector<unique_ptr<Lexeme>>> lexemes) {
+        vector<unique_ptr<Token>> tokens;
 
         auto lastToken = [&tokens] () -> unique_ptr<Token> const& {
             return nullptr;

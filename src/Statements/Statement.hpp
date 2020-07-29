@@ -29,9 +29,9 @@ namespace clnt::states {
 
     class Statement {
     public:
-        Statement(StatementType, Slice<NonCopyableVector<unique_ptr<Token>>>);
+        Statement(StatementType, Slice<vector<shared_ptr<Token>>>);
         StatementType const type;
-        Slice<NonCopyableVector<unique_ptr<Token>>> const tokens;
+        Slice<vector<shared_ptr<Token>>> const tokens;
         string const& linted() const;
         virtual void lint() const;
     protected:
@@ -40,6 +40,6 @@ namespace clnt::states {
 
     std::ostream& operator<<(std::ostream& out, Statement const& s);
 
-    typedef pair<unique_ptr<Statement>, size_t> (*Finder)(Slice<NonCopyableVector<unique_ptr<Token>>> const&);
+    typedef pair<shared_ptr<Statement>, size_t> (*Finder)(Slice<vector<shared_ptr<Token>>> const&);
 
 }
