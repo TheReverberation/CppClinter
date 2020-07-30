@@ -3,30 +3,30 @@
 using clnt::lex::Lexeme;
 
 namespace clnt::eval {
-    Evaluator::Evaluator(Vector<finders::TokenFinder> finders): finders(std::move(finders)) {}
+    Evaluator::Evaluator(vector<finders::TokenFinder> finders): finders(std::move(finders)) {}
     
-    NonCopyableVector<unique_ptr<Token>> Evaluator::evaluate(Slice<NonCopyableVector<unique_ptr<Lexeme>>> lexemes) {
-        NonCopyableVector<unique_ptr<Token>> tokens;
+    vector<shared_ptr<Token>> Evaluator::evaluate(Slice<vector<Lexeme*>> lexemes) {
+        vector<shared_ptr<Token>> tokens;
 
-        auto lastToken = [&tokens] () -> unique_ptr<Token> const& {
-            return nullptr;
+        auto lastToken = [&tokens] () {
+            return tokens.empty() ? nullptr : tokens.back();
         };
 
         for (size_t i = 0; i < lexemes.size(); ) {
-            unique_ptr<Token> token = nullptr;
+            shared_ptr<Token> token = nullptr;
             size_t tokenEnd = 0;
             for (auto finder : finders) {
                 auto found = finder(lexemes.slice(i), lastToken());
-                token = move(found.first);
+                token = found.first;
                 tokenEnd = found.second;
                 if (token) {
                     break;
                 }
             }
             if (token) {
-                tokens.push_back(move(token));
+                tokens.push_back(token);
             } else {
-                tokens.push_back(make_unique<Token>(TokenType::UNDEFINED, lexemes.slice(i)));
+                tokens.push_back(make_shared<Token>(TokenType::UNDEFINED, lexemes.slice(i)));
                 tokenEnd = lexemes.size() - i;
             }
             i += tokenEnd;

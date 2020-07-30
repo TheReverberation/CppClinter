@@ -5,42 +5,47 @@
 #include <src/calphabet.hpp>
 #include "Lexer.hpp"
 
-
+using std::vector;
 using std::string;
-using std::unique_ptr;
-using std::move;
-using std::make_unique;
 
 
 namespace clnt::lex {
 
-    Lexer::Lexer(NonCopyableVector<finders::LexemeFinder> finders): finders_(std::move(finders)) {}
+    Lexer::Lexer(vector<finders::LexemeFinder> finders): finders_(std::move(finders)) {}
 
-    NonCopyableVector<unique_ptr<Lexeme>> Lexer::lexing(Slice<string> const& s) {
-        NonCopyableVector<unique_ptr<Lexeme>> lexemes;
+    vector<Lexeme*> Lexer::lexing(Slice<string> const& s) {
+        vector<Lexeme*> lexemes;
 
+        auto lastLexeme = [&lexemes] () -> Lexeme* {
+            return !lexemes.empty() ? lexemes.back() : nullptr;
+        };
 
         for (size_t i = 0; i < s.size();) {
             i += finders::findNonSpace(s.slice(i), {' ', '\t'});
-            unique_ptr<Lexeme> lexeme = nullptr;
+            Lexeme* lexeme = nullptr;
             size_t lexemeEnd = 0;
             for (auto& finder : finders_) {
                 auto found = finder(s.slice(i));
-                lexeme = move(found.first);
+                lexeme = found.first;
                 lexemeEnd = found.second;
                 if (lexeme) {
                     break;
                 }
             }
             if (lexeme) {
-                lexemes.push_back(move(lexeme));
+                lexemes.push_back(lexeme);
             } else {
-                lexemes.push_back(make_unique<Lexeme>(LexemeType::UNDEFINED, s.slice(i)));
+                throw err::UndefinedLexemeException();
+                lexemes.emplace_back(new Lexeme(LexemeType::UNDEFINED, s.slice(i)));
                 lexemeEnd = s.size() - i;
             }
             i += lexemeEnd;
         }
 
         return lexemes;
+    }
+
+    Lexeme::~Lexeme() {
+        std::cout << "Lexeme destruction\n";
     }
 }

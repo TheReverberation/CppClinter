@@ -1,7 +1,3 @@
-//
-// Created by Daniil Nedaiborsch on 15.04.2020.
-//
-
 #pragma once
 
 #include <cassert>
@@ -11,7 +7,7 @@
 
 
 #include "StatementType.hpp"
-#include "LinterUndefinedException.hpp"
+#include "UndefinedLinterError.hpp"
 
 #include "src/Slice.hpp"
 #include "src/Lexer/Lexeme.hpp"
@@ -27,19 +23,23 @@ using clnt::eval::Token;
 
 namespace clnt::states {
 
+    /*
+     * Base abstract class for all statements
+     */
     class Statement {
     public:
-        Statement(StatementType, Slice<NonCopyableVector<unique_ptr<Token>>>);
+        Statement(StatementType, Slice<vector<shared_ptr<Token>>>);
         StatementType const type;
-        Slice<NonCopyableVector<unique_ptr<Token>>> const tokens;
+        Slice<vector<shared_ptr<Token>>> const tokens;
         string const& linted() const;
         virtual void lint() const;
+        //virtual ~Statement() = 0;
     protected:
         string mutable _linted;
     };
 
     std::ostream& operator<<(std::ostream& out, Statement const& s);
 
-    typedef pair<unique_ptr<Statement>, size_t> (*Finder)(Slice<NonCopyableVector<unique_ptr<Token>>> const&);
-
+    // Statement finder, it's similar to LexemeFinder
+    typedef pair<shared_ptr<Statement>, size_t> (*Finder)(Slice<vector<shared_ptr<Token>>> const&);
 }

@@ -22,7 +22,7 @@ namespace clnt::lint {
     class Linter {
     public:
         Linter();
-        std::string lint(Slice<NonCopyableVector<std::unique_ptr<states::Statement>>> const&, Space);
+        std::string lint(Slice<std::vector<std::shared_ptr<states::Statement>>> const&, Space);
     private:
     };
 

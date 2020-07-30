@@ -1,18 +1,31 @@
 #include <vector>
 #include <memory>
 
-#include <src/types.hpp>
 
+#include "UndefinedLexemeException.hpp"
 #include "Lexeme.hpp"
 #include "finders.hpp"
 
 
 namespace clnt::lex {
+    /*
+     * Lexer is an object find all lexemes in a string.
+     * Attributes:
+     *      finders_: list of lexeme finders
+    */
     class Lexer {
     private:
-        NonCopyableVector<finders::LexemeFinder> finders_;
+        std::vector<finders::LexemeFinder> finders_;
     public:
-        explicit Lexer(NonCopyableVector<finders::LexemeFinder>);
-        NonCopyableVector<std::unique_ptr<Lexeme>> lexing(Slice<std::string> const&);
+        explicit Lexer(std::vector<finders::LexemeFinder>);
+        /*
+         * Args:
+         *      s: code string
+         * Returns:
+         *      vector of lexemes
+         * Note:
+         *      Returns "Undefined" lexeme including in vector if lexer is not able to discover some code.
+         */
+        std::vector<Lexeme*> lexing(Slice<std::string> const& s);
     };
 }

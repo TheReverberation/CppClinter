@@ -8,6 +8,9 @@
 
 #include "src/Statements/all.hpp"
 
+#include "ParseFail.hpp"
+
+using std::vector;
 
 using clnt::states::Finder;
 using clnt::states::Statement;
@@ -17,8 +20,8 @@ namespace clnt::parse {
     class Parser {
     public:
         Parser(vector<Finder> );
-        Slice<NonCopyableVector<unique_ptr<Statement>>> parse(Slice<NonCopyableVector<unique_ptr<Token>>> const&);
-        pair<unique_ptr<Statement>, size_t> find(Slice<NonCopyableVector<unique_ptr<Token>>> const&);
+        Slice<vector<shared_ptr<Statement>>> parse(Slice<vector<shared_ptr<Token>>> const&) const;
+        pair<shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&) const;
     private:
         vector<Finder> finders_;
     };

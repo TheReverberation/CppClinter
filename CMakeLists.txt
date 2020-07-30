@@ -12,6 +12,7 @@ set(LEXER_SOURCES
         src/Lexer/finders.cpp
         src/Lexer/Lexeme.cpp
         src/Lexer/LexemeType.cpp
+        src/Lexer/UndefinedLexemeException.cpp
         src/Lexer/Lexer.cpp)
 
 set(LEXER_HEADERS
@@ -27,9 +28,11 @@ set(EVAL_SOURCES
         src/Evaluator/finders.cpp
         src/Evaluator/Token.cpp
         src/Evaluator/TokenType.cpp
+        src/Evaluator/Error/EvaluateException.cpp
 )
 
 set(EVAL_HEADERS
+        src/Evaluator/Error/EvaluateException.hpp
         src/Evaluator/Evaluator.hpp
         src/Evaluator/finders.hpp
         src/Evaluator/Token.hpp
@@ -40,7 +43,10 @@ set(EVAL_HEADERS
 set(STATE_SOURCES
         src/Statements/Arithmetic/findCompleteExpression.cpp
         src/Statements/Arithmetic/linters.cpp
+        src/Statements/Arithmetic/UndefinedLinterError.cpp
         src/Statements/Block.cpp
+        src/Statements/Case.cpp
+        src/Statements/Comment.cpp
         src/Statements/all.cpp
         src/Statements/ElseStatement.cpp
         src/Statements/Expression.cpp
@@ -48,6 +54,7 @@ set(STATE_SOURCES
         src/Statements/IfStatement.cpp
         src/Statements/Instruction.cpp
         src/Statements/LinterUndefinedException.cpp
+        src/Statements/UndefinedLinterError.cpp
         src/Statements/Preprocessor.cpp
         src/Statements/Statement.cpp
         src/Statements/StatementType.cpp
@@ -69,13 +76,15 @@ set(STATE_HEADERS
         src/Statements/Typedef.hpp)
 
 set(PARSE_SOURCES
-        src/Parser/Parser.cpp)
+        src/Parser/Parser.cpp
+        src/Parser/ParseFail.cpp)
 
 set(PARSE_HEADERS
         src/Parser/Parser.hpp)
 
 set(LINTER_SOURCES
-        src/Linter/Linter.cpp src/vector_test.cpp)
+        src/Linter/Linter.cpp
+        src/Linter/)
 
 add_executable(CppClinter
         #src/main.cpp
@@ -83,13 +92,14 @@ add_executable(CppClinter
         src/test_build.cpp
         src/Slice.hpp
         src/calphabet.cpp
-        src/calphabet.hpp
         src/accumulate.hpp
-
+        src/PrimeGC.hpp
+        
         ${LEXER_SOURCES} ${LEXER_HEADERS}
         ${EVAL_SOURCES} ${EVAL_HEADERS}
-        ${STATE_SOURCES} ${STATE_HEADERS}
-        ${PARSE_SOURCES} ${PARSE_HEADERS}
-        ${LINTER_SOURCES}
+        #${STATE_SOURCES} ${STATE_HEADERS}
+        #${PARSE_SOURCES} ${PARSE_HEADERS}
+        #${LINTER_SOURCES}
+)
 
-        src/Vector.hpp)
+        

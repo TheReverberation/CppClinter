@@ -11,9 +11,9 @@ using std::string;
 using clnt::eval::TokenType;
 
 namespace clnt::states {
-    Typedef::Typedef(clnt::Slice<vector<shared_ptr<Token>>> tokens): Statement(StatementType::TYPEDEF, move(tokens)) {}
+    Typedef::Typedef(clnt::Slice<vector<Token*>> tokens): Statement(StatementType::TYPEDEF, move(tokens)) {}
 
-    pair<shared_ptr<Statement>, size_t> Typedef::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
+    pair<Statement*, size_t> Typedef::find(Slice<vector<Token*>> const& tokens) {
         if (tokens[0]->type == TokenType::RESERVED && tokens[0]->lexemes[0]->source == string("typedef")) {
             return {make_shared<Typedef>(tokens.slice(0, 1)), 1};
         } else {

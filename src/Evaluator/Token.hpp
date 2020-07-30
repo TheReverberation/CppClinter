@@ -2,23 +2,33 @@
 
 #include <vector>
 
-#include "src/Slice.hpp"
-#include "src/Lexer/Lexeme.hpp"
+#include <src/Slice.hpp>
+#include <src/Lexer/Lexeme.hpp>
+#include <src/PrimeGC.hpp>
 
 #include "TokenType.hpp"
-#include <src/types.hpp>
 
 using std::vector;
-using std::unique_ptr;
 
 namespace clnt::eval {
+    /*
+     *  Token is similar to lexeme, it's also immutable type.
+     */
     class Token {
     public:
-        Token(TokenType type, Slice<NonCopyableVector<unique_ptr<lex::Lexeme>>> lexemes);
-        Token(Token const&) = default;
-        Token(Token&&) = default;
+        Token(TokenType type, Slice<vector<lex::Lexeme*>> lexemes);
+        Token(Token const&) = delete;
+        Token(Token&&) = delete;
+        ~Token() {
+            std::cout << "Token dest\n";
+        }
+
         TokenType const type;
-        Slice<NonCopyableVector<unique_ptr<lex::Lexeme>>> const lexemes;
+        Slice<vector<lex::Lexeme*>> const lexemes;
+
+        void* operator new(size_t);
+
+        static mem::PrimeGC<Token> gc;
     };
 
     std::ostream& operator<<(std::ostream& out, Token const& t);

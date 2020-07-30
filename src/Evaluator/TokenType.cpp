@@ -26,6 +26,7 @@ namespace clnt::eval {
         TYPE_NAMES[(int)TokenType::UNDEFINED] = "Undefined";
         TYPE_NAMES[(int)TokenType::QUESTION] = "Question";
         TYPE_NAMES[(int)TokenType::INITIALIZER] = "Init";
+        TYPE_NAMES[(int)TokenType::COMMENT] = "Comment";
     }
 
     std::ostream& operator<<(std::ostream& out, TokenType type) {

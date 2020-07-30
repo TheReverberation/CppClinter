@@ -12,7 +12,8 @@
 
 namespace clnt::states {
     enum class StatementType: uint8_t {
-        STRUCT, LOOP, INSTRUCTION, EXPRESSION, PREPROCESSOR, DEFINE, BLOCK, FUNCTION, IF, ELSE, IFELSE, TYPEDEF,
+        STRUCT, LOOP, INSTRUCTION, EXPRESSION, PREPROCESSOR, BLOCK, FUNCTION, IF, ELSE, IFELSE, TYPEDEF, CASE,
+        COMMENT
     };
 
     void initTypeNames();

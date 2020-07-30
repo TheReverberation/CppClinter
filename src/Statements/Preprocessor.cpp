@@ -18,17 +18,17 @@ using clnt::eval::TokenType;
 
 
 namespace clnt::states {
-    Preprocessor::Preprocessor(Slice<NonCopyableVector<unique_ptr<Token>>> tokens):
+    Preprocessor::Preprocessor(Slice<vector<Token*>> tokens):
         Statement(StatementType::PREPROCESSOR, move(tokens)) {
     }
 
 
-    pair<unique_ptr<Statement>, size_t> Preprocessor::find(Slice<NonCopyableVector<unique_ptr<Token>>> const& tokens) {
+    pair<Statement*, size_t> Preprocessor::find(Slice<vector<Token*>> const& tokens) {
         if (tokens[0]->type == TokenType::SHARP) {
             size_t preprocessorEnd = 1;
             for (size_t i = 1; i < tokens.size();) {
                 size_t lineEnd = std::find_if(tokens.begin() + i, tokens.end(),
-                    [](shared_ptr<Token> const& token) {
+                    [](Token* const& token) {
                         return token->type == TokenType::LINE_BREAK;
                     }
                 ) - tokens.begin();
@@ -40,7 +40,7 @@ namespace clnt::states {
                     break;
                 }
             }
-            return {make_unique<Preprocessor>(tokens.slice(0, preprocessorEnd)), preprocessorEnd};
+            return {new Preprocessor(tokens.slice(0, preprocessorEnd)), preprocessorEnd};
         }
         return {nullptr, 0};
     }
@@ -58,7 +58,7 @@ namespace clnt::states {
                 }
             }
         }
-        std::cout << "strEnd: " << strEnd << '\n';
+        //std::cout << "strEnd: " << strEnd << '\n';
         copy(code->begin() + strBegin, code->begin() + strEnd, back_inserter<string>(_linted));
     }
 }

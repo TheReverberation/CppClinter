@@ -13,7 +13,7 @@ using clnt::states::Statement;
 
 namespace {
     vector<pair<StatementType, string>>
-    groupExpressions(Slice<NonCopyableVector<shared_ptr<Statement>>> const& statements) {
+    groupExpressions(Slice<vector<shared_ptr<Statement>>> const& statements) {
         vector<pair<StatementType, string>> groups;
         for (size_t i = 0; i < statements.size();) {
             if (statements[i]->type == StatementType::INSTRUCTION ||
@@ -21,7 +21,9 @@ namespace {
                 statements[i]->type == StatementType::IF || 
                 statements[i]->type == StatementType::ELSE || 
                 statements[i]->type == StatementType::IFELSE ||
-                statements[i]->type == StatementType::PREPROCESSOR) {
+                statements[i]->type == StatementType::PREPROCESSOR ||
+                statements[i]->type == StatementType::CASE ||
+                statements[i]->type == StatementType::COMMENT) {
                 groups.push_back({statements[i]->type, statements[i]->linted()});
                 ++i;
             } else if (statements[i]->type == StatementType::EXPRESSION && statements[i]->linted() == "\n") {
@@ -35,7 +37,7 @@ namespace {
                            s->type == StatementType::STRUCT;
                 });
 
-                std::cout << *statements[i] << '\n';
+                //std::cout << *statements[i] << '\n';
                 assert(groupEnd != statements.end());
 
                 if (groupEnd != statements.end()) {
@@ -56,7 +58,7 @@ namespace {
         return groups;
     }
 
-    string joinGlobalStatements(Vector<pair<StatementType, string>> const& statements) {
+    string joinGlobalStatements(vector<pair<StatementType, string>> const& statements) {
         vector<string> joinedLines;
         for (size_t i = 0; i < statements.size(); ++i)  {
             if (statements[i].second == "\n") {
@@ -65,6 +67,8 @@ namespace {
                 int margin = 0;
                 if (statements[i].first == StatementType::STRUCT || statements[i].first == StatementType::BLOCK) {
                     margin = 3;
+                } else if (statements[i].first == StatementType::COMMENT) {
+                    margin = 0;
                 } else {
                     margin = 1;
                 }
@@ -88,17 +92,17 @@ namespace {
     }
 
     string joinStatements(vector<pair<StatementType, string>> const& statements) {
-        std::cout << "joinStatements:\n";
+        //std::cout << "joinStatements:\n";
         string joined = "";
         for (size_t i = 0; i < statements.size(); ++i) {
             auto state = statements[i];
-            std::cout << "linted: " << state.second << '\n';
+            //std::cout << "linted: " << state.second << '\n';
             joined += state.second;
             if (state.second != "\n" && i + 1 < statements.size() && statements[i + 1].second != "\n") {
                 joined += "\n";
             }
         }
-        std::cout << "joined: " << joined << '\n';
+        //std::cout << "joined: " << joined << '\n';
         return joined;
     }
 }

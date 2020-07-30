@@ -43,6 +43,14 @@ namespace clnt {
             return container_->begin() + j_;
         }
 
+        value_type const& front() const {
+            return (*container_)[i_];
+        }
+
+        value_type const& back() const {
+            return (*container_)[j_ - 1];
+        }
+
         value_type const& operator[](size_t i) const {
             return (*container_)[i_ + i];
         }
@@ -73,6 +81,10 @@ namespace clnt {
             return std::equal(container_->begin() + i_, container_->begin() + j_, right.container_->begin() + right.i_);
         }
 
+        bool operator!=(Slice const& right) const {
+            return !(*this == right);
+        }
+
         size_t i() const {
             return i_;
         }
@@ -85,13 +97,9 @@ namespace clnt {
             return container_;
         }
 
-        ~Slice() {
-            std::cout << "slice destr\n" << '\n';
-        }
-
     private:
         shared_ptr<C> container_;
-        size_t i_, j_;
+        size_t const i_, j_;
     };
 
     template <class C>
@@ -104,7 +112,6 @@ namespace clnt {
         std::copy(s.begin(), s.end(), std::ostream_iterator<typename C::value_type>(out));
         return out;
     }
-
 
 }
 

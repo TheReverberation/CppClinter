@@ -1,13 +1,18 @@
-//
-// Created by Daniil Nedaiborsch on 19.04.2020.
-//
-
 #include "Token.hpp"
 
 namespace clnt::eval {
 
-    Token::Token(TokenType type, Slice<NonCopyableVector<unique_ptr<lex::Lexeme>>> lexemes):
+    mem::PrimeGC<Token> Token::gc;
+
+    Token::Token(TokenType type, Slice<vector<lex::Lexeme*>> lexemes):
             type(type), lexemes(std::move(lexemes)) {}
+
+
+    void* Token::operator new(size_t size) {
+        void* p = ::operator new(size);
+        Token::gc.link((Token*)p);
+        return p;
+    }
 
     std::ostream& operator<<(std::ostream& out, Token const& t) {
         out << "<" << t.type << ", [";

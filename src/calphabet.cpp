@@ -1,51 +1,52 @@
 #include "calphabet.hpp"
 
 #include <iterator>
+#include <vector>
 #include <string>
 #include <memory>
 
-#include <src/types.hpp>
-
 using std::string;
+using std::vector;
 using std::copy;
 using std::back_inserter;
 using std::make_shared;
 
 namespace clnt::alphabet {
 
-    Vector<Slice<string>> _UNARY_OPERATORS, _OPERATORS;
-    Vector<Slice<string>> _BINARY_OPERATORS, _ACCESS_OPERATORS, _RESERVED;
+    vector<Slice<string>> _UNARY_OPERATORS, _OPERATORS;
+    vector<Slice<string>> _BINARY_OPERATORS, _ACCESS_OPERATORS, _RESERVED;
 
     void init() {
-        Vector<string> binary = {
+        vector<string> binary = {
                 "+", "-", "*", "/", "^", "&", "|", "=", "~", "<", ">", "%", "+=", "-=", \
                 "*=", "/=", "^=", "&=", "|=", "==", "!=", "~=", "%=", ">=", "<=", "<<", ">>", \
                 "&&", "||"
         };
         for (auto& op : binary) {
-            _BINARY_OPERATORS.push_back(make_shared<string>(op));
+            _BINARY_OPERATORS.emplace_back(make_shared<string>(op));
         }
-        Vector<string> unary = {
+        vector<string> unary = {
                "++", "--", "*", "&", "!", "-"
         };
         for (auto& op : unary) {
-           _UNARY_OPERATORS.push_back(make_shared<string>(op));
+           _UNARY_OPERATORS.emplace_back(make_shared<string>(op));
         }
 
-        Vector<string> reserved = {
-                "break", "for", "while", "struct", "class", "if", "else", "case", "switch", "typedef",
+        vector<string> reserved = {
+                "break", "for", "while", "struct", "class", "if", "else", "case", "switch", "typedef", "return", "goto",
+                "continue",
         };
 
         for (auto& op : reserved) {
-            _RESERVED.push_back(make_shared<string>(op));
+            _RESERVED.emplace_back(make_shared<string>(op));
         }
 
-        Vector<string> access = {
+        vector<string> access = {
                 "->", "."
         };
 
         for (auto& op : access) {
-            _ACCESS_OPERATORS.push_back(make_shared<string>(op));
+            _ACCESS_OPERATORS.emplace_back(make_shared<string>(op));
         }
 
         copy(_BINARY_OPERATORS.begin(), _BINARY_OPERATORS.end(), back_inserter(_OPERATORS));
@@ -53,31 +54,28 @@ namespace clnt::alphabet {
         copy(_ACCESS_OPERATORS.begin(), _ACCESS_OPERATORS.end(), back_inserter(_OPERATORS));
     }
 
-    Vector<Slice<std::string>> const& accessOperators() {
+    std::vector<Slice<std::string>> const& accessOperators() {
         return _ACCESS_OPERATORS;
     }
 
-    Vector<Slice<std::string>> const& callOperators() {
+    std::vector<Slice<std::string>> const& callOperators() {
         return {};
     }
 
-    Vector<Slice<std::string>> const& unaryOperators() {
+    std::vector<Slice<std::string>> const& unaryOperators() {
         return _UNARY_OPERATORS;
     }
 
-    Vector<Slice<std::string>> const& operators() {
+    std::vector<Slice<std::string>> const& operators() {
         return _OPERATORS;
     }
 
-    Vector<Slice<std::string>> const& commaOperator() {
-        return {};
-    }
 
-    Vector<Slice<std::string>> const& binaryOperators() {
+    std::vector<Slice<std::string>> const& binaryOperators() {
         return _BINARY_OPERATORS;
     }
 
-    Vector<Slice<std::string>> const& reserved() {
+    std::vector<Slice<std::string>> const& reserved() {
         return _RESERVED;
     }
 }
