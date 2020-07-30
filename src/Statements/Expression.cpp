@@ -4,14 +4,14 @@
 
 #include "Expression.hpp"
 namespace clnt::states {
-    Expression::Expression(clnt::Slice<vector<shared_ptr<Token>>> tokens):
+    Expression::Expression(clnt::Slice<vector<Token*>> tokens):
             Statement(StatementType::EXPRESSION, move(tokens)) {}
 
 
-    pair<shared_ptr<Statement>, size_t> Expression::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
+    pair<Statement*, size_t> Expression::find(Slice<vector<Token*>> const& tokens) {
         size_t expresionEnd = arithm::findCompleteExpression(tokens);
         if (expresionEnd != 0) {
-            return {make_shared<Expression>(tokens.slice(0, expresionEnd)), expresionEnd};
+            return {Statement::gc.make<Expression>(tokens.slice(0, expresionEnd)), expresionEnd};
         } else {
             return {nullptr, 0};
         }
@@ -19,9 +19,9 @@ namespace clnt::states {
 
     void Expression::lint() const {
         if (tokens[0]->type != TokenType::LINE_BREAK) {
-            vector<shared_ptr<Token>> tokensWithoutLineBreak;
+            vector<Token*> tokensWithoutLineBreak;
             std::copy_if(tokens.begin(), tokens.end(), std::back_inserter(tokensWithoutLineBreak),
-                         [](shared_ptr<Token> const &token) {
+                         [](Token* const &token) {
                              return token->type != TokenType::LINE_BREAK;
                          });
             _linted = arithm::lintArithmetic(makeSlice(tokensWithoutLineBreak));

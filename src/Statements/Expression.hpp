@@ -20,8 +20,8 @@ using std::make_shared;
 namespace clnt::states {
     class Expression: public Statement {
     public:
-        Expression(Slice<vector<shared_ptr<Token>>>);
-        static pair<shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&);
+        Expression(Slice<vector<Token*>>);
+        static pair<Statement*, size_t> find(Slice<vector<Token*>> const&);
         void lint() const override;
     };
 }

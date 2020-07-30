@@ -15,7 +15,7 @@ namespace clnt::states {
 
     pair<Statement*, size_t> Typedef::find(Slice<vector<Token*>> const& tokens) {
         if (tokens[0]->type == TokenType::RESERVED && tokens[0]->lexemes[0]->source == string("typedef")) {
-            return {make_shared<Typedef>(tokens.slice(0, 1)), 1};
+            return {Statement::gc.make<Typedef>(tokens.slice(0, 1)), 1};
         } else {
             return {nullptr, 0};
         }

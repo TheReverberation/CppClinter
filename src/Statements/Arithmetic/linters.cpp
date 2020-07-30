@@ -16,7 +16,7 @@ using namespace clnt::eval;
 using std::stringstream;
 
 namespace {
-    string undefinedLinter(shared_ptr<Token> token, shared_ptr<Token> last) {
+    string undefinedLinter(Token* token, Token* last) {
         throw clnt::states::arithm::err::UndefinedLinterError();
     }
 }
@@ -47,9 +47,9 @@ namespace clnt::states::arithm {
         LINTERS[(int)TokenType::COMMENT] = lintComment;
     }
 
-    string lintArithmetic(Slice<vector<shared_ptr<Token>>> tokens) {
+    string lintArithmetic(Slice<vector<Token*>> tokens) {
         std::stringstream linted;
-        shared_ptr<Token> lastToken = nullptr;
+        Token* lastToken = nullptr;
         if (tokens.size() && tokens[0]->type == TokenType::LINE_BREAK) {
             return "\n";
         } else {
@@ -71,26 +71,26 @@ namespace clnt::states::arithm {
         return linted.str();
     }
 
-    string lint(shared_ptr<Token> token, shared_ptr<Token> last) {
+    string lint(Token* token, Token* last) {
         return LINTERS[(int)token->type](token, last);
     }
 
-    string lintSemicolon(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintSemicolon(Token* token, Token*) {
         return ";";
     }
 
-    string lintColon(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintColon(Token* token, Token*) {
         return ": ";
     }
 
-    string lintBinaryOperator(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintBinaryOperator(Token* token, Token*) {
         stringstream ss;
         ss << " " << token->lexemes[0]->source << " ";
         return ss.str();
 //        return (boost::format(" %s ") % token->lexemes[0]->source).str();
     }
 
-    string lintUnaryOperator(shared_ptr<Token> token, shared_ptr<Token> last) {
+    string lintUnaryOperator(Token* token, Token* last) {
         if (token->lexemes[0]->source[0] == ',') {
             return ", ";
         }
@@ -105,14 +105,14 @@ namespace clnt::states::arithm {
   //      return (boost::format("%s") % token->lexemes[0]->source).str();
     }
 
-    string lintAccessOperator(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintAccessOperator(Token* token, Token*) {
         stringstream ss;
         ss << token->lexemes[0]->source;
         return ss.str();
     //    return (boost::format("%s") % token->lexemes[0]->source).str();
     }
 
-    string lintReservedWord(shared_ptr<Token> token, shared_ptr<Token> last) {
+    string lintReservedWord(Token* token, Token* last) {
         stringstream ss;
         if (last && (last->type == TokenType::IDENTIFIER || last->type == TokenType::RESERVED)) {
             ss << " " << token->lexemes[0]->source;
@@ -124,9 +124,9 @@ namespace clnt::states::arithm {
         //return (boost::format("%s") % token->lexemes[0]->source).str();
     }
 
-    string lintCallOperator(shared_ptr<Token> token, shared_ptr<Token> last) {
+    string lintCallOperator(Token* token, Token* last) {
         eval::Evaluator evaluator(eval::finders::FINDERS);
-        Slice<vector<shared_ptr<Token>>> evaluated = evaluator.evaluate(token->lexemes.slice(1, token->lexemes.size() - 1));
+        Slice<vector<Token*>> evaluated = evaluator.evaluate(token->lexemes.slice(1, token->lexemes.size() - 1));
         string linted = lintArithmetic(evaluated);
         stringstream ss;
         if (last && last->type == TokenType::RESERVED) {
@@ -140,7 +140,7 @@ namespace clnt::states::arithm {
         }
     }
 
-    string lintOperand(shared_ptr<Token> token, shared_ptr<Token> last) {
+    string lintOperand(Token* token, Token* last) {
         stringstream ss;
         if (last && (last->type == TokenType::IDENTIFIER || last->type == TokenType::RESERVED)) {
             (ss << " " << token->lexemes[0]->source);
@@ -151,7 +151,7 @@ namespace clnt::states::arithm {
         //return (boost::format("%s") % token->lexemes[0]->source).str();
     }
 
-    string lintString(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintString(Token* token, Token*) {
 
         stringstream ss;
         ss << token->lexemes[0]->source;
@@ -159,34 +159,34 @@ namespace clnt::states::arithm {
         //return (boost::format("%s") % token->lexemes[0]->source).str();
     }
 
-    string lintLineBreak(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintLineBreak(Token* token, Token*) {
         return "\n";
     }
 
-    string lintComma(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintComma(Token* token, Token*) {
         return ", ";
     }
 
-    string lintSharp(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintSharp(Token* token, Token*) {
         return "#";
     }
 
-    string lintBackslash(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintBackslash(Token* token, Token*) {
         return "\\";
     }
 
-    string lintComment(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintComment(Token* token, Token*) {
         stringstream ss;
         ss << token->lexemes[0]->source;
         return ss.str();
     }
 
-    string lintUndefined(shared_ptr<Token> token, shared_ptr<Token>) {
+    string lintUndefined(Token* token, Token*) {
         std::stringstream ss;
         return "";
     }
 
-    string lintInit(shared_ptr<Token> token, shared_ptr<Token> last) {
+    string lintInit(Token* token, Token* last) {
         eval::Evaluator evaluator(eval::finders::FINDERS);
         //std::cout << "evabegin\n";
         auto tokens = evaluator.evaluate(token->lexemes.slice(1, token->lexemes.size() - 1));

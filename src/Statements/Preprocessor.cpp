@@ -40,7 +40,7 @@ namespace clnt::states {
                     break;
                 }
             }
-            return {new Preprocessor(tokens.slice(0, preprocessorEnd)), preprocessorEnd};
+            return {Statement::gc.make<Preprocessor>(tokens.slice(0, preprocessorEnd)), preprocessorEnd};
         }
         return {nullptr, 0};
     }

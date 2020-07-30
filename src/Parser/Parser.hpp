@@ -20,8 +20,8 @@ namespace clnt::parse {
     class Parser {
     public:
         Parser(vector<Finder> );
-        Slice<vector<shared_ptr<Statement>>> parse(Slice<vector<shared_ptr<Token>>> const&) const;
-        pair<shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&) const;
+        Slice<vector<Statement*>> parse(Slice<vector<Token*>> const&) const;
+        pair<Statement*, size_t> find(Slice<vector<Token*>> const&) const;
     private:
         vector<Finder> finders_;
     };

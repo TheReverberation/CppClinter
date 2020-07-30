@@ -8,9 +8,16 @@ namespace clnt::states {
 
     Statement::Statement(StatementType type, Slice<vector<Token*>> tokens): type(type), tokens(std::move(tokens)) {}
 
+    Statement::~Statement() {
+        std::cout << "Statement: " << type << " destructed\n";
+    }
+
     void Statement::lint() const {
         throw err::UndefinedLinterError();
     }
+
+
+    mem::PrimeGC<Statement> Statement::gc;
 
     string const& Statement::linted() const {
         return _linted;

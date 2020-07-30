@@ -8,14 +8,14 @@ using std::string;
 using namespace clnt::eval;
 
 namespace clnt::states {
-    IfStatement::IfStatement(Slice<vector<shared_ptr<Token>>> tokens, vector<shared_ptr<Statement>> statements):
+    IfStatement::IfStatement(Slice<vector<Token*>> tokens, vector<Statement*> statements):
         Statement(StatementType::IF, std::move(tokens)), statements(std::move(statements)) {
     }
 
 
-    std::pair<std::shared_ptr<Statement>, size_t> IfStatement::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
+    std::pair<Statement*, size_t> IfStatement::find(Slice<vector<Token*>> const& tokens) {
         if (tokens[0]->type == eval::TokenType::RESERVED && tokens[0]->lexemes[0]->source == string("if")) {
-            vector<shared_ptr<Statement>> statements;
+            vector<Statement*> statements;
             auto [word, _] = Expression::find(tokens.slice(0, 1));
             assert(word);
             statements.push_back(word);
@@ -32,7 +32,7 @@ namespace clnt::states {
                 }
                 i += found.second;
             }
-            return {make_shared<IfStatement>(tokens.slice(0, i), statements), i};
+            return {Statement::gc.make<IfStatement>(tokens.slice(0, i), statements), i};
         }
         return {nullptr, 0};
     }

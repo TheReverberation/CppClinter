@@ -59,7 +59,8 @@ set(STATE_SOURCES
         src/Statements/Statement.cpp
         src/Statements/StatementType.cpp
         src/Statements/Struct.cpp
-        src/Statements/Typedef.cpp)
+        src/Statements/Typedef.cpp
+)
 
 set(STATE_HEADERS
         src/Statements/all.hpp
@@ -87,9 +88,9 @@ set(LINTER_SOURCES
         src/Linter/)
 
 add_executable(CppClinter
-        #src/main.cpp
+        src/main.cpp
         #src/vector_test.cpp
-        src/test_build.cpp
+        #src/test_build.cpp
         src/Slice.hpp
         src/calphabet.cpp
         src/accumulate.hpp
@@ -97,9 +98,9 @@ add_executable(CppClinter
         
         ${LEXER_SOURCES} ${LEXER_HEADERS}
         ${EVAL_SOURCES} ${EVAL_HEADERS}
-        #${STATE_SOURCES} ${STATE_HEADERS}
-        #${PARSE_SOURCES} ${PARSE_HEADERS}
-        #${LINTER_SOURCES}
+        ${STATE_SOURCES} ${STATE_HEADERS}
+        ${PARSE_SOURCES} ${PARSE_HEADERS}
+        ${LINTER_SOURCES}
 )
 
         

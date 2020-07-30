@@ -17,8 +17,7 @@ namespace clnt::eval {
     class Token {
     public:
         Token(TokenType type, Slice<vector<lex::Lexeme*>> lexemes);
-        Token(Token const&) = delete;
-        Token(Token&&) = delete;
+        
         ~Token() {
             std::cout << "Token dest\n";
         }
