@@ -23,6 +23,6 @@ namespace clnt::eval {
     public:
         Evaluator(vector<finders::TokenFinder> finders);
         vector<finders::TokenFinder> const finders;
-        vector<shared_ptr<Token>> evaluate(Slice<vector<lex::Lexeme*>> lexemes);
+        vector<Token*> evaluate(Slice<vector<lex::Lexeme*>> lexemes);
     };
 }
