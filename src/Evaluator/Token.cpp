@@ -2,17 +2,8 @@
 
 namespace clnt::eval {
 
-    mem::PrimeGC<Token> Token::gc;
-
-    Token::Token(TokenType type, Slice<vector<lex::Lexeme*>> lexemes):
+    Token::Token(TokenType type, Slice<vector<shared_ptr<lex::Lexeme>>> lexemes):
             type(type), lexemes(std::move(lexemes)) {}
-
-
-    void* Token::operator new(size_t size) {
-        void* p = ::operator new(size);
-        Token::gc.link((Token*)p);
-        return p;
-    }
 
     std::ostream& operator<<(std::ostream& out, Token const& t) {
         out << "<" << t.type << ", [";

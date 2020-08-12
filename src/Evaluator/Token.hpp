@@ -2,9 +2,8 @@
 
 #include <vector>
 
-#include <src/Slice.hpp>
-#include <src/Lexer/Lexeme.hpp>
-#include <src/PrimeGC.hpp>
+#include "src/Slice.hpp"
+#include "src/Lexer/Lexeme.hpp"
 
 #include "TokenType.hpp"
 
@@ -16,18 +15,11 @@ namespace clnt::eval {
      */
     class Token {
     public:
-        Token(TokenType type, Slice<vector<lex::Lexeme*>> lexemes);
-        
-        ~Token() {
-            std::cout << "Token dest\n";
-        }
-
+        Token(TokenType type, Slice<vector<shared_ptr<lex::Lexeme>>> lexemes);
+        Token(Token const&) = default;
+        Token(Token&&) = default;
         TokenType const type;
-        Slice<vector<lex::Lexeme*>> const lexemes;
-
-        void* operator new(size_t);
-
-        static mem::PrimeGC<Token> gc;
+        Slice<vector<shared_ptr<lex::Lexeme>>> const lexemes;
     };
 
     std::ostream& operator<<(std::ostream& out, Token const& t);

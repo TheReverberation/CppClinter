@@ -13,7 +13,7 @@ using clnt::states::Statement;
 
 namespace {
     vector<pair<StatementType, string>>
-    groupExpressions(Slice<vector<Statement*>> const& statements) {
+    groupExpressions(Slice<vector<shared_ptr<Statement>>> const& statements) {
         vector<pair<StatementType, string>> groups;
         for (size_t i = 0; i < statements.size();) {
             if (statements[i]->type == StatementType::INSTRUCTION ||
@@ -31,7 +31,7 @@ namespace {
                 ++i;
             } else {
                 auto groupEnd = std::find_if(statements.begin() + i, statements.end(),
-                        [] (Statement* s) -> bool {
+                        [] (shared_ptr<Statement> const& s) -> bool {
                     return s->type == StatementType::BLOCK ||
                            s->type == StatementType::INSTRUCTION ||
                            s->type == StatementType::STRUCT;
@@ -112,7 +112,7 @@ namespace clnt::lint {
     Linter::Linter() {}
 
 
-    string Linter::lint(Slice<vector<Statement*>> const& statements, Space space) {
+    string Linter::lint(Slice<vector<shared_ptr<Statement>>> const& statements, Space space) {
         for (auto& now : statements) {
             now->lint();
         }

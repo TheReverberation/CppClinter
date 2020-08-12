@@ -13,16 +13,16 @@ namespace clnt::lex {
 
     Lexer::Lexer(vector<finders::LexemeFinder> finders): finders_(std::move(finders)) {}
 
-    vector<Lexeme*> Lexer::lexing(Slice<string> const& s) {
-        vector<Lexeme*> lexemes;
+    vector<shared_ptr<Lexeme>> Lexer::lexing(Slice<string> const& s) {
+        vector<shared_ptr<Lexeme>> lexemes;
 
-        auto lastLexeme = [&lexemes] () -> Lexeme* {
+        auto lastLexeme = [&lexemes] () -> shared_ptr<Lexeme> {
             return !lexemes.empty() ? lexemes.back() : nullptr;
         };
 
         for (size_t i = 0; i < s.size();) {
             i += finders::findNonSpace(s.slice(i), {' ', '\t'});
-            Lexeme* lexeme = nullptr;
+            shared_ptr<Lexeme> lexeme = nullptr;
             size_t lexemeEnd = 0;
             for (auto& finder : finders_) {
                 auto found = finder(s.slice(i));
@@ -43,9 +43,5 @@ namespace clnt::lex {
         }
 
         return lexemes;
-    }
-
-    Lexeme::~Lexeme() {
-        std::cout << "Lexeme destruction\n";
     }
 }

@@ -18,17 +18,17 @@ using clnt::eval::TokenType;
 
 
 namespace clnt::states {
-    Preprocessor::Preprocessor(Slice<vector<Token*>> tokens):
+    Preprocessor::Preprocessor(Slice<vector<shared_ptr<Token>>> tokens):
         Statement(StatementType::PREPROCESSOR, move(tokens)) {
     }
 
 
-    pair<Statement*, size_t> Preprocessor::find(Slice<vector<Token*>> const& tokens) {
+    pair<shared_ptr<Statement>, size_t> Preprocessor::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
         if (tokens[0]->type == TokenType::SHARP) {
             size_t preprocessorEnd = 1;
             for (size_t i = 1; i < tokens.size();) {
                 size_t lineEnd = std::find_if(tokens.begin() + i, tokens.end(),
-                    [](Token* const& token) {
+                    [](shared_ptr<Token> const& token) {
                         return token->type == TokenType::LINE_BREAK;
                     }
                 ) - tokens.begin();
@@ -40,7 +40,7 @@ namespace clnt::states {
                     break;
                 }
             }
-            return {Statement::gc.make<Preprocessor>(tokens.slice(0, preprocessorEnd)), preprocessorEnd};
+            return {make_shared<Preprocessor>(tokens.slice(0, preprocessorEnd)), preprocessorEnd};
         }
         return {nullptr, 0};
     }

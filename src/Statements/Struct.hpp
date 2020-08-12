@@ -21,9 +21,9 @@
 namespace clnt::states {
     class Struct: public Statement {
     public:
-        Struct(Slice<std::vector<Token*>>, std::vector<Statement*>);
-        static std::pair<Statement*, size_t> find(Slice<vector<Token*>> const&);
+        Struct(Slice<std::vector<std::shared_ptr<Token>>>, std::vector<std::shared_ptr<Statement>>);
+        static std::pair<std::shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&);
         void lint() const override;
-        std::vector<Statement*> const statements;
+        std::vector<std::shared_ptr<Statement>> const statements;
     };
 }

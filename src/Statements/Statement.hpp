@@ -13,7 +13,6 @@
 #include "src/Lexer/Lexeme.hpp"
 #include "src/Evaluator/Token.hpp"
 
-#include <src/PrimeGC.hpp>
 
 using std::shared_ptr;
 using std::string;
@@ -29,13 +28,15 @@ namespace clnt::states {
      */
     class Statement {
     public:
-        Statement(StatementType, Slice<vector<Token*>>);
+        Statement(StatementType, Slice<vector<shared_ptr<Token>>>);
+        virtual ~Statement();
+
         StatementType const type;
-        Slice<vector<Token*>> const tokens;
+        Slice<vector<shared_ptr<Token>>> const tokens;
+    
         string const& linted() const;
         virtual void lint() const;
-        virtual ~Statement();
-        static mem::PrimeGC<Statement> gc;
+        //virtual ~Statement() = 0;
     protected:
         string mutable _linted;
     };
@@ -43,5 +44,5 @@ namespace clnt::states {
     std::ostream& operator<<(std::ostream& out, Statement const& s);
 
     // Statement finder, it's similar to LexemeFinder
-    typedef pair<Statement*, size_t> (*Finder)(Slice<vector<Token*>> const&);
+    typedef pair<shared_ptr<Statement>, size_t> (*Finder)(Slice<vector<shared_ptr<Token>>> const&);
 }

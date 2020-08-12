@@ -26,6 +26,6 @@ namespace clnt::lex {
          * Note:
          *      Returns "Undefined" lexeme including in vector if lexer is not able to discover some code.
          */
-        std::vector<Lexeme*> lexing(Slice<std::string> const& s);
+        std::vector<std::shared_ptr<Lexeme>> lexing(Slice<std::string> const& s);
     };
 }

@@ -26,21 +26,21 @@ namespace clnt::eval::finders {
      * Throws:
      *      EvaluateException, see realisation
      */
-    typedef std::pair<Token*, size_t> (*TokenFinder) (Slice<std::vector<lex::Lexeme*>> const&, Token*);
+    typedef std::pair<shared_ptr<Token>, size_t> (*TokenFinder) (Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const&, shared_ptr<Token>);
 
-    std::pair<Token*, size_t> findBlock(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findOperator(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findReserved(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findWord(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findCallOperator(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findSemicolon(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findLineBreak(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findComma(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findSharp(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findBackslash(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findQuestion(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findInitializer(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
-    std::pair<Token*, size_t> findComment(Slice<std::vector<lex::Lexeme*>> const& lexemes, Token* lastToken);
+    std::pair<shared_ptr<Token>, size_t> findBlock(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findOperator(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findReserved(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findWord(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findCallOperator(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findSemicolon(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findLineBreak(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findComma(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findSharp(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findBackslash(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findQuestion(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findInitializer(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
+    std::pair<shared_ptr<Token>, size_t> findComment(Slice<std::vector<std::shared_ptr<lex::Lexeme>>> const& lexemes, shared_ptr<Token> lastToken);
 
     // All token finders, inited in init();
     extern vector<TokenFinder> FINDERS;

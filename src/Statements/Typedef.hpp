@@ -9,8 +9,8 @@
 namespace clnt::states {
     class Typedef: public Statement {
     public:
-        Typedef(Slice<std::vector<Token*>>);
+        Typedef(Slice<std::vector<shared_ptr<Token>>>);
         void lint() const override;
-        static std::pair<Statement*, size_t> find(Slice<vector<Token*>> const&);
+        static std::pair<std::shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&);
     };
 }

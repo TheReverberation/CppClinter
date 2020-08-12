@@ -113,7 +113,7 @@ int main(int argc, char** argv) {
 
     log << "\'" << *s << "\'\n";
 
-    vector<lex::Lexeme*> lexemes = lexer.lexing(s);
+    vector<shared_ptr<lex::Lexeme>> lexemes = lexer.lexing(s);
     log << "~MainLexemes~\n";
     for (auto& now : lexemes) {
         log << *now << '\n';
@@ -121,7 +121,7 @@ int main(int argc, char** argv) {
     log << '\n';
 
     eval::Evaluator evaluator(eval::finders::FINDERS);
-    vector<eval::Token*> tokens;
+    vector<shared_ptr<eval::Token>> tokens;
     try {
         tokens = evaluator.evaluate(lexemes);
     } catch (eval::err::EvaluateException const& exc) {
@@ -137,7 +137,7 @@ int main(int argc, char** argv) {
 
     parse::Parser parser(states::STATEMENT_FINDERS);
     try {
-        Slice<vector<Statement*>> states = parser.parse(tokens);
+        Slice<vector<shared_ptr<Statement>>> states = parser.parse(tokens);
 
         log << "~MainStates~\n";
         for (auto &now : states) {

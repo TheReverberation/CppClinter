@@ -19,27 +19,27 @@ using std::string;
 
 namespace clnt::states::arithm {
 
-    typedef string (*Linter)(Token*, Token*);
+    typedef string (*Linter)(shared_ptr<Token>, shared_ptr<Token>);
     extern Linter LINTERS[255];
     void initLinters();
 
-    string lintArithmetic(Slice<vector<Token*>>);
-    string lint(Token*, Token*);
+    string lintArithmetic(Slice<vector<shared_ptr<Token>>>);
+    string lint(shared_ptr<Token>, shared_ptr<Token>);
 
-    string lintSemicolon(Token* token, Token*);
-    string lintBinaryOperator(Token*, Token*);
-    string lintUnaryOperator(Token*, Token*);
-    string lintAccessOperator(Token*, Token*);
-    string lintCallOperator(Token*, Token*);
-    string lintOperand(Token*, Token*);
-    string lintString(Token*, Token*);
-    string lintUndefined(Token*, Token*);
-    string lintReservedWord(Token* token, Token* last);
-    string lintComma(Token* token, Token* last);
-    string lintLineBreak(Token* token, Token* last);
-    string lintSharp(Token* token, Token* last);
-    string lintBackslash(Token* token, Token* last);
-    string lintColon(Token* token, Token* last);
-    string lintInit(Token* token, Token* last);
-    string lintComment(Token* token, Token* last);
+    string lintSemicolon(shared_ptr<Token> token, shared_ptr<Token>);
+    string lintBinaryOperator(shared_ptr<Token>, shared_ptr<Token>);
+    string lintUnaryOperator(shared_ptr<Token>, shared_ptr<Token>);
+    string lintAccessOperator(shared_ptr<Token>, shared_ptr<Token>);
+    string lintCallOperator(shared_ptr<Token>, shared_ptr<Token>);
+    string lintOperand(shared_ptr<Token>, shared_ptr<Token>);
+    string lintString(shared_ptr<Token>, shared_ptr<Token>);
+    string lintUndefined(shared_ptr<Token>, shared_ptr<Token>);
+    string lintReservedWord(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintComma(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintLineBreak(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintSharp(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintBackslash(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintColon(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintInit(shared_ptr<Token> token, shared_ptr<Token> last);
+    string lintComment(shared_ptr<Token> token, shared_ptr<Token> last);
 }

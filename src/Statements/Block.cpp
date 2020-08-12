@@ -46,12 +46,12 @@ namespace {
 
 namespace clnt::states {
 
-    Block::Block(clnt::Slice<vector<Token*>> tokens): Statement(StatementType::BLOCK, std::move(tokens)) {
+    Block::Block(clnt::Slice<vector<shared_ptr<Token>>> tokens): Statement(StatementType::BLOCK, std::move(tokens)) {
     }
 
-    pair<Statement*, size_t> Block::find(Slice<vector<Token*>> const& tokens) {
+    pair<shared_ptr<Statement>, size_t> Block::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
         if (tokens[0]->type == TokenType::BLOCK) {
-            return {Statement::gc.make<Block>(tokens.slice(0, 1)), 1};
+            return {make_shared<Block>(tokens.slice(0, 1)), 1};
         }
         return {nullptr, 0};
     }
@@ -59,7 +59,7 @@ namespace clnt::states {
     void Block::lint() const {
         //std::cout << "begin\n";
         Evaluator evaluator(eval::finders::FINDERS);
-        vector<Token*> intoTokens =
+        vector<shared_ptr<Token>> intoTokens =
                 evaluator.evaluate(tokens[0]->lexemes.slice(1, tokens[0]->lexemes.size() - 1));
 
         //std::cout << "Tokens: \n";
@@ -68,7 +68,7 @@ namespace clnt::states {
         }
 
         Parser parser(states::STATEMENT_FINDERS);
-        Slice<vector<Statement*>> statements = parser.parse(intoTokens);
+        Slice<vector<shared_ptr<Statement>>> statements = parser.parse(intoTokens);
 
         for (auto& now : statements) {
             //std::cout << *now << '\n';
