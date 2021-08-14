@@ -1,25 +1,20 @@
-//
-// Created by Daniil Nedaiborsch on 13.04.2020.
-//
-
 #include <algorithm>
 #include <memory>
 #include "src/calphabet.hpp"
-
 
 #include "finders.hpp"
 
 
 using std::find;
-using std::make_shared;
+using std::make_unique;
 using std::pair;
 using std::vector;
-using std::shared_ptr;
+using std::unique_ptr;
 using std::string;
 using std::make_pair;
 
 namespace {
-    pair<shared_ptr<clnt::lex::Lexeme>, size_t> NOTFOUND = {nullptr, 0};
+    clnt::lex::finders::FoundLexeme notfound() { return {nullptr, 0}; }
 }
 
 namespace clnt::lex::finders {
@@ -34,33 +29,33 @@ namespace clnt::lex::finders {
         return i;
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findName(Slice<string> const& s) {
+    FoundLexeme findName(Slice<string> const& s) {
         if (!isident(s[0])) {
-            return NOTFOUND;
+            return notfound();
         }
         size_t i = 0;
         for (; i < s.size() && isident(s[i]); ++i);
-        return {make_shared<Lexeme>(LexemeType::NAME, s.slice(0, i)), i};
+        return {make_unique<Lexeme>(LexemeType::NAME, s.slice(0, i)), i};
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findBackslash(Slice<string> const& s) {
-        return s[0] == '\\' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::BACKSLASH, s.slice(0, 1)), 1} : NOTFOUND;
+    FoundLexeme findBackslash(Slice<string> const& s) {
+        return s[0] == '\\' ? FoundLexeme{make_unique<Lexeme>(LexemeType::BACKSLASH, s.slice(0, 1)), 1} : notfound();
     }
 
 
-    pair<shared_ptr<Lexeme>, size_t> findOperator(Slice<string> const& s) {
+    FoundLexeme findOperator(Slice<string> const& s) {
         if (find(alphabet::operators().begin(), alphabet::operators().end(), s.slice(0, 2)) != alphabet::operators().end()) {
-            return {make_shared<Lexeme>(LexemeType::OPERATOR, s.slice(0, 2)), 2};
+            return {make_unique<Lexeme>(LexemeType::OPERATOR, s.slice(0, 2)), 2};
         }
         if (find(alphabet::operators().begin(), alphabet::operators().end(), s.slice(0, 1)) != alphabet::operators().end()) {
-            return {make_shared<Lexeme>(LexemeType::OPERATOR, s.slice(0, 1)), 1};
+            return {make_unique<Lexeme>(LexemeType::OPERATOR, s.slice(0, 1)), 1};
         }
-        return NOTFOUND;
+        return notfound();
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findString(Slice<string> const& s) {
+    FoundLexeme findString(Slice<string> const& s) {
         if (s[0] != '\'' && s[0] != '\"') {
-            return NOTFOUND;
+            return notfound();
         }
         char quote = s[0];
         size_t i = 1;
@@ -76,36 +71,36 @@ namespace clnt::lex::finders {
             }
         }
         if (hasEnd) {
-            return {make_shared<Lexeme>(LexemeType::CONSTANT, s.slice(0, i)), i};
+            return {make_unique<Lexeme>(LexemeType::CONSTANT, s.slice(0, i)), i};
         } else {
-            throw std::string("Incorrect str(endless)");
+            throw std::invalid_argument("Endless string");
         }
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findSingleLineComment(Slice<string> const& s) {
+    FoundLexeme findSingleLineComment(Slice<string> const& s) {
         if (s.slice(0, 2) == string("//")) {
             size_t i = 0;
             while (i < s.size() && s[i] != '\n') {
                 ++i;
             }
             ++i;
-            return {make_shared<Lexeme>(LexemeType::COMMENT, s.slice(0, i)), i};
+            return {make_unique<Lexeme>(LexemeType::COMMENT, s.slice(0, i)), i};
         }
         return {nullptr, 0};
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findMultiComment(Slice<string> const& s) {
+    FoundLexeme findMultiComment(Slice<string> const& s) {
         if (s.slice(0, 2) == string("/*")) {
             size_t i = 2;
             while (i < s.size() && s.slice(i - 2, i) != string("*/")) {
                 ++i;
             }
-            return {make_shared<Lexeme>(LexemeType::COMMENT, s.slice(0, i)), i};
+            return {make_unique<Lexeme>(LexemeType::COMMENT, s.slice(0, i)), i};
         }
         return {nullptr, 0};
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findComment(Slice<string> const& s) {
+    FoundLexeme findComment(Slice<string> const& s) {
         auto found = findSingleLineComment(s);
         if (found.first) {
             return found;
@@ -117,50 +112,50 @@ namespace clnt::lex::finders {
         return {nullptr, 0};
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findNumber(Slice<string> const& s) {
-        return NOTFOUND;
+    FoundLexeme findNumber(Slice<string> const& s) {
+        return notfound();
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findConstant(Slice<string> const& s) {
+    FoundLexeme findConstant(Slice<string> const& s) {
         return findString(s);
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findColon(Slice<string> const& s) {
-        return s[0] == ':' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::COLON, s.slice(0, 1)), 1} : NOTFOUND;
+    FoundLexeme findColon(Slice<string> const& s) {
+        return s[0] == ':' ? FoundLexeme{make_unique<Lexeme>(LexemeType::COLON, s.slice(0, 1)), 1} : notfound();
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findSemicolon(Slice<string> const& s) {
-        return s[0] == ';' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::SEMICOLON, s.slice(0, 1)), 1} : NOTFOUND;
-    }
-
-
-    pair<shared_ptr<Lexeme>, size_t> findComma(Slice<string> const& s) {
-        return s[0] == ',' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::COMMA, s.slice(0, 1)), 1} : NOTFOUND;
+    FoundLexeme findSemicolon(Slice<string> const& s) {
+        return s[0] == ';' ? FoundLexeme{make_unique<Lexeme>(LexemeType::SEMICOLON, s.slice(0, 1)), 1} : notfound();
     }
 
 
-    pair<shared_ptr<Lexeme>, size_t> findLinebreak(Slice<string> const& s) {
-        return s[0] == '\n' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::LINE_BREAK, s.slice(0, 1)), 1}: NOTFOUND;
+    FoundLexeme findComma(Slice<string> const& s) {
+        return s[0] == ',' ? FoundLexeme{make_unique<Lexeme>(LexemeType::COMMA, s.slice(0, 1)), 1} : notfound();
     }
 
 
-    pair<shared_ptr<Lexeme>, size_t> findQuestion(Slice<string> const& s) {
-        return s[0] == '?' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::QUESTION, s.slice(0, 1)), 1} : NOTFOUND;
+    FoundLexeme findLinebreak(Slice<string> const& s) {
+        return s[0] == '\n' ? FoundLexeme{make_unique<Lexeme>(LexemeType::LINE_BREAK, s.slice(0, 1)), 1}: notfound();
     }
 
 
-    pair<shared_ptr<Lexeme>, size_t> findOpenBracket(Slice<string> const& s) {
+    FoundLexeme findQuestion(Slice<string> const& s) {
+        return s[0] == '?' ? FoundLexeme{make_unique<Lexeme>(LexemeType::QUESTION, s.slice(0, 1)), 1} : notfound();
+    }
+
+
+    FoundLexeme findOpenBracket(Slice<string> const& s) {
         return (s[0] == '(' || s[0] == '[' || s[0] == '{') ?
-               pair<shared_ptr<Lexeme>, size_t>(make_shared<Lexeme>(LexemeType::OPEN_BRACKET, s.slice(0, 1)), 1) : NOTFOUND;
+               FoundLexeme(make_unique<Lexeme>(LexemeType::OPEN_BRACKET, s.slice(0, 1)), 1) : notfound();
     }
 
-    pair<shared_ptr<Lexeme>, size_t> findCloseBracket(Slice<string> const& s) {
+    FoundLexeme findCloseBracket(Slice<string> const& s) {
         return (s[0] == ')' || s[0] == ']' || s[0] == '}') ?
-               pair<shared_ptr<Lexeme>, size_t>(make_shared<Lexeme>(LexemeType::CLOSE_BRACKET, s.slice(0, 1)), 1) : NOTFOUND;
+               FoundLexeme(make_unique<Lexeme>(LexemeType::CLOSE_BRACKET, s.slice(0, 1)), 1) : notfound();
     }
 
-    std::pair<std::shared_ptr<Lexeme>, size_t> findSharp(Slice<std::string> const& s) {
-        return s[0] == '#' ? pair<shared_ptr<Lexeme>, size_t>{make_shared<Lexeme>(LexemeType::SHARP, s.slice(0, 1)), 1} : NOTFOUND;
+    FoundLexeme findSharp(Slice<std::string> const& s) {
+        return s[0] == '#' ? FoundLexeme{make_unique<Lexeme>(LexemeType::SHARP, s.slice(0, 1)), 1} : notfound();
     }
 
     vector<LexemeFinder> FINDERS;

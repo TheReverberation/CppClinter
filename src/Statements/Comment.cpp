@@ -3,23 +3,25 @@
 #include <algorithm>
 #include <iterator>
 
-using std::shared_ptr;
-using std::make_shared;
+using std::unique_ptr;
+using std::make_unique;
 using std::pair;
 using std::make_pair;
 using std::copy;
 using std::back_inserter;
+using std::vector;
 
 using clnt::eval::Token;
 using clnt::eval::TokenType;
+using clnt::eval::Tokens;
 
 namespace clnt::states {
-    Comment::Comment(Slice<vector<std::shared_ptr<eval::Token>>> tokens):
+    Comment::Comment(Slice<Tokens> tokens):
         Statement(StatementType::COMMENT, move(tokens)) {}
 
-    pair<shared_ptr<Statement>, size_t> Comment::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
+    pair<unique_ptr<Statement>, size_t> Comment::find(Slice<Tokens> const& tokens) {
         if (tokens[0]->type == TokenType::COMMENT) {
-            return {make_shared<Comment>(tokens.slice(0, 1)), 1};
+            return {make_unique<Comment>(tokens.slice(0, 1)), 1};
         }
         return {nullptr, 0};
     }

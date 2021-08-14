@@ -11,10 +11,10 @@
 namespace clnt::states {
     class IfElseStatement: public Statement {
     public:
-        IfElseStatement(Slice<std::vector<std::shared_ptr<Token>>>, std::shared_ptr<Statement>, std::shared_ptr<Statement>);
-        static std::pair<std::shared_ptr<Statement>, size_t> find(Slice<std::vector<std::shared_ptr<Token>>> const&); 
+        IfElseStatement(Slice<eval::Tokens>, std::unique_ptr<IfStatement>, std::unique_ptr<ElseStatement>);
+        static std::pair<std::unique_ptr<Statement>, size_t> find(Slice<eval::Tokens> const&);
         void lint() const override;
-        std::shared_ptr<Statement> const ifStatement;
-        std::shared_ptr<Statement> const elseStatement;
+        std::unique_ptr<IfStatement> const ifStatement;
+        std::unique_ptr<ElseStatement> const elseStatement;
     };
 }

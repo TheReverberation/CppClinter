@@ -1,9 +1,10 @@
 #pragma once
 
+#include <cassert>
 #include <memory>
 #include <vector>
 #include <utility>
-
+#include <string>
 
 #include "StatementType.hpp"
 #include "UndefinedLinterError.hpp"
@@ -12,13 +13,7 @@
 #include "src/Lexer/Lexeme.hpp"
 #include "src/Evaluator/Token.hpp"
 
-
-using std::shared_ptr;
-using std::string;
-using std::vector;
-using std::pair;
-
-using clnt::eval::Token;
+#include "src/Evaluator/Evaluator.hpp"
 
 namespace clnt::states {
 
@@ -27,18 +22,18 @@ namespace clnt::states {
      */
     class Statement {
     public:
-        Statement(StatementType, Slice<vector<shared_ptr<Token>>>);
+        Statement(StatementType, Slice<eval::Tokens>);
         StatementType const type;
-        Slice<vector<shared_ptr<Token>>> const tokens;
-        string const& linted() const;
+        Slice<eval::Tokens> mutable tokens;
+        std::string const& linted() const;
         virtual void lint() const;
-        //virtual ~Statement() = 0;
+        virtual ~Statement() = default;
     protected:
-        string mutable _linted;
+        std::string mutable _linted;
     };
 
     std::ostream& operator<<(std::ostream& out, Statement const& s);
 
     // Statement finder, it's similar to LexemeFinder
-    typedef pair<shared_ptr<Statement>, size_t> (*Finder)(Slice<vector<shared_ptr<Token>>> const&);
+    using Finder = std::pair<std::unique_ptr<Statement>, size_t> (*)(Slice<eval::Tokens> const&);
 }

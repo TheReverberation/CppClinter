@@ -23,22 +23,23 @@ namespace clnt::lex::finders {
      *      {lexeme_ptr, i}, where the lexeme contains tokens from 0 to i(excluding),
      *      returns {nullptr, 0} if lexeme is not found
      */
-    typedef std::pair<std::shared_ptr<Lexeme>, size_t> (*LexemeFinder) (Slice<std::string> const&);
+    using FoundLexeme = std::pair<std::unique_ptr<Lexeme>, size_t>;
+    using LexemeFinder = FoundLexeme (*) (Slice<std::string> const&);
 
-    std::pair<std::shared_ptr<Lexeme>, size_t> findName(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findString(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findBackslash(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findOperator(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findConstant(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findComma(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findColon(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findSemicolon(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findLinebreak(Slice<std::string>const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findQuestion(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findOpenBracket(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findCloseBracket(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findSharp(Slice<std::string> const&);
-    std::pair<std::shared_ptr<Lexeme>, size_t> findComment(Slice<std::string> const&);
+    FoundLexeme findName(Slice<std::string> const&);
+    FoundLexeme findString(Slice<std::string> const&);
+    FoundLexeme findBackslash(Slice<std::string> const&);
+    FoundLexeme findOperator(Slice<std::string> const&);
+    FoundLexeme findConstant(Slice<std::string> const&);
+    FoundLexeme findComma(Slice<std::string> const&);
+    FoundLexeme findColon(Slice<std::string> const&);
+    FoundLexeme findSemicolon(Slice<std::string> const&);
+    FoundLexeme findLinebreak(Slice<std::string>const&);
+    FoundLexeme findQuestion(Slice<std::string> const&);
+    FoundLexeme findOpenBracket(Slice<std::string> const&);
+    FoundLexeme findCloseBracket(Slice<std::string> const&);
+    FoundLexeme findSharp(Slice<std::string> const&);
+    FoundLexeme findComment(Slice<std::string> const&);
 
     // List of all finders
     extern std::vector<LexemeFinder> FINDERS;

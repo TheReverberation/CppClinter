@@ -1,11 +1,16 @@
-//
-// Created by Daniil Nedaiborsch on 26.04.2020.
-//
-
 #include "findCompleteExpression.hpp"
 
+using std::vector;
+using std::unique_ptr;
+using std::make_unique;
+
+using clnt::eval::Tokens;
+using clnt::eval::Token;
+using clnt::eval::TokenType;
+
+
 namespace clnt::states::arithm {
-    size_t findCompleteExpression(Slice<vector<shared_ptr<Token>>> const &tokens) {
+    size_t findCompleteExpression(Slice<Tokens> const &tokens) {
         if (tokens[0]->type == TokenType::LINE_BREAK) {
             return 1;
         }

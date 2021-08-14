@@ -1,42 +1,53 @@
 #include "Parser.hpp"
 
+#include <cassert>
 #include <utility>
 
-namespace clnt::parse {
-    Parser::Parser(vector<Finder> finders): finders_(std::move(finders)) {}
+using std::move;
+using std::pair;
+using std::unique_ptr;
+using std::make_unique;
+using std::vector;
 
-    pair<shared_ptr<Statement>, size_t> Parser::find(Slice<vector<shared_ptr<Token>>> const& tokens) const {
+using namespace clnt::states;
+using namespace clnt::eval;
+
+namespace clnt::parse {
+    Parser::Parser(vector<Finder> finders): finders_(move(finders)) {}
+
+    pair<unique_ptr<Statement>, size_t> Parser::find(Slice<Tokens> const& tokens) const {
         if (tokens.size() == 0) {
             return {nullptr, 0};
         }
-        pair<shared_ptr<Statement>, size_t> found = {nullptr, 0};
+        pair<unique_ptr<Statement>, size_t> found = {nullptr, 0};
         for (Finder finder : finders_) {
             found = finder(tokens);
             if (found.first) {
                 return found;
             }
-
         }
         return {nullptr, 0};
     }
 
-    Slice<vector<shared_ptr<Statement>>> Parser::parse(Slice<vector<shared_ptr<Token>>> const& tokens) const {
-        vector<shared_ptr<Statement>> parsed;
+    Statements Parser::parse(Slice<Tokens> const& tokens) const {
+        vector<unique_ptr<Statement>> parsed;
 
         for (size_t i = 0; i < tokens.size();) {
-            pair<shared_ptr<Statement>, size_t> found = {nullptr, 0};
+            bool foundFlag = false;
+            pair<unique_ptr<Statement>, size_t> found = {nullptr, 0};
             for (Finder finder : finders_) {
                 found = finder(tokens.slice(i));
                 if (found.first) {
-                    parsed.push_back(found.first);
+                    parsed.push_back(move(found.first));
                     i += found.second;
+                    foundFlag = true;
                     break;
                 }
             }
-            if (found.first == nullptr) {
+            if (!foundFlag) {
                 throw err::ParseFail(tokens.slice(i));
             }
         }
-        return makeSlice(move(parsed));
+        return parsed;
     }
 }

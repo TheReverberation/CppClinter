@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <memory>
 
@@ -6,6 +8,7 @@
 
 
 namespace clnt::lex {
+    using Lexemes = std::vector<std::shared_ptr<Lexeme>>;
     /*
      * Lexer is an object find all lexemes in a string.
      * Attributes:
@@ -24,6 +27,6 @@ namespace clnt::lex {
          * Note:
          *      Returns "Undefined" lexeme including in vector if lexer is not able to discover some code.
          */
-        std::vector<std::shared_ptr<Lexeme>> lexing(Slice<std::string> const& s);
+        Lexemes lexing(Slice<std::string> const& s);
     };
 }

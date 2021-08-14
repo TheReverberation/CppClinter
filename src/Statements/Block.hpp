@@ -11,15 +11,15 @@
 #include "Statement.hpp"
 #include "src/Slice.hpp"
 
-#include "src/Evaluator/all.hpp"
+#include "src/Evaluator/Evaluator.hpp"
 #include "src/Parser/Parser.hpp"
 #include "src/Linter/Linter.hpp"
 
 namespace clnt::states {
     class Block: public Statement {
     public:
-        Block(Slice<std::vector<std::shared_ptr<Token>>>);
-        static std::pair<shared_ptr<Statement>, size_t> find(Slice<std::vector<std::shared_ptr<Token>>> const&);
+        explicit Block(Slice<eval::Tokens>);
+        static std::pair<std::unique_ptr<Statement>, size_t> find(Slice<eval::Tokens> const&);
         void lint() const override;
     };
 }

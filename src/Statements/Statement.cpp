@@ -4,9 +4,15 @@
 
 #include "Statement.hpp"
 
+using std::vector;
+using std::move;
+using std::string;
+
+using clnt::eval::Tokens;
+
 namespace clnt::states {
 
-    Statement::Statement(StatementType type, Slice<vector<shared_ptr<Token>>> tokens): type(type), tokens(std::move(tokens)) {}
+    Statement::Statement(StatementType type, Slice<Tokens> tokens): type(type), tokens(move(tokens)) {}
 
     void Statement::lint() const {
         throw err::UndefinedLinterError();

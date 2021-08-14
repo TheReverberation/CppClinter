@@ -1,17 +1,12 @@
-//
-// Created by Daniil Nedaiborsch on 27.04.2020.
-//
-
-
 #pragma once
 
 #include <algorithm>
 #include <vector>
 #include <string>
 
-#include "src/Statements/all.hpp"
 #include "src/Slice.hpp"
-#include <src/accumulate.hpp>
+#include "src/accumulate.hpp"
+#include "src/Parser/Parser.hpp"
 
 namespace clnt::lint {
 
@@ -21,12 +16,10 @@ namespace clnt::lint {
 
     class Linter {
     public:
-        Linter();
-        std::string lint(Slice<std::vector<std::shared_ptr<states::Statement>>> const&, Space);
+        Linter() = default;
+        std::string lint(Slice<parse::Statements> const&, Space);
     private:
     };
-
-
 }
 
 

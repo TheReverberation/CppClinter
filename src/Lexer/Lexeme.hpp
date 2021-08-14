@@ -17,6 +17,7 @@ namespace clnt::lex {
         Lexeme(Lexeme const&) = delete;
         Lexeme(Lexeme&&) = delete;
         Lexeme(LexemeType type, Slice<std::string>);
+        ~Lexeme() = default;
         Slice<std::string> const source;
         LexemeType const type;
     };

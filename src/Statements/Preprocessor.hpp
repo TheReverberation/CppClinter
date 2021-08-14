@@ -5,8 +5,8 @@
 namespace clnt::states {
     class Preprocessor: public Statement {
     public:
-        Preprocessor(Slice<vector<shared_ptr<Token>>>);
-        static pair<shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&);
+        explicit Preprocessor(Slice<eval::Tokens>);
+        static std::pair<std::unique_ptr<Statement>, size_t> find(Slice<eval::Tokens> const&);
         void lint() const override;
     };
 }

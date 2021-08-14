@@ -9,7 +9,6 @@
 namespace clnt::states::err {
     class UndefinedLinterError: public std::exception {
     public:
-        UndefinedLinterError();
         const char* what() const noexcept override;
     };
 }

@@ -4,16 +4,23 @@
 
 #include "Instruction.hpp"
 
+using std::pair;
+using std::make_unique;
+using std::unique_ptr;
+
+using clnt::eval::Tokens;
+using clnt::eval::TokenType;
+using clnt::eval::Token;
+
 namespace clnt::states {
-    Instruction::Instruction(clnt::Slice<vector<shared_ptr<Token>>> lexemes):
+    Instruction::Instruction(Slice<Tokens> lexemes):
         Statement(StatementType::INSTRUCTION, move(lexemes)) {}
 
-
-    pair<shared_ptr<Statement>, size_t> Instruction::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
+    pair<unique_ptr<Statement>, size_t> Instruction::find(Slice<Tokens> const& tokens) {
         size_t expresionEnd = arithm::findCompleteExpression(tokens);
         if (expresionEnd != 0 && expresionEnd < tokens.size()) {
             if (tokens[expresionEnd]->type == TokenType::SEMICOLON) {
-                return {make_shared<Instruction>(tokens.slice(0, expresionEnd + 1)), expresionEnd + 1};
+                return {make_unique<Instruction>(tokens.slice(0, expresionEnd + 1)), expresionEnd + 1};
             }
         }
         return {nullptr, 0};

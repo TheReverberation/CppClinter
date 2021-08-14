@@ -6,24 +6,22 @@
 
 #include <vector>
 
-#include "src/Statements/all.hpp"
-
+#include "src/Statements/Statement.hpp"
 #include "ParseFail.hpp"
 
-using std::vector;
 
-using clnt::states::Finder;
-using clnt::states::Statement;
-using clnt::states::StatementType;
 
 namespace clnt::parse {
+
+    using Statements = std::vector<std::unique_ptr<states::Statement>>;
+
     class Parser {
     public:
-        Parser(vector<Finder> );
-        Slice<vector<shared_ptr<Statement>>> parse(Slice<vector<shared_ptr<Token>>> const&) const;
-        pair<shared_ptr<Statement>, size_t> find(Slice<vector<shared_ptr<Token>>> const&) const;
+        explicit Parser(std::vector<states::Finder>);
+        Statements parse(Slice<eval::Tokens> const&) const;
+        std::pair<std::unique_ptr<states::Statement>, size_t> find(Slice<eval::Tokens> const&) const;
     private:
-        vector<Finder> finders_;
+        std::vector<states::Finder> const finders_;
     };
 }
 

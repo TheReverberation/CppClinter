@@ -1,8 +1,12 @@
 #include "Token.hpp"
 
+using std::vector;
+
+using clnt::lex::Lexemes;
+
 namespace clnt::eval {
 
-    Token::Token(TokenType type, Slice<vector<shared_ptr<lex::Lexeme>>> lexemes):
+    Token::Token(TokenType type, Slice<Lexemes> lexemes):
             type(type), lexemes(std::move(lexemes)) {}
 
     std::ostream& operator<<(std::ostream& out, Token const& t) {

@@ -4,10 +4,13 @@
 
 using std::ostringstream;
 
+using clnt::eval::Tokens;
+
 namespace clnt::parse::err {
-    ParseFail::ParseFail(clnt::Slice<vector<std::shared_ptr<eval::Token>>> tokens): _tokens(move(tokens)) {}
+    ParseFail::ParseFail(Slice<Tokens> tokens) noexcept: _tokens(move(tokens)) {}
 
     char const* ParseFail::what() const noexcept {
+        // dangerous
         ostringstream ss;
         ss << "ParseFail, tokens: [";
         for (size_t i = 0; i < _tokens.size() - 1; ++i) {

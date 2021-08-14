@@ -4,23 +4,25 @@
 #include "Arithmetic/linters.hpp"
 #include "Expression.hpp"
 #include "Case.hpp"
+#include "allFinders.hpp"
 
 using std::vector;
-using std::shared_ptr;
 using std::string;
+using std::move;
+using std::unique_ptr;
+using std::pair;
 
 using clnt::eval::Token;
-using clnt::Slice;
+using clnt::eval::Tokens;
 using clnt::parse::Parser;
 using clnt::lint::Linter;
 
 namespace clnt::states {
-    Case::Case(Slice<vector<shared_ptr<Token>>> tokens):
+    Case::Case(Slice<eval::Tokens> tokens):
         Statement(StatementType::CASE, move(tokens))  {
-
     }
 
-    pair<std::shared_ptr<Statement>, size_t> Case::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
+    pair<unique_ptr<Statement>, size_t> Case::find(Slice<Tokens> const& tokens) {
         if (tokens.size() == 0) {
             return {nullptr, 0};
         }
@@ -28,21 +30,23 @@ namespace clnt::states {
 
         if (firstWord == string("case") || firstWord == string("default")) {
             auto name = Expression::find(tokens.slice(0, 1)).first;
-            vector<shared_ptr<Statement>> statements = {name};
+            vector<unique_ptr<Statement>> statements;
+            statements.emplace_back(move(name));
             Parser parser(STATEMENT_FINDERS);
 
             size_t i = 1;
             size_t endToken = 1;
             while (statements.back() && statements.back()->type != StatementType::CASE) {
                 auto found = parser.find(tokens.slice(i));
-                statements.push_back(found.first);
+
                 i += found.second;
                 if (found.first && found.first->type != StatementType::CASE) {
                     endToken = i;
                 }
+                statements.push_back(move(found.first));
             }
             statements.pop_back();
-            return {make_shared<Case>(tokens.slice(0, endToken)), endToken};
+            return {make_unique<Case>(tokens.slice(0, endToken)), endToken};
         }
         return {nullptr, 0};
     }

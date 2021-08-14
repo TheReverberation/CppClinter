@@ -1,9 +1,12 @@
 #pragma once
 
+#include <utility>
+
 namespace clnt {
     template <typename T, typename It>
-    T accumulate(It begin, It end, T init) {
-        T sum(init);
+    decltype(auto) accumulate(It begin, It end, T&& init) {
+        using ReturnType = std::remove_reference_t<T>;
+        ReturnType sum(std::forward<T>(init));
         for (auto i = begin; i != end; ++i) {
             sum += *i;
         }
@@ -11,8 +14,9 @@ namespace clnt {
     }
 
     template <typename T, typename It, typename Op>
-    T accumulate(It begin, It end, T init, Op operation) {
-        T sum(init);
+    decltype(auto) accumulate(It begin, It end, T&& init, Op&& operation) {
+        using ReturnType = std::remove_reference_t<T>;
+        ReturnType sum(std::forward<T>(init));
         for (auto i = begin; i != end; ++i) {
             operation(sum, *i);
         }

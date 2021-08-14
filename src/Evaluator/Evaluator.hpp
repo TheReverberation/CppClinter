@@ -7,13 +7,10 @@
 #include "src/Lexer/Lexeme.hpp"
 #include "src/Slice.hpp"
 
-using std::vector;
-using std::shared_ptr;
-using std::make_shared;
-
 
 
 namespace clnt::eval {
+    using Tokens = std::vector<std::unique_ptr<Token>>;
     /*
      * Evaluator is giving a sense for lexemes, grouping it and identifying its exactly type.
      * Attributes:
@@ -21,8 +18,8 @@ namespace clnt::eval {
      */
     class Evaluator {
     public:
-        Evaluator(vector<finders::TokenFinder> finders);
-        vector<finders::TokenFinder> const finders;
-        vector<shared_ptr<Token>> evaluate(Slice<vector<shared_ptr<lex::Lexeme>>> lexemes);
+        explicit Evaluator(std::vector<finders::TokenFinder> finders);
+        std::vector<finders::TokenFinder> const finders;
+        Tokens evaluate(Slice<lex::Lexemes> const& lexemes);
     };
 }

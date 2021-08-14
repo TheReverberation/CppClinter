@@ -8,12 +8,18 @@
 using std::max;
 using std::string;
 using std::vector;
-using std::shared_ptr;
+using std::unique_ptr;
+using std::pair;
+
 using clnt::states::Statement;
+using clnt::parse::Statements;
+using clnt::states::StatementType;
 
 namespace {
+    using clnt::Slice;
+
     vector<pair<StatementType, string>>
-    groupExpressions(Slice<vector<shared_ptr<Statement>>> const& statements) {
+    groupExpressions(Slice<Statements> const& statements) {
         vector<pair<StatementType, string>> groups;
         for (size_t i = 0; i < statements.size();) {
             if (statements[i]->type == StatementType::INSTRUCTION ||
@@ -31,7 +37,7 @@ namespace {
                 ++i;
             } else {
                 auto groupEnd = std::find_if(statements.begin() + i, statements.end(),
-                        [] (shared_ptr<Statement> const& s) -> bool {
+                        [] (unique_ptr<Statement> const& s) -> bool {
                     return s->type == StatementType::BLOCK ||
                            s->type == StatementType::INSTRUCTION ||
                            s->type == StatementType::STRUCT;
@@ -51,7 +57,7 @@ namespace {
                     }
                 }
                 
-                groups.push_back({(*(groupEnd - 1))->type, accumulated});
+                groups.emplace_back((*(groupEnd - 1))->type, accumulated);
                 i = groupEnd - statements.begin();
             }
         }
@@ -109,10 +115,7 @@ namespace {
 
 namespace clnt::lint {
 
-    Linter::Linter() {}
-
-
-    string Linter::lint(Slice<vector<shared_ptr<Statement>>> const& statements, Space space) {
+    string Linter::lint(Slice<Statements> const& statements, Space space) {
         for (auto& now : statements) {
             now->lint();
         }

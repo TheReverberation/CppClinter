@@ -32,12 +32,15 @@ string outNameFile(string inputFileName) {
     using std::find;
     using std::copy;
     using std::back_inserter;
+    using std::string;
 
-    Slice<string> s(inputFileName);
+    using clnt::Slice;
+
+    Slice<string> s(move(inputFileName));
     size_t dot = find(s.begin(), s.end(), '.') - s.begin();
     string preffix;
     copy(s.begin(), s.begin() + dot, back_inserter(preffix));
-    string result = preffix + "_linted"; 
+    string result = preffix + "_linted";
     copy(s.begin() + dot, s.end(), back_inserter(result));
     return result;
 }
@@ -102,18 +105,17 @@ int main(int argc, char** argv) {
 
     lex::Lexer lexer(lex::finders::FINDERS);
 
-    ofstream log("log.txt");
+    auto& log = std::cout;
 
     // read code
-    shared_ptr<string> s = make_shared<string>();
+    string s;
     std::ifstream file(inputFileName);
     std::ostringstream oss;
     oss << file.rdbuf();
-    *s = oss.str();
+    s = oss.str();
+    log << "\'" << s << "\'\n";
 
-    log << "\'" << *s << "\'\n";
-
-    vector<shared_ptr<lex::Lexeme>> lexemes = lexer.lexing(s);
+    auto lexemes = lexer.lexing(std::move(s));
     log << "~MainLexemes~\n";
     for (auto& now : lexemes) {
         log << *now << '\n';
@@ -121,23 +123,27 @@ int main(int argc, char** argv) {
     log << '\n';
 
     eval::Evaluator evaluator(eval::finders::FINDERS);
-    vector<shared_ptr<eval::Token>> tokens;
+    eval::Tokens tokens;
     try {
         tokens = evaluator.evaluate(lexemes);
     } catch (eval::err::EvaluateException const& exc) {
         std::cout << exc.what() << '\n';
         exit(0);
     }
-
+    for (auto& token : tokens) {
+        if (token == nullptr) {
+            exit(228);
+        }
+    }
     log << "~MainTokens~\n";
-    for (auto now : tokens) {
+    for (auto& now : tokens) {
         log << *now << '\n';
     }
     log << "\n";
 
     parse::Parser parser(states::STATEMENT_FINDERS);
     try {
-        Slice<vector<shared_ptr<Statement>>> states = parser.parse(tokens);
+        Slice<parse::Statements> states = parser.parse(move(tokens));
 
         log << "~MainStates~\n";
         for (auto &now : states) {

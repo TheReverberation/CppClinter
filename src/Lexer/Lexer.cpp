@@ -7,7 +7,7 @@
 
 using std::vector;
 using std::string;
-
+using std::unique_ptr;
 
 namespace clnt::lex {
 
@@ -16,24 +16,20 @@ namespace clnt::lex {
     vector<shared_ptr<Lexeme>> Lexer::lexing(Slice<string> const& s) {
         vector<shared_ptr<Lexeme>> lexemes;
 
-        auto lastLexeme = [&lexemes] () -> shared_ptr<Lexeme> {
-            return !lexemes.empty() ? lexemes.back() : nullptr;
-        };
-
         for (size_t i = 0; i < s.size();) {
             i += finders::findNonSpace(s.slice(i), {' ', '\t'});
-            shared_ptr<Lexeme> lexeme = nullptr;
+            unique_ptr<Lexeme> lexeme = nullptr;
             size_t lexemeEnd = 0;
             for (auto& finder : finders_) {
                 auto found = finder(s.slice(i));
-                lexeme = found.first;
+                lexeme = move(found.first);
                 lexemeEnd = found.second;
                 if (lexeme) {
                     break;
                 }
             }
             if (lexeme) {
-                lexemes.push_back(lexeme);
+                lexemes.push_back(move(lexeme));
             } else {
                 lexemes.emplace_back(new Lexeme(LexemeType::UNDEFINED, s.slice(i)));
                 lexemeEnd = s.size() - i;

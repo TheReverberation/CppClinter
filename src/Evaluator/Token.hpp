@@ -4,10 +4,10 @@
 
 #include "src/Slice.hpp"
 #include "src/Lexer/Lexeme.hpp"
+#include "src/Lexer/Lexer.hpp"
 
 #include "TokenType.hpp"
 
-using std::vector;
 
 namespace clnt::eval {
     /*
@@ -15,11 +15,11 @@ namespace clnt::eval {
      */
     class Token {
     public:
-        Token(TokenType type, Slice<vector<shared_ptr<lex::Lexeme>>> lexemes);
+        Token(TokenType type, Slice<lex::Lexemes> lexemes);
         Token(Token const&) = default;
         Token(Token&&) = default;
         TokenType const type;
-        Slice<vector<shared_ptr<lex::Lexeme>>> const lexemes;
+        Slice<lex::Lexemes> const lexemes;
     };
 
     std::ostream& operator<<(std::ostream& out, Token const& t);

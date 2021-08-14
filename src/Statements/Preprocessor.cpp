@@ -9,26 +9,29 @@
 using std::move;
 using std::copy;
 using std::vector;
-using std::shared_ptr;
-using std::make_shared;
+using std::unique_ptr;
+using std::make_unique;
 using std::make_pair;
 using std::back_inserter;
+using std::string;
+using std::pair;
 
 using clnt::eval::TokenType;
-
+using clnt::eval::Tokens;
+using clnt::eval::Token;
 
 namespace clnt::states {
-    Preprocessor::Preprocessor(Slice<vector<shared_ptr<Token>>> tokens):
+    Preprocessor::Preprocessor(Slice<Tokens> tokens):
         Statement(StatementType::PREPROCESSOR, move(tokens)) {
     }
 
 
-    pair<shared_ptr<Statement>, size_t> Preprocessor::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
+    pair<unique_ptr<Statement>, size_t> Preprocessor::find(Slice<Tokens> const& tokens) {
         if (tokens[0]->type == TokenType::SHARP) {
             size_t preprocessorEnd = 1;
             for (size_t i = 1; i < tokens.size();) {
                 size_t lineEnd = std::find_if(tokens.begin() + i, tokens.end(),
-                    [](shared_ptr<Token> const& token) {
+                    [](unique_ptr<Token> const& token) {
                         return token->type == TokenType::LINE_BREAK;
                     }
                 ) - tokens.begin();
@@ -40,7 +43,7 @@ namespace clnt::states {
                     break;
                 }
             }
-            return {make_shared<Preprocessor>(tokens.slice(0, preprocessorEnd)), preprocessorEnd};
+            return {make_unique<Preprocessor>(tokens.slice(0, preprocessorEnd)), preprocessorEnd};
         }
         return {nullptr, 0};
     }

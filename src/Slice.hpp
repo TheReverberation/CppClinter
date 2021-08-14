@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <iostream>
 #include <memory>
+#include <iterator>
 
 using std::shared_ptr;
 using std::move;
@@ -17,6 +18,7 @@ namespace clnt {
     class Slice {
     public:
         using const_iterator = typename C::const_iterator;
+        using iterator = typename C::iterator;
         using value_type = typename C::value_type;
 
         Slice(shared_ptr<C> container, size_t i, size_t j): container_(move(container)), i_(i), j_(j) {}
@@ -31,14 +33,22 @@ namespace clnt {
 
         Slice(C container): Slice(std::make_shared<C>(move(container))) {}
 
-        Slice(Slice const& other): container_(other.container_), i_(other.i_), j_(other.j_) {}
-        Slice(Slice&& other) noexcept: container_(move(other.container_)), i_(other.i_), j_(other.j_) {}
+        Slice(Slice const& other) = default;
+        Slice(Slice&& other) = default;
         
         const_iterator begin() const {
             return container_->begin() + i_;
         }
 
         const_iterator end() const {
+            return container_->begin() + j_;
+        }
+
+        iterator begin() {
+            return container_->begin() + i_;
+        }
+
+        iterator end() {
             return container_->begin() + j_;
         }
 
@@ -102,8 +112,8 @@ namespace clnt {
     };
 
     template <class C>
-    Slice<C> makeSlice(C container) {
-        return Slice<C>(move(container));
+    Slice<typename std::remove_reference_t<C>> makeSlice(C&& container) {
+        return Slice<typename std::remove_reference_t<C>>(std::forward<C>(container));
     }
 
     template <class C>

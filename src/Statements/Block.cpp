@@ -4,9 +4,13 @@
 
 #include "Block.hpp"
 
+#include "allFinders.hpp"
+
 using std::vector;
-using std::shared_ptr;
-using std::make_shared;
+using std::unique_ptr;
+using std::make_unique;
+using std::pair;
+using std::string;
 
 using clnt::eval::Token;
 using clnt::eval::TokenType;
@@ -15,6 +19,8 @@ using clnt::lint::Linter;
 using clnt::eval::Evaluator;
 
 namespace {
+    using clnt::Slice;
+
     vector<Slice<string>> split(Slice<string> const &s, char delimiter) {
         vector<Slice<string>> result;
         size_t begin = 0;
@@ -31,7 +37,7 @@ namespace {
     }
 
     string tabShift(string const& s) {
-        string result = "";
+        string result;
         vector<Slice<string>> lines = split(s, '\n');
         for (auto& line : lines) {
             result += '\t';
@@ -42,16 +48,16 @@ namespace {
     }
 }
 
-
+using clnt::eval::Tokens;
 
 namespace clnt::states {
 
-    Block::Block(clnt::Slice<vector<shared_ptr<Token>>> tokens): Statement(StatementType::BLOCK, std::move(tokens)) {
+    Block::Block(Slice<Tokens> tokens): Statement(StatementType::BLOCK, std::move(tokens)) {
     }
 
-    pair<shared_ptr<Statement>, size_t> Block::find(Slice<vector<shared_ptr<Token>>> const& tokens) {
+    pair<unique_ptr<Statement>, size_t> Block::find(Slice<Tokens> const& tokens) {
         if (tokens[0]->type == TokenType::BLOCK) {
-            return {make_shared<Block>(tokens.slice(0, 1)), 1};
+            return {make_unique<Block>(tokens.slice(0, 1)), 1};
         }
         return {nullptr, 0};
     }
@@ -59,7 +65,7 @@ namespace clnt::states {
     void Block::lint() const {
         //std::cout << "begin\n";
         Evaluator evaluator(eval::finders::FINDERS);
-        vector<shared_ptr<Token>> intoTokens =
+        Tokens intoTokens =
                 evaluator.evaluate(tokens[0]->lexemes.slice(1, tokens[0]->lexemes.size() - 1));
 
         //std::cout << "Tokens: \n";
@@ -68,7 +74,7 @@ namespace clnt::states {
         }
 
         Parser parser(states::STATEMENT_FINDERS);
-        Slice<vector<shared_ptr<Statement>>> statements = parser.parse(intoTokens);
+        Slice<vector<unique_ptr<Statement>>> statements = parser.parse(move(intoTokens));
 
         for (auto& now : statements) {
             //std::cout << *now << '\n';
