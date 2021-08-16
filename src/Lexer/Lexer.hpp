@@ -3,6 +3,8 @@
 #include <vector>
 #include <memory>
 
+
+#include "UndefinedLexemeException.hpp"
 #include "Lexeme.hpp"
 #include "finders.hpp"
 

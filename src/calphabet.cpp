@@ -33,7 +33,8 @@ namespace clnt::alphabet {
         }
 
         vector<string> reserved = {
-                "break", "for", "while", "struct", "class", "if", "else", "case", "switch", "typedef",
+                "break", "for", "while", "struct", "class", "if", "else", "case", "switch", "typedef", "return", "goto",
+                "continue",
         };
 
         for (auto& op : reserved) {

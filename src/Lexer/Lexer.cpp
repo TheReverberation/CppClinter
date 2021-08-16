@@ -31,6 +31,7 @@ namespace clnt::lex {
             if (lexeme) {
                 lexemes.push_back(move(lexeme));
             } else {
+                throw err::UndefinedLexemeException();
                 lexemes.emplace_back(new Lexeme(LexemeType::UNDEFINED, s.slice(i)));
                 lexemeEnd = s.size() - i;
             }

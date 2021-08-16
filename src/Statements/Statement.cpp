@@ -14,6 +14,7 @@ namespace clnt::states {
 
     Statement::Statement(StatementType type, Slice<Tokens> tokens): type(type), tokens(move(tokens)) {}
 
+
     void Statement::lint() const {
         throw err::UndefinedLinterError();
     }

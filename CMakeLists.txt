@@ -7,11 +7,56 @@ set(CMAKE_CXX_FLAGS "-Wall -g3")
 set(CMAKE_BUILD_RPATH /build)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-add_executable(CppClinter src/main.cpp src/Lexer/LexemeType.hpp
-        src/Lexer/finders.hpp src/Lexer/finders.cpp src/calphabet.hpp src/calphabet.cpp
-        src/Lexer/Lexer.cpp src/Lexer/LexemeType.cpp src/Parser/Parser.cpp src/Parser/Parser.hpp
-        src/Statements/Statement.hpp src/Statements/StatementType.hpp src/Slice.hpp src/Statements/Statement.cpp
-        src/Statements/Struct.cpp src/Statements/Struct.hpp src/Statements/Block.cpp src/Statements/Block.hpp
+# Lexer dir
+set(LEXER_SOURCES
+        src/Lexer/finders.cpp
+        src/Lexer/Lexeme.cpp
+        src/Lexer/LexemeType.cpp
+        src/Lexer/UndefinedLexemeException.cpp
+        src/Lexer/Lexer.cpp)
+
+set(LEXER_HEADERS
+        src/Lexer/all.hpp
+        src/Lexer/finders.hpp
+        src/Lexer/Lexeme.hpp
+        src/Lexer/LexemeType.hpp
+        src/Lexer/Lexer.hpp)
+
+# Evaluator dir
+set(EVAL_SOURCES
+        src/Evaluator/Evaluator.cpp
+        src/Evaluator/finders.cpp
+        src/Evaluator/Token.cpp
+        src/Evaluator/TokenType.cpp
+        src/Evaluator/Error/EvaluateException.cpp
+)
+
+set(EVAL_HEADERS
+        src/Evaluator/Error/EvaluateException.hpp
+        src/Evaluator/Evaluator.hpp
+        src/Evaluator/finders.hpp
+        src/Evaluator/Token.hpp
+        src/Evaluator/TokenType.hpp
+)
+
+# Statements dir
+set(STATE_SOURCES
+        src/Statements/Arithmetic/findCompleteExpression.cpp
+        src/Statements/Arithmetic/linters.cpp
+        src/Statements/Arithmetic/UndefinedLinterError.cpp
+        src/Statements/Block.cpp
+        src/Statements/Case.cpp
+        src/Statements/Comment.cpp
+        src/Statements/all.cpp
+        src/Statements/ElseStatement.cpp
+        src/Statements/Expression.cpp
+        src/Statements/IfElseStatement.cpp
+        src/Statements/IfStatement.cpp
+        src/Statements/Instruction.cpp
+        src/Statements/LinterUndefinedException.cpp
+        src/Statements/UndefinedLinterError.cpp
+        src/Statements/Preprocessor.cpp
+        src/Statements/Statement.cpp
         src/Statements/StatementType.cpp
         src/Evaluator/Evaluator.cpp src/Evaluator/Evaluator.hpp
         src/Evaluator/Token.cpp src/Evaluator/Token.hpp src/Evaluator/TokenType.cpp src/Evaluator/TokenType.hpp
