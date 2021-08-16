@@ -63,7 +63,7 @@ namespace clnt::states::arithm {
                 auto lastToken = [&i, &tokens] () -> unique_ptr<Token> const& {
                     static unique_ptr<Token> const nulluptr = nullptr;
                     if (i > 0) {
-                        return tokens[i];
+                        return tokens[i - 1];
                     } else {
                         return nulluptr;
                     }
