@@ -47,13 +47,13 @@ set(STATE_SOURCES
         src/Statements/Block.cpp
         src/Statements/Case.cpp
         src/Statements/Comment.cpp
-        src/Statements/all.cpp
         src/Statements/ElseStatement.cpp
         src/Statements/Expression.cpp
         src/Statements/IfElseStatement.cpp
         src/Statements/IfStatement.cpp
         src/Statements/Instruction.cpp
-        src/Statements/LinterUndefinedException.cpp
+        src/Statements/Struct.cpp
+        src/Statements/Struct.hpp
         src/Statements/UndefinedLinterError.cpp
         src/Statements/Preprocessor.cpp
         src/Statements/Statement.cpp
@@ -74,7 +74,22 @@ set(STATE_SOURCES
         src/Statements/Case.cpp src/Statements/Case.hpp src/Statements/Comment.cpp src/Statements/Comment.hpp
         src/Parser/ParseFail.hpp src/Parser/ParseFail.cpp src/Statements/Arithmetic/UndefinedLinterError.hpp
         src/Statements/Arithmetic/UndefinedLinterError.cpp src/Evaluator/Error/EvaluateException.cpp
-        src/Evaluator/Error/EvaluateException.hpp src/Statements/allFinders.hpp src/Statements/allFinders.cpp code2.c)
+        src/Evaluator/Error/EvaluateException.hpp src/Statements/allFinders.hpp src/Statements/allFinders.cpp)
 
+set(PARSE_SOURCES
+        src/Parser/Parser.hpp src/Parser/Parser.cpp
+        src/Parser/ParseFail.hpp src/Parser/ParseFail.cpp)
 #find_package(Boost REQUIRED COMPONENTS system)
 #target_include_directories(CppClinter PUBLIC ${Boost_INCLUDE_DIRS})
+add_executable(CppClinter
+        src/main.cpp
+        src/Slice.hpp
+        src/calphabet.cpp
+        src/accumulate.hpp
+
+        ${LEXER_SOURCES} ${LEXER_HEADERS}
+        ${EVAL_SOURCES} ${EVAL_HEADERS}
+        ${STATE_SOURCES} ${STATE_HEADERS}
+        ${PARSE_SOURCES} ${PARSE_HEADERS}
+        ${LINTER_SOURCES}
+        )
