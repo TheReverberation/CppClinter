@@ -1,13 +1,10 @@
-//
-// Created by Daniil Nedaiborsch on 21.04.2020.
-//
-
 #include "Instruction.hpp"
 
 using std::pair;
 using std::make_unique;
 using std::unique_ptr;
 
+using clnt::util::Slice;
 using clnt::eval::Tokens;
 using clnt::eval::TokenType;
 using clnt::eval::Token;
@@ -15,6 +12,10 @@ using clnt::eval::Token;
 namespace clnt::states {
     Instruction::Instruction(Slice<Tokens> lexemes):
         Statement(StatementType::INSTRUCTION, move(lexemes)) {}
+
+    void printInstr(Instruction const& i) {
+        std::cout << *i.tokens[0] << '\n';
+    }
 
     pair<unique_ptr<Statement>, size_t> Instruction::find(Slice<Tokens> const& tokens) {
         size_t expresionEnd = arithm::findCompleteExpression(tokens);

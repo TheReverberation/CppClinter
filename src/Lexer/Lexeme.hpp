@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-#include <src/Slice.hpp>
+#include <src/util/Slice.hpp>
 
 #include "LexemeType.hpp"
 
@@ -16,9 +16,9 @@ namespace clnt::lex {
          */
         Lexeme(Lexeme const&) = delete;
         Lexeme(Lexeme&&) = delete;
-        Lexeme(LexemeType type, Slice<std::string>);
+        Lexeme(LexemeType type, util::Slice<std::string>);
         ~Lexeme() = default;
-        Slice<std::string> const source;
+        util::Slice<std::string> const source;
         LexemeType const type;
     };
 

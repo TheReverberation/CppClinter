@@ -1,8 +1,12 @@
+#include <vector>
+
 #include "findCompleteExpression.hpp"
 
 using std::vector;
 using std::unique_ptr;
 using std::make_unique;
+
+using clnt::util::Slice;
 
 using clnt::eval::Tokens;
 using clnt::eval::Token;

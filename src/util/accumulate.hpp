@@ -2,7 +2,7 @@
 
 #include <utility>
 
-namespace clnt {
+namespace clnt::util {
     template <typename T, typename It>
     decltype(auto) accumulate(It begin, It end, T&& init) {
         using ReturnType = std::remove_reference_t<T>;

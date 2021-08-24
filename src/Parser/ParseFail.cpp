@@ -3,7 +3,9 @@
 #include "ParseFail.hpp"
 
 using std::ostringstream;
+using std::move;
 
+using clnt::util::Slice;
 using clnt::eval::Tokens;
 
 namespace clnt::parse::err {
@@ -16,7 +18,7 @@ namespace clnt::parse::err {
         for (size_t i = 0; i < _tokens.size() - 1; ++i) {
             ss << *_tokens[i] << ", ";
         }
-        ss << _tokens.back() << "]";
+        ss << *_tokens.back() << "]";
         return ss.str().data();
     }
 }

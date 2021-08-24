@@ -16,7 +16,7 @@
 #include "Evaluator/TokenType.hpp"
 #include "Evaluator/Error/EvaluateException.hpp"
 
-#include "Slice.hpp"
+#include "src/util/Slice.hpp"
 
 #include "Statements/all.hpp"
 
@@ -27,14 +27,13 @@ using std::stringstream;
 using std::string;
 using std::shared_ptr;
 
-
 string outNameFile(string inputFileName) {
     using std::find;
     using std::copy;
     using std::back_inserter;
     using std::string;
 
-    using clnt::Slice;
+    using clnt::util::Slice;
 
     Slice<string> s(move(inputFileName));
     size_t dot = find(s.begin(), s.end(), '.') - s.begin();
@@ -74,14 +73,13 @@ int main(int argc, char** argv) {
     using clnt::states::Block;
     using clnt::states::Expression;
     using clnt::lint::Linter;
-
+    using clnt::util::Slice;
+    using clnt::util::makeSlice;
     ::init();
 
 
     string inputFileName;
-
     ifstream fin;
-
     if (argc == 1) {
         std::cout << "Input file name: ";
         std::cin >> inputFileName;
@@ -121,15 +119,16 @@ int main(int argc, char** argv) {
         log << *now << '\n';
     }
     log << '\n';
-
+    
     eval::Evaluator evaluator(eval::finders::FINDERS);
     eval::Tokens tokens;
     try {
-        tokens = evaluator.evaluate(lexemes);
+        tokens = evaluator.evaluate(move(lexemes));
     } catch (eval::err::EvaluateException const& exc) {
         std::cout << exc.what() << '\n';
-        exit(0);
+        exit(1);
     }
+    
     for (auto& token : tokens) {
         if (token == nullptr) {
             exit(228);
@@ -140,7 +139,16 @@ int main(int argc, char** argv) {
         log << *now << '\n';
     }
     log << "\n";
-
+   /* auto [state, _] = states::IfStatement::find(move(tokens)); 
+    auto ifstate = unique_ptr<states::IfStatement>((states::IfStatement*)state.release());
+    if (ifstate) {
+        std::cout << *ifstate << '\n';
+        for (auto& now : ifstate->statements) {
+            std::cout << *now << '\n';
+        }
+    }
+    ifstate->lint();
+    std::cout << ifstate->linted() << '\n';*/ 
     parse::Parser parser(states::STATEMENT_FINDERS);
     try {
         Slice<parse::Statements> states = parser.parse(move(tokens));
@@ -155,7 +163,7 @@ int main(int argc, char** argv) {
         fout << linter.lint(states, lint::Space::GLOBAL) << '\n';
     } catch (parse::err::ParseFail const& exc) {
         std::cout << exc.what() << '\n';
-        exit(0);
+        exit(1);
     }
     return 0;
 }

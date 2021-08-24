@@ -1,7 +1,3 @@
-//
-// Created by Daniil Nedaiborsch on 18.04.2020.
-//
-
 #include "Block.hpp"
 #include "Expression.hpp"
 #include "Instruction.hpp"
@@ -14,6 +10,8 @@ using std::move;
 using std::vector;
 using std::pair;
 using std::make_pair;
+
+using clnt::util::Slice;
 
 using clnt::eval::Token;
 using clnt::eval::TokenType;

@@ -3,6 +3,8 @@
 using std::string;
 using std::make_shared;
 
+using clnt::util::Slice;
+
 namespace clnt::lex {
     Lexeme::Lexeme(LexemeType type, Slice<string> source): type(type), source(source) {}
 

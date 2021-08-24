@@ -9,6 +9,8 @@ using std::vector;
 
 using clnt::lex::Lexeme;
 using clnt::lex::Lexemes;
+using clnt::util::Slice;
+using clnt::util::makeSlice;
 
 namespace clnt::eval {
     Evaluator::Evaluator(vector<finders::TokenFinder> finders): finders(move(finders)) {}
@@ -29,7 +31,7 @@ namespace clnt::eval {
             size_t tokenEnd = 0;
             for (auto finder : finders) {
                 auto found = finder(lexemes.slice(i), lastToken());
-                token = move(found.first);
+                token.reset(found.first.release());
                 tokenEnd = found.second;
                 if (token) {
                     break;

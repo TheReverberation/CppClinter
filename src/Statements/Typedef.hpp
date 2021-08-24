@@ -2,15 +2,15 @@
 
 #include <vector>
 
-#include <src/Slice.hpp>
+#include <src/util/Slice.hpp>
 
 #include "Statement.hpp"
 
 namespace clnt::states {
     class Typedef: public Statement {
     public:
-        explicit Typedef(Slice<eval::Tokens>);
+        explicit Typedef(util::Slice<eval::Tokens>);
         void lint() const override;
-        static std::pair<std::unique_ptr<Statement>, size_t> find(Slice<eval::Tokens> const&);
+        static std::pair<std::unique_ptr<Statement>, size_t> find(util::Slice<eval::Tokens> const&);
     };
 }

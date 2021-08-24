@@ -1,7 +1,3 @@
-//
-// Created by Daniil Nedaiborsch on 15.04.2020.
-//
-
 #pragma once
 
 #include <algorithm>
@@ -9,11 +5,12 @@
 #include <memory>
 #include <iterator>
 
-using std::shared_ptr;
-using std::move;
+namespace {
+    template<typename T>
+    using remove_all_t = std::remove_const_t<std::remove_reference_t<T>>;
+}
 
-
-namespace clnt {
+namespace clnt::util {
     template <class C>
     class Slice {
     public:
@@ -21,17 +18,18 @@ namespace clnt {
         using iterator = typename C::iterator;
         using value_type = typename C::value_type;
 
-        Slice(shared_ptr<C> container, size_t i, size_t j): container_(move(container)), i_(i), j_(j) {}
+        Slice(std::shared_ptr<C> container, size_t i, size_t j): container_(std::move(container)), i_(i), j_(j) {}
 
-        Slice(shared_ptr<C> container): Slice(container, 0, container->size()) {}
+        Slice(std::shared_ptr<C> container): Slice(std::move(container), 0, container->size()) {}
 
-        Slice(shared_ptr<C> container, size_t i): Slice(container, i, container->size()) {}
+        Slice(std::shared_ptr<C> container, size_t i): Slice(std::move(container), i, container->size()) {}
 
-        Slice(C container, size_t i): Slice(std::make_shared<C>(move(container)), i, container.size()) {}
+        Slice(C container, size_t i): Slice(std::make_shared<C const>(std::move(container)), i, container.size()) {}
 
-        Slice(C container, size_t i, size_t j): Slice(std::make_shared<C>(move(container)), i, j) {}
-
-        Slice(C container): Slice(std::make_shared<C>(move(container))) {}
+        Slice(C container, size_t i, size_t j): Slice(std::make_shared<C const>(std::move(container)), i, j) {}
+        
+        Slice(C const& container): Slice(std::make_shared<C>(container)) {}
+        Slice(C&& container): Slice(std::make_shared<C>(std::move(container))) {}
 
         Slice(Slice const& other) = default;
         Slice(Slice&& other) = default;
@@ -102,18 +100,19 @@ namespace clnt {
             return j_;
         }
 
-        shared_ptr<C const> container() const {
+        std::shared_ptr<C const> container() const {
             return container_;
         }
 
     private:
-        shared_ptr<C> container_;
+        std::shared_ptr<C> container_;
         size_t const i_, j_;
     };
 
-    template <class C>
-    Slice<typename std::remove_reference_t<C>> makeSlice(C&& container) {
-        return Slice<typename std::remove_reference_t<C>>(std::forward<C>(container));
+
+    template <typename C>
+    decltype(auto) makeSlice(C&& container) {
+        return Slice<::remove_all_t<C>>(std::forward<C>(container));
     }
 
     template <class C>

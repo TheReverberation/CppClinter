@@ -15,8 +15,8 @@ namespace clnt::eval {
         SEMICOLON, LINE_BREAK, COMMA, SHARP, BACKSLASH, COLON, QUESTION, INITIALIZER, COMMENT
     };
 
-    extern std::string TYPE_NAMES[255];
     void initTypeNames();
+    std::string tokenTypeName(TokenType type);
     std::ostream& operator<<(std::ostream& out, TokenType type);
 }
 

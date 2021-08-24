@@ -12,6 +12,9 @@ using std::vector;
 using namespace clnt::states;
 using namespace clnt::eval;
 
+using clnt::util::Slice;
+using clnt::util::makeSlice;
+
 namespace clnt::parse {
     Parser::Parser(vector<Finder> finders): finders_(move(finders)) {}
 

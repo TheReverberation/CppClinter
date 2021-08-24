@@ -1,13 +1,17 @@
+#include <algorithm>
+#include <array>
+
 #include "TokenType.hpp"
+
+namespace {
+    std::array<std::string, 255> TYPE_NAMES;
+}
 
 namespace clnt::eval {
 
-    std::string TYPE_NAMES[255];
 
     void initTypeNames() {
-        for (size_t i = 0; i < 255; ++i) {
-            TYPE_NAMES[i] = "${TypeName}";
-        }
+        std::fill(TYPE_NAMES.begin(), TYPE_NAMES.end(), "$(LexemeTypeName)$");
 
         TYPE_NAMES[(int)TokenType::BLOCK] = "Block";
         TYPE_NAMES[(int)TokenType::BINARY_OPERATOR] = "Binary";
@@ -29,7 +33,11 @@ namespace clnt::eval {
         TYPE_NAMES[(int)TokenType::COMMENT] = "Comment";
     }
 
+    std::string tokenTypeName(TokenType type) {
+        return TYPE_NAMES[(int)type];
+    }
+
     std::ostream& operator<<(std::ostream& out, TokenType type) {
-        return out << TYPE_NAMES[(int)type];
+        return out << tokenTypeName(type);
     }
 }

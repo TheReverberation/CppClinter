@@ -1,7 +1,3 @@
-//
-// Created by Daniil Nedaiborsch on 27.04.2020.
-//
-
 #include <algorithm>
 #include <iterator>
 
@@ -15,8 +11,11 @@ using std::make_unique;
 using std::make_move_iterator;
 using std::copy_if;
 
+using clnt::util::Slice;
+
 using clnt::eval::Tokens;
 using clnt::eval::Token;
+using clnt::eval::TokenType;
 
 namespace clnt::states {
     Expression::Expression(Slice<Tokens> tokens):

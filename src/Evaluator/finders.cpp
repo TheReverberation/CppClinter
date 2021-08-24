@@ -1,9 +1,11 @@
 #include "finders.hpp"
 
 #include <cassert>
-#include <utility>
 #include <memory>
-#include <src/Evaluator/Error/EvaluateException.hpp>
+#include <optional>
+#include <utility>
+
+#include "Error/EvaluateException.hpp"
 
 using std::unique_ptr;
 using std::make_unique;
@@ -13,10 +15,16 @@ using std::vector;
 using std::unique_ptr;
 using std::make_unique;
 using std::string;
+using std::optional;
+using std::nullopt;
+using std::pair;
+using std::make_pair;
 
 using clnt::lex::Lexeme;
 using clnt::lex::LexemeType;
 using clnt::lex::Lexemes;
+using clnt::util::Slice;
+using clnt::util::makeSlice;
 
 namespace {
     clnt::eval::finders::FoundToken notfound() { return {nullptr,0}; };
@@ -24,10 +32,10 @@ namespace {
 
 namespace clnt::eval::finders {
 
-    unique_ptr<pair<size_t, size_t>>
+    optional<pair<size_t, size_t>>
     findBrackets(Slice<Lexemes> const& lexemes, vector<char> const& bracketSet) {
         if (lexemes[0]->source[0] != bracketSet[0]) {
-            return nullptr;
+            return nullopt;
         }
         size_t i = 1;
         int brackets = 1;
@@ -40,9 +48,9 @@ namespace clnt::eval::finders {
             ++i;
         }
         if (brackets != 0) {
-            throw err::EvaluateException("Uncorrected brackets");
+            throw err::EvaluateException("Uncorrected brackets", lexemes);
         }
-        return make_unique<pair<size_t, size_t>>(0, i);
+        return make_pair(0, i);
     }
 
     FoundToken findBlock(Slice<Lexemes> const& lexemes, unique_ptr<Token> const& lastToken) {
@@ -94,7 +102,7 @@ namespace clnt::eval::finders {
                 }
             } else if (checkin(binaryOperators())) {
                 return {make_unique<Token>(TokenType::BINARY_OPERATOR, lexemes.slice(0, 1)), 1};
-            } else if (checkin(binaryOperators())) {
+            } else if (checkin(unaryOperators())) {
                 return {make_unique<Token>(TokenType::UNARY_OPERATOR, lexemes.slice(0, 1)), 1};
             } else if (checkin(accessOperators())) {
                 return {make_unique<Token>(TokenType::ACCESS_OPERATOR, lexemes.slice(0, 1)), 1};
@@ -181,7 +189,7 @@ namespace clnt::eval::finders {
         return notfound();
     }
 
-    FoundToken findInit(Slice<Lexemes> const& lexemes, unique_ptr<Token> const& lastToken) {
+    FoundToken findInitializer(Slice<Lexemes> const& lexemes, unique_ptr<Token> const& lastToken) {
         if (lastToken && lastToken->type == TokenType::BINARY_OPERATOR) {
             auto block = findBlock(lexemes, nullptr);
             if (block.first) {
@@ -195,7 +203,7 @@ namespace clnt::eval::finders {
 
     void init() {
         FINDERS = {
-                findWord, findInit, findBlock, findOperator, findCallOperator, findSemicolon, findLineBreak, findComma,
+                findWord, findInitializer, findBlock, findOperator, findCallOperator, findSemicolon, findLineBreak, findComma,
                 findBackslash, findSharp, findColon, findQuestion, findComment,
         };
     }

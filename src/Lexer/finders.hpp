@@ -4,18 +4,19 @@
 
 #pragma once
 
+#include <array>
 #include <memory>
 #include <vector>
 #include <utility>
 
-#include "src/Slice.hpp"
 #include "Lexeme.hpp"
 
+#include <src/util/Slice.hpp>
 
 namespace clnt::lex::finders {
     bool isident(char c);
-    size_t findNonSpace(Slice<std::string> const&, std::vector<char> const&);
-    std::pair<size_t, size_t> findBrackets(Slice<std::string> const&, char[2]);
+    size_t findNonSpace(util::Slice<std::string> const&, std::vector<char> const&);
+    std::pair<size_t, size_t> findBrackets(util::Slice<std::string> const&, std::array<char, 2>);
 
     /*
      * Finder is as function for finding lexemes in a string.
@@ -24,22 +25,22 @@ namespace clnt::lex::finders {
      *      returns {nullptr, 0} if lexeme is not found
      */
     using FoundLexeme = std::pair<std::unique_ptr<Lexeme>, size_t>;
-    using LexemeFinder = FoundLexeme (*) (Slice<std::string> const&);
+    using LexemeFinder = FoundLexeme (*) (util::Slice<std::string> const&);
 
-    FoundLexeme findName(Slice<std::string> const&);
-    FoundLexeme findString(Slice<std::string> const&);
-    FoundLexeme findBackslash(Slice<std::string> const&);
-    FoundLexeme findOperator(Slice<std::string> const&);
-    FoundLexeme findConstant(Slice<std::string> const&);
-    FoundLexeme findComma(Slice<std::string> const&);
-    FoundLexeme findColon(Slice<std::string> const&);
-    FoundLexeme findSemicolon(Slice<std::string> const&);
-    FoundLexeme findLinebreak(Slice<std::string>const&);
-    FoundLexeme findQuestion(Slice<std::string> const&);
-    FoundLexeme findOpenBracket(Slice<std::string> const&);
-    FoundLexeme findCloseBracket(Slice<std::string> const&);
-    FoundLexeme findSharp(Slice<std::string> const&);
-    FoundLexeme findComment(Slice<std::string> const&);
+    FoundLexeme findName(util::Slice<std::string> const&);
+    FoundLexeme findString(util::Slice<std::string> const&);
+    FoundLexeme findBackslash(util::Slice<std::string> const&);
+    FoundLexeme findOperator(util::Slice<std::string> const&);
+    FoundLexeme findConstant(util::Slice<std::string> const&);
+    FoundLexeme findComma(util::Slice<std::string> const&);
+    FoundLexeme findColon(util::Slice<std::string> const&);
+    FoundLexeme findSemicolon(util::Slice<std::string> const&);
+    FoundLexeme findLinebreak(util::Slice<std::string>const&);
+    FoundLexeme findQuestion(util::Slice<std::string> const&);
+    FoundLexeme findOpenBracket(util::Slice<std::string> const&);
+    FoundLexeme findCloseBracket(util::Slice<std::string> const&);
+    FoundLexeme findSharp(util::Slice<std::string> const&);
+    FoundLexeme findComment(util::Slice<std::string> const&);
 
     // List of all finders
     extern std::vector<LexemeFinder> FINDERS;

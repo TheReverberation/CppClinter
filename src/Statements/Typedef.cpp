@@ -9,12 +9,13 @@ using std::unique_ptr;
 using std::string;
 using std::pair;
 
+using clnt::util::Slice;
 using clnt::eval::TokenType;
 using clnt::eval::Token;
 using clnt::eval::Tokens;
 
 namespace clnt::states {
-    Typedef::Typedef(clnt::Slice<Tokens> tokens): Statement(StatementType::TYPEDEF, move(tokens)) {}
+    Typedef::Typedef(Slice<Tokens> tokens): Statement(StatementType::TYPEDEF, move(tokens)) {}
 
     pair<unique_ptr<Statement>, size_t> Typedef::find(Slice<Tokens> const& tokens) {
         if (tokens[0]->type == TokenType::RESERVED && tokens[0]->lexemes[0]->source == string("typedef")) {

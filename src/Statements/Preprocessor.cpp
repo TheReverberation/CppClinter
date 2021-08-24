@@ -2,7 +2,7 @@
 #include "Arithmetic/linters.hpp"
 
 #include <src/Evaluator/TokenType.hpp>
-#include <src/accumulate.hpp>
+#include <src/util/accumulate.hpp>
 
 #include <algorithm>
 
@@ -15,7 +15,9 @@ using std::make_pair;
 using std::back_inserter;
 using std::string;
 using std::pair;
+using std::shared_ptr;
 
+using clnt::util::Slice;
 using clnt::eval::TokenType;
 using clnt::eval::Tokens;
 using clnt::eval::Token;

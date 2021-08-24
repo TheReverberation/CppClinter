@@ -9,6 +9,7 @@ using std::make_pair;
 using std::move;
 using std::pair;
 
+using clnt::util::Slice;
 using clnt::eval::Tokens;
 using clnt::eval::Token;
 using clnt::eval::TokenType;

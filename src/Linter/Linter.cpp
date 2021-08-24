@@ -1,6 +1,4 @@
-//
-// Created by Daniil Nedaiborsch on 27.04.2020.
-//
+#include <src/util/accumulate.hpp>
 
 #include "Linter.hpp"
 
@@ -15,8 +13,9 @@ using clnt::states::Statement;
 using clnt::parse::Statements;
 using clnt::states::StatementType;
 
+using namespace clnt::util;
+
 namespace {
-    using clnt::Slice;
 
     vector<pair<StatementType, string>>
     groupExpressions(Slice<Statements> const& statements) {
@@ -94,7 +93,7 @@ namespace {
                 joinedLines.push_back(statements[i].second);
             }
         }
-        return clnt::accumulate(joinedLines.begin(), joinedLines.end(), string()); 
+        return accumulate(joinedLines.begin(), joinedLines.end(), string()); 
     }
 
     string joinStatements(vector<pair<StatementType, string>> const& statements) {

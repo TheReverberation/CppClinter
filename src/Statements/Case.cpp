@@ -10,9 +10,13 @@ using std::vector;
 using std::string;
 using std::move;
 using std::unique_ptr;
+using std::make_unique;
 using std::pair;
 
+using namespace clnt::util;
+
 using clnt::eval::Token;
+using clnt::eval::TokenType;
 using clnt::eval::Tokens;
 using clnt::parse::Parser;
 using clnt::lint::Linter;

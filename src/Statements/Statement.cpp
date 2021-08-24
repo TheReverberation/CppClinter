@@ -1,12 +1,12 @@
-//
-// Created by Daniil Nedaiborsch on 16.04.2020.
-//
-
 #include "Statement.hpp"
+
+#include "Arithmetic/UndefinedLinterError.hpp"
 
 using std::vector;
 using std::move;
 using std::string;
+
+using clnt::util::Slice;
 
 using clnt::eval::Tokens;
 
@@ -16,7 +16,7 @@ namespace clnt::states {
 
 
     void Statement::lint() const {
-        throw err::UndefinedLinterError();
+        throw arithm::err::UndefinedLinterError();
     }
 
     string const& Statement::linted() const {

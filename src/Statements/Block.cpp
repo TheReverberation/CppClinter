@@ -1,16 +1,15 @@
-//
-// Created by Daniil Nedaiborsch on 18.04.2020.
-//
-
 #include "Block.hpp"
 
 #include "allFinders.hpp"
 
 using std::vector;
+using std::move;
 using std::unique_ptr;
 using std::make_unique;
 using std::pair;
 using std::string;
+
+using namespace clnt::util;
 
 using clnt::eval::Token;
 using clnt::eval::TokenType;
@@ -19,7 +18,6 @@ using clnt::lint::Linter;
 using clnt::eval::Evaluator;
 
 namespace {
-    using clnt::Slice;
 
     vector<Slice<string>> split(Slice<string> const &s, char delimiter) {
         vector<Slice<string>> result;
@@ -38,7 +36,7 @@ namespace {
 
     string tabShift(string const& s) {
         string result;
-        vector<Slice<string>> lines = split(s, '\n');
+        vector<Slice<string>> lines = split(makeSlice(s), '\n');
         for (auto& line : lines) {
             result += '\t';
             std::copy(line.begin(), line.end(), std::back_inserter<string>(result));
@@ -63,22 +61,14 @@ namespace clnt::states {
     }
 
     void Block::lint() const {
-        //std::cout << "begin\n";
         Evaluator evaluator(eval::finders::FINDERS);
         Tokens intoTokens =
                 evaluator.evaluate(tokens[0]->lexemes.slice(1, tokens[0]->lexemes.size() - 1));
 
-        //std::cout << "Tokens: \n";
-        for (auto& now : intoTokens) {
-            //std::cout << *now << '\n';
-        }
 
         Parser parser(states::STATEMENT_FINDERS);
         Slice<vector<unique_ptr<Statement>>> statements = parser.parse(move(intoTokens));
 
-        for (auto& now : statements) {
-            //std::cout << *now << '\n';
-        }
 
         Linter linter;
         _linted = linter.lint(statements, lint::Space::LOCAL);

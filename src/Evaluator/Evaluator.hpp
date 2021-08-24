@@ -4,8 +4,9 @@
 #include <memory>
 
 #include "finders.hpp"
-#include "src/Lexer/Lexeme.hpp"
-#include "src/Slice.hpp"
+
+#include <src/Lexer/Lexeme.hpp>
+#include <src/util/Slice.hpp>
 
 
 
@@ -20,6 +21,6 @@ namespace clnt::eval {
     public:
         explicit Evaluator(std::vector<finders::TokenFinder> finders);
         std::vector<finders::TokenFinder> const finders;
-        Tokens evaluate(Slice<lex::Lexemes> const& lexemes);
+        Tokens evaluate(util::Slice<lex::Lexemes> const& lexemes);
     };
 }

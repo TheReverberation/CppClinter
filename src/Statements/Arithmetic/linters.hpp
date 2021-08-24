@@ -8,8 +8,8 @@
 #include <memory>
 #include <string>
 
-#include "src/Slice.hpp"
-#include "src/Statements/Statement.hpp"
+#include <src/util/Slice.hpp>
+#include <src/Statements/Statement.hpp>
 
 
 namespace clnt::states::arithm {
@@ -18,7 +18,7 @@ namespace clnt::states::arithm {
     extern Linter LINTERS[255];
     void initLinters();
 
-    std::string lintArithmetic(Slice<eval::Tokens> const&);
+    std::string lintArithmetic(util::Slice<eval::Tokens> const&);
     std::string lint(std::unique_ptr<eval::Token> const&, std::unique_ptr<eval::Token> const&);
 
     std::string lintSemicolon(std::unique_ptr<eval::Token> const& token, std::unique_ptr<eval::Token> const&);

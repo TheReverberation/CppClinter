@@ -1,17 +1,18 @@
+#include <algorithm>
+#include <array>
+#include <limits>
 #include <string>
 
 #include "LexemeType.hpp"
 
 namespace {
-    std::string typeName[255];
+    std::array<std::string, 255> typeName;
 }
 
 namespace clnt::lex {
 
-    void initTypeNames() {
-        for (size_t i = 0; i < 255; ++i) {
-            typeName[i] = "$(LexemeTypeName)";
-        }
+    void initTypeNames() {        
+        std::fill(typeName.begin(), typeName.end(), "$(LexemeTypeName)");
 
         typeName[(int)LexemeType::NAME] = "Name";
         typeName[(int)LexemeType::OPERATOR] = "Operator";
@@ -29,7 +30,11 @@ namespace clnt::lex {
         typeName[(int)LexemeType::COMMENT] = "Comment";
     }
 
+    std::string getLexemeTypeName(LexemeType type) {
+        return typeName[static_cast<std::size_t>(type)];
+    }
+
     std::ostream& operator<<(std::ostream& out, LexemeType type) {
-        return out << typeName[(int)type];
+        return out << getLexemeTypeName(type);
     }
 }

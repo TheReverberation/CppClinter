@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <memory>
-#include "src/calphabet.hpp"
+
+#include <src/calphabet.hpp>
 
 #include "finders.hpp"
 
@@ -12,6 +13,9 @@ using std::vector;
 using std::unique_ptr;
 using std::string;
 using std::make_pair;
+
+using clnt::util::Slice;
+using clnt::util::makeSlice;
 
 namespace {
     clnt::lex::finders::FoundLexeme notfound() { return {nullptr, 0}; }
@@ -86,7 +90,7 @@ namespace clnt::lex::finders {
             ++i;
             return {make_unique<Lexeme>(LexemeType::COMMENT, s.slice(0, i)), i};
         }
-        return {nullptr, 0};
+        return ::notfound();
     }
 
     FoundLexeme findMultiComment(Slice<string> const& s) {
@@ -97,7 +101,7 @@ namespace clnt::lex::finders {
             }
             return {make_unique<Lexeme>(LexemeType::COMMENT, s.slice(0, i)), i};
         }
-        return {nullptr, 0};
+        return notfound();
     }
 
     FoundLexeme findComment(Slice<string> const& s) {
@@ -109,7 +113,7 @@ namespace clnt::lex::finders {
         if (found.first) {
             return found;
         }
-        return {nullptr, 0};
+        return notfound();
     }
 
     FoundLexeme findNumber(Slice<string> const& s) {
@@ -167,5 +171,4 @@ namespace clnt::lex::finders {
             findOpenBracket, findCloseBracket, findSharp,
         };
     }
-
 }

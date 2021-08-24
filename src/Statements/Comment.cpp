@@ -11,6 +11,9 @@ using std::copy;
 using std::back_inserter;
 using std::vector;
 
+
+using namespace clnt::util;
+
 using clnt::eval::Token;
 using clnt::eval::TokenType;
 using clnt::eval::Tokens;

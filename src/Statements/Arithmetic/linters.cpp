@@ -1,7 +1,3 @@
-//
-// Created by Daniil Nedaiborsch on 21.04.2020.
-//
-
 #include <sstream>
 
 #include <src/Evaluator/Evaluator.hpp>
@@ -17,12 +13,14 @@ using std::stringstream;
 using std::unique_ptr;
 using std::make_unique;
 
+using clnt::util::Slice;
 using clnt::eval::Token;
 using clnt::eval::TokenType;
 using clnt::eval::Tokens;
 
 namespace {
     string undefinedLinter(unique_ptr<Token> const& token, unique_ptr<Token> const& last) {
+        std::cerr << "undefined token " << token->type << *token << '\n';
         throw clnt::states::arithm::err::UndefinedLinterError();
     }
 }
@@ -112,6 +110,9 @@ namespace clnt::states::arithm {
             ss << token->lexemes[0]->source;
             return ss.str();
 //            return (boost::format("%s") % token->lexemes[0]->source).str();
+        }
+        if (last && last->type == TokenType::RESERVED) {
+            ss << " ";
         }
         ss << token->lexemes[0]->source;
         return ss.str();

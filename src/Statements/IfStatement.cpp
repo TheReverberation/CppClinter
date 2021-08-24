@@ -10,7 +10,9 @@ using std::unique_ptr;
 using std::make_unique;
 using std::string;
 
+
 using namespace clnt::eval;
+using clnt::util::Slice;
 
 namespace clnt::states {
     IfStatement::IfStatement(Slice<Tokens> tokens, vector<unique_ptr<Statement>> statements):
@@ -23,17 +25,19 @@ namespace clnt::states {
             vector<unique_ptr<Statement>> statements;
             auto [word, _] = Expression::find(tokens.slice(0, 1));
             assert(word);
-            statements.push_back(move(word));
-
+            statements.emplace_back(move(word));
+            auto [condition, _2] = Expression::find(tokens.slice(1, 2));
+            assert(condition);
+            statements.emplace_back(move(condition));
             parse::Parser parser({Instruction::find, Expression::find, Block::find});
-            size_t i = 1;
+            size_t i = 2;
             while (statements.back()->type != StatementType::INSTRUCTION && statements.back()->type != StatementType::BLOCK) {
                 auto found = parser.find(tokens.slice(i));
                 assert(found.first != nullptr);
                 //std::cout << *found.first << ',' << found.second << '\n';
                 // if found is not line break
                 if (!(found.first->type == StatementType::EXPRESSION && found.first->tokens[0]->type == TokenType::LINE_BREAK)) {
-                   statements.push_back(move(found.first));
+                   statements.emplace_back(move(found.first));
                 }
                 i += found.second;
             }
@@ -47,7 +51,14 @@ namespace clnt::states {
             state->lint();
         }
         string accumulate = "";
-        for (size_t i = 0; i < statements.size(); ++i) {
+        accumulate += statements[0]->linted() + " ";
+        accumulate += statements[1]->linted();
+        if (statements[2]->type == StatementType::INSTRUCTION) {
+            accumulate += "\n\t";
+        } else {
+            accumulate += " ";
+        }
+        for (size_t i = 2; i < statements.size(); ++i) {
             accumulate += statements[i]->linted();
             if (i + 1 < statements.size() && statements[i + 1]->linted() != ";") {
                 accumulate += " ";

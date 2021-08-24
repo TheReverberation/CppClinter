@@ -15,6 +15,7 @@ using std::pair;
 using std::string;
 using std::static_pointer_cast;
 
+using namespace clnt::util;
 using namespace clnt::eval;
 
 namespace clnt::states {
@@ -24,6 +25,9 @@ namespace clnt::states {
 
 
     pair<unique_ptr<Statement>, size_t> ElseStatement::find(Slice<Tokens> const& tokens) {
+        if (tokens.size() == 0) {
+            return {nullptr, 0};
+        }
         if (tokens[0]->type == eval::TokenType::RESERVED && tokens[0]->lexemes[0]->source == string("else")) {
             vector<unique_ptr<Statement>> statements;
             auto [word, _] = Expression::find(tokens.slice(0, 1));

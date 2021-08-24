@@ -1,8 +1,6 @@
 #include "calphabet.hpp"
 
 #include <iterator>
-#include <vector>
-#include <string>
 #include <memory>
 
 using std::string;
@@ -11,22 +9,26 @@ using std::copy;
 using std::back_inserter;
 using std::make_shared;
 
+using clnt::util::Slice;
+
 namespace clnt::alphabet {
 
     vector<Slice<string>> _UNARY_OPERATORS, _OPERATORS;
     vector<Slice<string>> _BINARY_OPERATORS, _ACCESS_OPERATORS, _RESERVED;
 
     void init() {
+        
         vector<string> binary = {
                 "+", "-", "*", "/", "^", "&", "|", "=", "~", "<", ">", "%", "+=", "-=", \
                 "*=", "/=", "^=", "&=", "|=", "==", "!=", "~=", "%=", ">=", "<=", "<<", ">>", \
                 "&&", "||"
         };
+
         for (auto& op : binary) {
             _BINARY_OPERATORS.emplace_back(make_shared<string>(op));
         }
         vector<string> unary = {
-               "++", "--", "*", "&", "!", "-"
+               "++", "--", "*", "&", "!", "-", "."
         };
         for (auto& op : unary) {
            _UNARY_OPERATORS.emplace_back(make_shared<string>(op));

@@ -4,9 +4,8 @@
 #include <vector>
 #include <string>
 
-#include "src/Slice.hpp"
-#include "src/accumulate.hpp"
-#include "src/Parser/Parser.hpp"
+#include <src/util/Slice.hpp>
+#include <src/Parser/Parser.hpp>
 
 namespace clnt::lint {
 
@@ -17,7 +16,7 @@ namespace clnt::lint {
     class Linter {
     public:
         Linter() = default;
-        std::string lint(Slice<parse::Statements> const&, Space);
+        std::string lint(util::Slice<parse::Statements> const&, Space);
     private:
     };
 }
